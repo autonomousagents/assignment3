@@ -13,14 +13,6 @@ import java.util.Scanner;
  */
 public class Assignment2 {
 
-    private StateRepresentation bestStateRep;
-
-    public Assignment2() {
-
-        bestStateRep = new StateRepresentation(-1);
-        readBestValueFunctionFromFile("Assignment2/src/qLearning_200_million_episodes.txt");
-    }
-
     /**
      * Reads in the supposed optimal Q(s,a) function (i.e. table) from a file.
      * Made to process a file were each staterep-traingle of doubles if precede by "Action = ..."
@@ -62,215 +54,9 @@ public class Assignment2 {
             System.out.println("Error in Assignment2::readBestValueFunctionFromFile(..): File " + filename + " not found!");
         }
     }
+    
 
-    /**
-     *
-     * @see MonteCarloOnline(..)
-     *
-     * @param tau       : tau parameter of the softmax activation function
-     * @param nrRuns    : number of episodes
-     * @param init      : initial values for the Q(s,a) table
-     * @param discount  : discount factor
-     *
-     * @return steps per run needed to reach the goal, for the number of runs needed until convergence
-     */
-    public ArrayList<Integer> processEpisodesMonteCarloOnline(double tau, int nrRuns, double init, double discount) {
-        //double tau, int nrRuns, double init, Position startPos, Position startPosPrey
-        ArrayList<Integer> stepsPerRun = new ArrayList<Integer>();
-        PredatorOnPolicyMonteCarlo agent = new PredatorOnPolicyMonteCarlo(tau, nrRuns, init, new Position(0, 0), new Position(5, 5), discount);
-        Environment env = new Environment(agent, new Position(5, 5));
-        View view = new View(env);
-        int runNr = 0;
-        do {
-            env.doRun();
-            runNr++;
-            if (runNr % 20 == 0) {
-//                System.out.println(runNr);
-            }
-            agent.learnAfterEpisode();
-            env.reset();
-            stepsPerRun.add(env.getNrSteps());
-            env.resetNrSteps();
-        } while (!agent.isConverged());
-//        view.printSimple();
-        agent.setPrint(false);
-//        while (!env.isEnded()) {
-//            env.nextTimeStep();
-//            view.printSimple();
-//        }
-//        agent.printQValues(false, -1);
-//        view.printPolicy(agent, 5, 5);
-        return stepsPerRun;
-    }
-
-    /**     
-     * SECOND SHOULD #1
-     *
-     * On-policy Monte Carlo, using the Softmax activation function.
-     *
-     * @param nrTrials  : number of trials (will be averaged over)
-     * @param tau       : tau parameter of the softmax activation function
-     * @param nrRuns    : number of episodes
-     * @param init      : initial values for the Q(s,a) table
-     * @param discount  : discount factor
-     */
-    private void MonteCarloOnline(int nrTrials, double tau, int nrRuns, double init, double discount) {
-        ArrayList<ArrayList<Integer>> stepsPerRun = new ArrayList<ArrayList<Integer>>();
-        for (int i = 0; i < nrTrials; i++) {
-            stepsPerRun.add(processEpisodesMonteCarloOnline(tau, nrRuns, init, discount));
-            System.out.println("Trial: " + i);
-        }
-        int[] average = new int[nrRuns];
-        System.out.print("\n[");
-        for (int i = 0; i < nrRuns; i++) {
-            int total = 0;
-            for (int j = 0; j < nrTrials; j++) {
-                total += stepsPerRun.get(j).get(i);
-            }
-            average[i] = total / nrTrials;
-            if (i == nrRuns - 1) {
-                System.out.print(average[i]);
-            }
-            else {
-                System.out.print(average[i] + ",");
-            }
-        }
-        System.out.println("]");
-    }
-
-    /**
-     *
-     * @see MonteCarloOffline(..)
-     */
-    public void runEstimationPolicyAgent(Environment env, PredatorOffPolicyMonteCarlo agent, View v, boolean print) {
-        boolean validRun = false;
-        int invalidRun = 0;
-        int nrSteps = 0;
-        while (!validRun) {
-            while (!env.isEnded()) {
-                if (nrSteps < 80000) {
-                    env.nextTimeStep();
-                    if (print) {
-                        v.printSimple();
-                    }
-                    nrSteps++;
-                    nrSteps++;
-                    if (env.isEnded()) {
-                        validRun = true;
-                    }
-                }
-                else {
-                    nrSteps = 0;
-                    //System.out.println("invalid run" + invalidRun);
-                    invalidRun++;
-                    agent.resetSAR();
-                    env.resetNrSteps();
-                    env.reset();
-                    break;
-                }
-            }
-            env.reset();
-        }
-    }
-
-    /**
-     * Process results of episodes of off-policy Monte Carlo for the estimation policy
-     *
-     * @see MonteCarloOffline(..)
-     *
-     * @param tau               : tau parameter of the softmax activation function
-     * @param nrRuns            : number of episodes
-     * @param init              : initial values for the Q(s,a) table
-     * @param discount          : discount factor
-     * @param QvaluesBehavior   : estimation policy
-     *
-     * @return  steps per run needed to reach the goal, for the number of runs needed until convergence
-     */
-    public ArrayList<Integer> processEstimationPolicyMonteCarloOffline(double tau, int nrRuns, double init, double discount, StateRepresentation QvaluesBehavior) {
-        PredatorOffPolicyMonteCarlo agentOffLineMC = new PredatorOffPolicyMonteCarlo(tau, nrRuns, init, new Position(0, 0), new Position(5, 5), discount);
-        agentOffLineMC.setBehaviorPolicy(true, QvaluesBehavior);
-        Environment env = new Environment(agentOffLineMC, new Position(5, 5));
-        View v = new View(env);
-        ArrayList<Integer> stepsPerRun = new ArrayList<Integer>();
-        int runView = 10;
-        int runNr = 0;
-        do {
-            runEstimationPolicyAgent(env, agentOffLineMC, v, false);
-            runNr++;
-            if (runNr % runView == 0) {
-                System.out.println(runNr);
-                System.out.println("behavior finished");
-            }
-            agentOffLineMC.learnAfterEpisode();
-            env.reset();
-            env.resetNrSteps();
-
-            agentOffLineMC.useBehaviorPolicy(false);
-            runEstimationPolicyAgent(env, agentOffLineMC, v, false);
-            stepsPerRun.add(env.getNrSteps());
-            env.reset();
-            env.resetNrSteps();
-            agentOffLineMC.useBehaviorPolicy(true);
-            if (runNr % runView == 0) {
-                System.out.println("estimation finished");
-            }
-        } while (!agentOffLineMC.isConverged());
-        v.printPolicy(agentOffLineMC, 5, 5);
-
-//        doRunMain(env,agentOffLineMC,v, true);
-//        System.out.println("behavior");
-//        agentOffLineMC.getQValuesBehavior().printAll(true);
-//        System.out.println("estimation");
-//        agentOffLineMC.getQValuesEst().printAll(true);
-        return stepsPerRun;
-    }
-
-    /**
-     *
-     * SECOND SHOULD #2
-     *
-     *  Off-policy Monte Carlo, using the Softmax activation function.
-     *
-     * @param tau               : tau parameter of the softmax activation function
-     * @param nrRuns            : number of episodes for estimation policy
-     * @param init              : initial values for the Q(s,a) table
-     * @param discount          : discount factor
-     * @param nrTrials          : number of trials (will be averaged over)
-     * @param nrRunsBehavior    : number of episodes for behaviour policy
-     */
-    public void MonteCarloOffline(double tau, int nrRuns, double init, double discount, int nrTrials, int nrRunsBehavior) {
-        PredatorOnPolicyMonteCarlo agentOnLineMC = new PredatorOnPolicyMonteCarlo(tau, nrRunsBehavior, init, new Position(0, 0), new Position(5, 5), discount);
-        Environment env = new Environment(agentOnLineMC, new Position(5, 5));
-
-        do {
-            env.doRun();
-            agentOnLineMC.learnAfterEpisode();
-            env.reset();
-        } while (!agentOnLineMC.isConverged());
-        StateRepresentation QvaluesBehavior = agentOnLineMC.getQvalues();
-        ArrayList<ArrayList<Integer>> stepsPerRun = new ArrayList<ArrayList<Integer>>();
-        for (int i = 0; i < nrTrials; i++) {
-            System.out.println("Trial: " + i);
-            stepsPerRun.add(processEstimationPolicyMonteCarloOffline(tau, nrRuns, init, discount, QvaluesBehavior));
-        }
-        int[] average = new int[nrRuns];
-        System.out.print("\n[");
-        for (int i = 0; i < nrRuns; i++) {
-            int total = 0;
-            for (int j = 0; j < nrTrials; j++) {
-                total += stepsPerRun.get(j).get(i);
-            }
-            average[i] = total / nrTrials;
-            if (i == nrRuns - 1) {
-                System.out.print(average[i]);
-            }
-            else {
-                System.out.print(average[i] + ",");
-            }
-        }
-        System.out.println("]");
-
-    }
+    
 
     /**
      * Makes matlab scripts that plot statistics for Q-Learning using a given action selection method with
@@ -581,12 +367,7 @@ public class Assignment2 {
     public static void main(String[] args) {
         Assignment2 a = new Assignment2();
 
-        //   a.QLearningCompareAlphasAndDfs(); // First Must
-         a.QLearningCompareEpsilonsAndInits(); // Second Must
-        //a.QLearningCompareActionselections(); // First Should
-
-        //  a.MonteCarloOnline(5, 0.8,500,15.0,0.8);
-        // a.MonteCarloOffline(0.8, 400, 15.0, 0.9, 4,600);
+        
 
     }
 }

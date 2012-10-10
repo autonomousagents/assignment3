@@ -30,6 +30,9 @@ public class Environment {
         if(predators.size()>4){
             System.out.println("too many predators");
         }
+        if(predators.size()==0){
+            System.out.println("WARNING: no predators");
+        }
     }
 
     /**
