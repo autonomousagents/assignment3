@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
  */
-public class Assignment2 {
+public class Assignment3 {
 
     /**
      * Reads in the supposed optimal Q(s,a) function (i.e. table) from a file.
@@ -363,11 +363,35 @@ public class Assignment2 {
         View.episodeMatrixToMatlabScript2D("qLearning_visitedPairs.m", percentageStateActionPairsVisited, initEpsilonValues, "init.val.", "epsilon", "% State-Action pairs visited");
         View.episodeMatrixToMatlabScript2D("qLearning_nrSteps.m", nrStepsUsed, initEpsilonValues, "init.val.", "epsilon", "Number of steps");
     }
+    
+    public void testEnvironment(int nrRuns, int nrPredators ){
+        int [][] options = {{0,0},{2,2},{8,8},{2,8}};       
+        ArrayList<Position> startPosPreds = new ArrayList<>();
+        ArrayList<Agent> predators = new ArrayList<>();
+        Position preyPos = new Position(5,5);
+        for(int i = 0; i<nrPredators;i++){
+            startPosPreds.add(new Position(options[i][0],options[i][1]));
+        }   
+        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds), new StateRepresentation(), nrRuns);
+        Agent a;  
+        ArrayList<Position> others;
+        for(int i = 0; i<nrPredators;i++){
+            others = new ArrayList<>();
+            others.add(preyPos);
+            for(int j = 0; j<nrPredators;j++){
+                if(i!=j){
+                    others.add(new Position(startPosPreds.get(j)));
+                }
+            }
+            StateRepresentation s = new StateRepresentation;
+            predators.add(new PredatorRandom(startPosPreds.get(i), others, s ,nrRuns));
+        }         
+        Environment env = new Environment(predators, prey);
+    }
 
     public static void main(String[] args) {
-        Assignment2 a = new Assignment2();
-
-        
+        Assignment3 a = new Assignment3();
+        a.testEnvironment(1,3);        
 
     }
 }
