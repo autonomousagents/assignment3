@@ -7,8 +7,10 @@ In all tasks there is assumed to be a grid world (of $11 \times 11$) with at lea
 
 \subsection{The state space representation} \label{sec:stateSpace}
 In the experiments described the first report, we initially used a state space that was an intuitive, yet cumbersome representation. We referred to that state space representation as the `default' state space. The amount of states that was used in the default state space was $(11 \times 11) \times (11 \times 11) = 121 \times 121 = 14641$. We then changed the state space representation to a more efficient one in the second assignment, referred to as the `efficient' state space, which led to a reduction of 697 times less states, resulting in just 21 different states.
+The default amount of states for four predators and a prey would be $121^(p+prey)$
 
-In this assignment, we used this efficient state space representation for the learning algorithms. To give a good understanding of our learning algorithms, which were built on the efficient state space representation, we will once again explain how this representation works.
+
+In this assignment, we again used this efficient state space representation for the learning algorithms. To give a good understanding of our learning algorithms, which were built on the efficient state space representation, we will once again explain how this representation works.
 
 Figure \ref{fig:statespaceSymm} illustrates that there is a symmetry in the default state space, and thus that there were relatively much values redundantly computed.
 By using this symmetry in the default state space a much smaller state space was achieved. 
