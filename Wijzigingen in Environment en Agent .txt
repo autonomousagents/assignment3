@@ -1,0 +1,8 @@
+AGENT
+
+doMove en observeReward met arraylist van posities van de anderen
+
+
+Environment
+
+functies aanpast

@@ -1,9 +1,12 @@
 
+import java.util.ArrayList;
+
+
 public interface Agent {
 
 	
 	
-	public void doMove(Position other);
+	public void doMove(ArrayList<Position> others);
 	
 	public Position getPos();
 	
@@ -11,7 +14,9 @@ public interface Agent {
 	
 	public boolean isConverged();
 	
-	public void observeReward(double reward, Position other);
+        /*If this function is called for by the prey others is the position of
+         the other predators, if it is a predator the agent at position 0 is the prey*/
+	public void observeReward(double reward, ArrayList<Position> others);
 
     public double[] policy(Position prey, Position predator);
 
