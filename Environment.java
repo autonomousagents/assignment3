@@ -57,7 +57,7 @@ public class Environment {
     }
     
     private ArrayList<Position> positionsOthers(int agent){
-        ArrayList<Position> positions = new ArrayList<>();
+        ArrayList<Position> positions = new ArrayList<Position>();
         if(agent == 0){
             for(Agent a:predators){
                 positions.add(a.getPos());

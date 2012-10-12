@@ -41,35 +41,7 @@ public class RelativeStateRep {
          return null;
 	}
     
-    /**
-     * Enumerator listing all possible actions in the state space
-     */
-    public enum Action {
-
-    	HorizontalApproach(0),
-    	HorizontalRetreat(1),
-    	VerticalApproach(2),
-    	VerticalRetreat(3),
-    	Wait(4);
-
-        public  final static Action[]  actionValues = Action.values();
-    	public final static int nrActions=5;
-
-        public final static String actionNames[] = {String.format("%-15s","Hor.Approach"),
-                                                    String.format("%-15s","Hor.Retreat"),
-                                                    String.format("%-15s","Ver.Approach"),
-                                                    String.format("%-15s","Ver.Retreat"),
-                                                    String.format("%-15s","Wait")};
-
-    	private int i;
-    	Action(int index){
-    		i = index;
-    	}
-        
-    	int getIntValue(){
-    		return i;
-    	}
-    }
+   
     
     /**
      * Provides the v-value for a linear index in the state space
@@ -88,7 +60,7 @@ public class RelativeStateRep {
      * @param action = action taken from state s
      * @return linear index of state s' resulting from that action.
      */
-    public int getLinearIndexForAction(int linearIndex, Action action){
+    public static int getLinearIndexForAction(int linearIndex, Action action){
     	Position pos = linearIndexToPosition(linearIndex);
     	if(linearIndex == 0)return 0;
     	switch(action){
@@ -121,7 +93,12 @@ public class RelativeStateRep {
     	else return Environment.minimumReward;
     }
 
-    
+    public static int getLinearIndexFromPositions(Position myPos, Position other) {
+        int[] reldistance = getRelDistance(myPos, other);
+        return relDistanceToLinearIndex(reldistance[0], reldistance[1]);
+
+    }
+
     public boolean isGoalState(int linearIndex){
     	return (linearIndex == 0);
     }
@@ -132,7 +109,7 @@ public class RelativeStateRep {
      * @param prey = position of prey agent
      * @return relative distance (horizontal distance and vertical distance) between the two positions.
      */
-    public int[] getRelDistance(Position predator, Position prey){
+    public static int[] getRelDistance(Position predator, Position prey){
     	int [] relativeDistance = new int[2];
     	//horizontal Distance
     	relativeDistance[0] = Math.abs(prey.getX()-predator.getX());
