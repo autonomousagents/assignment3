@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+
+
 public class StateRep {
 	
 	private boolean isPrey;
@@ -24,10 +27,19 @@ public class StateRep {
 	 
 	 private void fillOtherPredators() {
 
-         outerPredator = new Matrix2D();
+         outerPredator = new Matrix2D(Environment.HEIGHT, Environment.WIDTH);
          outerPredator.init(nrOtherPredators, initialValue);
+
+       
 	 }
 	 
-	 
+	 public void test() {
+         Position bla = new Position(1,1);
+         ArrayList<Position> otherPositions = new ArrayList<Position>();
+         for (int i=0; i < nrOtherPredators+1; i++ )
+               otherPositions.add(bla);
+
+         System.out.println(outerPredator.get(bla, otherPositions, Action.HorizontalApproach, nrOtherPredators));
+     }
 	    
 }

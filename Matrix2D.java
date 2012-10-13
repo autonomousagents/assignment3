@@ -17,7 +17,7 @@ public class Matrix2D<T> {
     private Matrix2D[][] innerMatrix2D;
     private RelativeStateRep[][] bottomMatrix;
 
-    public Matrix2D(int nrows, int ncols, int nactions) {
+    public Matrix2D(int nrows, int ncols) {
         nRows=nrows;
         nCols=ncols;               
     }
@@ -49,7 +49,7 @@ public class Matrix2D<T> {
             
             for (int i=0; i < nRows; i++) {
                 for(int j=0; j < nCols; j++) {
-                        innerMatrix2D[i][j] = new Matrix2D();
+                        innerMatrix2D[i][j] = new Matrix2D(nRows, nCols);
                         innerMatrix2D[i][j].init(level-1, initValue); // spreek deze functie wee aan met level-1
                 }
             }
