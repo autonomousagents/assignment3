@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /*
  * To change this template, choose Tools | Templates
@@ -8,12 +7,12 @@ import java.util.Arrays;
  */
 
 
-public class Matrix2D<T> {
+public class Matrix2D  {
 
     private int nRows;
     private int nCols;
 
-    // hij heeft één van deze twee, dus mss beter superklasse maken
+    // he only has/uses ONE of these, so perhaps create an interface/superclass for Matrix2D and RelativeStateRep
     private Matrix2D[][] innerMatrix2D;
     private RelativeStateRep[][] bottomMatrix;
 
@@ -54,7 +53,6 @@ public class Matrix2D<T> {
                 }
             }
         }
-
     }
 
     /**
@@ -75,7 +73,6 @@ public class Matrix2D<T> {
             // ga bij innerlijke matrix opvragen (via deze zelfde functie, level-1)
             return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . getActionValue(myPos, allOtherPositions, myAction, level-1);
         }
-
     }
 
     public double[] getAllActionValues(Position myPos, ArrayList<Position> allOtherPositions, int level) {
@@ -89,7 +86,6 @@ public class Matrix2D<T> {
             // ga bij innerlijke matrix opvragen (via deze zelfde functie, level-1)
             return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . getAllActionValues(myPos, allOtherPositions, level-1);
         }
-
     }
     
 
@@ -104,8 +100,20 @@ public class Matrix2D<T> {
             // ga bij innerlijke matrix setten (via deze zelfde functie, level-1)
             innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . setActionValue(myPos, allOtherPositions, myAction, level-1, value);
         }
-
     }
+
+     public int getMove(Position myPos, ArrayList<Position> allOtherPositions, Action stateRepAction, int level, boolean print) {
+
+          if (level == 1 ) { //get from RelativeStateRep
+
+            return bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()]. getMove(myPos, allOtherPositions.get(0), stateRepAction, print);
+        }
+        else {
+            // ga bij innerlijke matrix setten (via deze zelfde functie, level-1)
+            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . getMove(myPos, allOtherPositions, stateRepAction, level-1, print);
+        }
+
+     }
 
 
 }

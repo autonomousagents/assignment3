@@ -8,7 +8,7 @@
  */
 import java.util.Arrays;
 
-public class RelativeStateRep {
+public class RelativeStateRep  {
 
     private double stateRep[][][];
     public static final int stateRepWidth = Math.round(Environment.WIDTH / 2) + 1;
@@ -374,10 +374,12 @@ public class RelativeStateRep {
     /**
      * Provides real world move based on action in state representation and position of the prey
      * @param other = position of prey
-     * @param stateRepMove = action in state space
+     * @param stateRepAction = action in state space
      * @return action in real world
      */
-    public int getMove(Position predator, Position prey, int stateRepMove, boolean print) {
+    public int getMove(Position predator, Position prey, Action  stateRepAction, boolean print) {
+        int stateRepMove = stateRepAction.getIntValue();
+        
         if (stateRepMove == 4) {
             return 4;
         }
