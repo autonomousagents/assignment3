@@ -48,7 +48,8 @@ public class Matrix2D<T> {
             innerMatrix2D = new Matrix2D[nRows][nCols]; // bevat 2D matrix met daarin Matrix2D's  (voor volgende andere predator)
             
             for (int i=0; i < nRows; i++) {
-                for(int j=0; j < nCols; j++) {                
+                for(int j=0; j < nCols; j++) {
+                        innerMatrix2D[i][j] = new Matrix2D();
                         innerMatrix2D[i][j].init(level-1, initValue); // spreek deze functie wee aan met level-1
                 }
             }

@@ -393,5 +393,7 @@ public class Assignment3 {
         Assignment3 a = new Assignment3();
        // a.testEnvironment(1,3);
 
+        StateRep rep = new StateRep(10,false,3);
+
     }
 }

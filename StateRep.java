@@ -17,12 +17,14 @@ public class StateRep {
 		 this.isPrey = isPrey;	 		
 		 this.nrOtherPredators = nrPredators-1;
 		 this.initialValue = init;
-		 
+
+         fillOtherPredators();
 		
     }
 	 
 	 private void fillOtherPredators() {
 
+         outerPredator = new Matrix2D();
          outerPredator.init(nrOtherPredators, initialValue);
 	 }
 	 
