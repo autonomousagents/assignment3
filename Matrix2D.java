@@ -5,20 +5,17 @@ import java.util.ArrayList;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-public class Matrix2D  {
+public class Matrix2D {
 
     private int nRows;
     private int nCols;
-
     // he only has/uses ONE of these, so perhaps create an interface/superclass for Matrix2D and RelativeStateRep
     private Matrix2D[][] innerMatrix2D;
     private RelativeStateRep[][] bottomMatrix;
 
     public Matrix2D(int nrows, int ncols) {
-        nRows=nrows;
-        nCols=ncols;               
+        nRows = nrows;
+        nCols = ncols;
     }
 
     public Matrix2D() {
@@ -32,24 +29,24 @@ public class Matrix2D  {
      */
     public void init(int level, double initValue) {
 
-        if (level==1) { // first other predator
+        if (level == 1) { // first other predator
 
             bottomMatrix = new RelativeStateRep[nRows][nCols]; // bevat 2D matrix met daarin RelativeStateRep's (voor prey and this predator)
 
-            for (int i=0; i < nRows; i++) {
-                for(int j=0; j < nCols; j++) {                   
-                        bottomMatrix[i][j] = new RelativeStateRep(initValue);
+            for (int i = 0; i < nRows; i++) {
+                for (int j = 0; j < nCols; j++) {
+                    bottomMatrix[i][j] = new RelativeStateRep(initValue);
                 }
             }
         }
         else {
 
             innerMatrix2D = new Matrix2D[nRows][nCols]; // bevat 2D matrix met daarin Matrix2D's  (voor volgende andere predator)
-            
-            for (int i=0; i < nRows; i++) {
-                for(int j=0; j < nCols; j++) {
-                        innerMatrix2D[i][j] = new Matrix2D(nRows, nCols);
-                        innerMatrix2D[i][j].init(level-1, initValue); // spreek deze functie wee aan met level-1
+
+            for (int i = 0; i < nRows; i++) {
+                for (int j = 0; j < nCols; j++) {
+                    innerMatrix2D[i][j] = new Matrix2D(nRows, nCols);
+                    innerMatrix2D[i][j].init(level - 1, initValue); // spreek deze functie wee aan met level-1
                 }
             }
         }
@@ -63,57 +60,57 @@ public class Matrix2D  {
      *      0 = preyPos,1 = first other predator's position, 2 = second other predator's position, 3 = third other predator's position
      */
     public double getActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, int level) {
-        
-        if (level == 1 ) { // ask from RelativeStateRep
+
+        if (level == 1) { // ask from RelativeStateRep
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
 
-            return bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()]. getValue(lIndex, myAction);
+            return bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()].getValue(lIndex, myAction);
         }
         else {
             // ga bij innerlijke matrix opvragen (via deze zelfde functie, level-1)
-            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . getActionValue(myPos, allOtherPositions, myAction, level-1);
+            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()].getActionValue(myPos, allOtherPositions, myAction, level - 1);
         }
     }
 
+    
     public double[] getAllActionValues(Position myPos, ArrayList<Position> allOtherPositions, int level) {
 
-        if (level == 1 ) { // ask from RelativeStateRep
+        if (level == 1) { // ask from RelativeStateRep
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
 
             return bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()].getStateActionPairValues(lIndex);
         }
         else {
             // ga bij innerlijke matrix opvragen (via deze zelfde functie, level-1)
-            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . getAllActionValues(myPos, allOtherPositions, level-1);
+            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()].getAllActionValues(myPos, allOtherPositions, level - 1);
         }
     }
-    
+
 
     public void setActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, int level, double value) {
 
-        if (level == 1 ) { // set in RelativeStateRep
+        if (level == 1) { // set in RelativeStateRep
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
 
-            bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()]. setValue(lIndex, myAction, value);
+            bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()].setValue(lIndex, myAction, value);
         }
         else {
             // ga bij innerlijke matrix setten (via deze zelfde functie, level-1)
-            innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . setActionValue(myPos, allOtherPositions, myAction, level-1, value);
+            innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()].setActionValue(myPos, allOtherPositions, myAction, level - 1, value);
         }
     }
 
-     public int getMove(Position myPos, ArrayList<Position> allOtherPositions, Action stateRepAction, int level, boolean print) {
 
-          if (level == 1 ) { //get from RelativeStateRep
+    public int getMove(Position myPos, ArrayList<Position> allOtherPositions, Action stateRepAction, int level, boolean print) {
 
-            return bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()]. getMove(myPos, allOtherPositions.get(0), stateRepAction, print);
+        if (level == 1) { //get from RelativeStateRep
+
+            return bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()].getMove(myPos, allOtherPositions.get(0), stateRepAction, print);
         }
         else {
             // ga bij innerlijke matrix setten (via deze zelfde functie, level-1)
-            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . getMove(myPos, allOtherPositions, stateRepAction, level-1, print);
+            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()].getMove(myPos, allOtherPositions, stateRepAction, level - 1, print);
         }
 
-     }
-
-
+    }
 }
