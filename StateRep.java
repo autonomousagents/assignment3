@@ -31,9 +31,40 @@ public class StateRep {
          outerPredator.init(nrOtherPredators, initialValue);
 	 }
 
-     public double[] getStateActionPairValues(Position myPos, ArrayList<Position> otherPositions) {
-        return outerPredator.getAllActionValues(myPos, otherPositions,nrOtherPredators);
-    }
+     
+
+     /**
+      * e.g. 1 = HorizontalRetreat
+      */
+     public Action returnAction(int actionNumber) {
+         return RelativeStateRep.returnAction(actionNumber);
+     }
+
+     /**
+      * in allOtherPositions, prey's position should be at index 0 !!!
+      */
+     public void setActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, double value) {
+        outerPredator.setActionValue(myPos, allOtherPositions, myAction, nrOtherPredators, value);
+     }
+
+     /**
+      * in allOtherPositions, prey's position should be at index 0 !!!
+      */
+     public double getActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction) {
+         return outerPredator.getActionValue(myPos, allOtherPositions, myAction, nrOtherPredators);
+     }
+
+     /**
+      * previously called "getStateActionPairValues"
+      * 
+      * in allOtherPositions, prey's position should be at index 0 !!!
+      */
+     public double[] getAllActionValues(Position myPos, ArrayList<Position> allOtherPositions, int level) {
+          return outerPredator.getAllActionValues(myPos, allOtherPositions, nrOtherPredators);
+     }
+
+
+
 
 	 
 	 public void test() {
@@ -46,10 +77,10 @@ public class StateRep {
          otherPositions.add(preyPos);
 
          Position otherPredatorPos = new Position(1,1);
-         for (int i=0; i < nrOtherPredators+1; i++ )
+         for (int i=0; i < nrOtherPredators; i++ )
                otherPositions.add(otherPredatorPos);
 
-         outerPredator.setActionValue(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators,5);
+         outerPredator.setActionValue(myPos, otherPositions, Action.VerticalApproach, nrOtherPredators,5);
          
 //         System.out.println(outerPredator.getActionValue(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators));
 //         System.out.println(outerPredator.getActionValue(new Position(1,2), otherPositions, Action.HorizontalApproach, nrOtherPredators));
