@@ -67,10 +67,10 @@ public class Matrix3D<T> {
      * e.g., when there are 4 predators
      * level:
      *      0 = prey and this predator, 1 = first other predator, 2 = second other predator, 3 = third other predator
-     * in Position-ArrayList:
+     * in allOtherPositions:
      *      0 = preyPos,1 = first other predator's position, 2 = second other predator's position, 3 = third other predator's position
      */
-    public double get(Position myPos, ArrayList<Position> allOtherPositions, ArrayList<Action> allActions, int level) {
+    public double get(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, int level) {
         
         if (level == 1 ) { // ask from RelativeStateRep
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
