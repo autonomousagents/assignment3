@@ -64,7 +64,7 @@ public class Matrix2D<T> {
      * in allOtherPositions:
      *      0 = preyPos,1 = first other predator's position, 2 = second other predator's position, 3 = third other predator's position
      */
-    public double get(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, int level) {
+    public double getActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, int level) {
         
         if (level == 1 ) { // ask from RelativeStateRep
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
@@ -73,12 +73,27 @@ public class Matrix2D<T> {
         }
         else {
             // ga bij innerlijke matrix opvragen (via deze zelfde functie, level-1)
-            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . get(myPos, allOtherPositions, myAction, level-1);
+            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . getActionValue(myPos, allOtherPositions, myAction, level-1);
         }
 
     }
 
-    public void set(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, int level, double value) {
+    public double[] getAllActionValues(Position myPos, ArrayList<Position> allOtherPositions, int level) {
+
+        if (level == 1 ) { // ask from RelativeStateRep
+            int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
+
+            return bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()].getStateActionPairValues(lIndex);
+        }
+        else {
+            // ga bij innerlijke matrix opvragen (via deze zelfde functie, level-1)
+            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . getAllActionValues(myPos, allOtherPositions, level-1);
+        }
+
+    }
+    
+
+    public void setActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, int level, double value) {
 
         if (level == 1 ) { // set in RelativeStateRep
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
@@ -87,7 +102,7 @@ public class Matrix2D<T> {
         }
         else {
             // ga bij innerlijke matrix setten (via deze zelfde functie, level-1)
-            innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . set(myPos, allOtherPositions, myAction, level-1, value);
+            innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . setActionValue(myPos, allOtherPositions, myAction, level-1, value);
         }
 
     }

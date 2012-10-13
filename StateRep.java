@@ -21,17 +21,20 @@ public class StateRep {
 		 this.nrOtherPredators = nrPredators-1;
 		 this.initialValue = init;
 
-         fillOtherPredators();
+         initStates();
 		
     }
 	 
-	 private void fillOtherPredators() {
+	 private void initStates() {
 
          outerPredator = new Matrix2D(Environment.HEIGHT, Environment.WIDTH);
          outerPredator.init(nrOtherPredators, initialValue);
-
-       
 	 }
+
+     public double[] getStateActionPairValues(Position myPos, ArrayList<Position> otherPositions) {
+        return outerPredator.getAllActionValues(myPos, otherPositions,nrOtherPredators);
+    }
+
 	 
 	 public void test() {
          
@@ -46,14 +49,18 @@ public class StateRep {
          for (int i=0; i < nrOtherPredators+1; i++ )
                otherPositions.add(otherPredatorPos);
 
-         outerPredator.set(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators,5);
+         outerPredator.setActionValue(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators,5);
          
-         System.out.println(outerPredator.get(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators));
-         System.out.println(outerPredator.get(new Position(1,2), otherPositions, Action.HorizontalApproach, nrOtherPredators));
+//         System.out.println(outerPredator.getActionValue(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators));
+//         System.out.println(outerPredator.getActionValue(new Position(1,2), otherPositions, Action.HorizontalApproach, nrOtherPredators));
+//
+//         otherPositions.set(nrOtherPredators-1, new Position(5,6));
+//         System.out.println(outerPredator.getActionValue(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators));
 
-         otherPositions.set(nrOtherPredators-1, new Position(5,6));
-         System.out.println(outerPredator.get(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators));
-
+         double[] values = getStateActionPairValues(myPos,otherPositions);
+         for (int i=0; i < Action.nrActions; i++)
+             System.out.print(values[i] + "  ");
+         System.out.println();
      }
 	    
 }
