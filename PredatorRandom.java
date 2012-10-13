@@ -14,13 +14,13 @@ public class PredatorRandom implements Agent{
 
     private static final double Ptrip = 0.2;
     private Position startPos, myPos;
-    StateRepresentation representation;
+    StateRep representation;
     ArrayList<Position> startOthers;
     ArrayList<Position> others;
     int nrRuns, maxNrRuns;
     
     
-    public PredatorRandom(Position startPos, ArrayList<Position> startOthers, StateRepresentation rep, int maxNrRuns){
+    public PredatorRandom(Position startPos, ArrayList<Position> startOthers, StateRep rep, int maxNrRuns){
         this.startPos =startPos;
         this.startOthers = startOthers;
         others = Position.deepCopyList(startOthers);
@@ -33,13 +33,13 @@ public class PredatorRandom implements Agent{
     @Override
     public void doMove(ArrayList<Position> others) {
         double p = Math.random();
-        double start = 1.0/StateRepresentation.nrActions;
-        for(int i=0;i<StateRepresentation.nrActions;i++){
+        double start = 1.0/Direction.nrMoves;
+        for(int i=0;i<Direction.nrMoves;i++){
             if(p<start){
                 myPos.adjustPosition(i);
                 break;
             }
-            start += 1.0/StateRepresentation.nrActions;
+            start += 1.0/Direction.nrMoves;
         }
     }
 

@@ -96,7 +96,7 @@ public class Position {
     }
     
         public static ArrayList<Position> deepCopyList(ArrayList<Position> original){
-        ArrayList<Position> copy = new ArrayList<>();
+        ArrayList<Position> copy = new ArrayList<Position>();
         for(int i = 0; i<original.size();i++){
             copy.add(new Position(original.get(i)));
         }

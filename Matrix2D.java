@@ -8,28 +8,23 @@ import java.util.Arrays;
  */
 
 
-public class Matrix3D<T> {
+public class Matrix2D<T> {
 
     private int nRows;
     private int nCols;
-    private int nActions;
 
-    private Matrix3D[][][] matrix;
-    private RelativeStateRep[][][] bottomMatrix;
+    // hij heeft één van deze twee, dus mss beter superklasse maken
+    private Matrix2D[][] innerMatrix2D;
+    private RelativeStateRep[][] bottomMatrix;
 
-    public Matrix3D(int nrows, int ncols, int nactions) {
+    public Matrix2D(int nrows, int ncols, int nactions) {
         nRows=nrows;
-        nCols=ncols;
-        nActions=nactions;
-
-        matrix = new Matrix3D[nRows][nCols][nActions];
+        nCols=ncols;               
     }
 
-    public Matrix3D() {
+    public Matrix2D() {
         nRows = Environment.HEIGHT;
         nCols = Environment.WIDTH;
-        nActions = Direction.nrMoves;
-
     }
 
     /**
@@ -38,25 +33,23 @@ public class Matrix3D<T> {
      */
     public void init(int level, double initValue) {
 
-        if (level==1) {
+        if (level==1) { // first other predator
 
-            bottomMatrix = new RelativeStateRep[nRows][nCols][nActions];
+            bottomMatrix = new RelativeStateRep[nRows][nCols]; // bevat 2D matrix met daarin RelativeStateRep's (voor prey and this predator)
 
             for (int i=0; i < nRows; i++) {
-                for(int j=0; j < nCols; j++) {
-                    for (int k=0; k < nActions; k++)
-                        bottomMatrix[i][j][k] = new RelativeStateRep(initValue);
+                for(int j=0; j < nCols; j++) {                   
+                        bottomMatrix[i][j] = new RelativeStateRep(initValue);
                 }
             }
         }
         else {
 
-            matrix = new Matrix3D[nRows][nCols][nActions];
+            innerMatrix2D = new Matrix2D[nRows][nCols]; // bevat 2D matrix met daarin Matrix2D's  (voor volgende andere predator)
             
             for (int i=0; i < nRows; i++) {
-                for(int j=0; j < nCols; j++) {
-                    for (int k=0; k < nActions; k++)
-                        matrix[i][j][k].init(level-1, initValue);
+                for(int j=0; j < nCols; j++) {                
+                        innerMatrix2D[i][j].init(level-1, initValue); // spreek deze functie wee aan met level-1
                 }
             }
         }
@@ -75,10 +68,11 @@ public class Matrix3D<T> {
         if (level == 1 ) { // ask from RelativeStateRep
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
 
-            return bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()][allActions.get(level).getIntValue()] . getValue(lIndex, allActions.get(1));
+            return bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()]. getValue(lIndex, myAction);
         }
         else {
-          //  return matrix[allOtherPositions.get(level-1).getX()][allOtherPositions.get(level-1).getY()][allAallOtherPositionsctions.get(level-1).getIntValue()].get(allPositions, allActions, level-1);
+            // ga bij innerlijke matrix opvragen (via deze zelfde functie, level-1)
+            return innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . get(myPos, allOtherPositions, myAction, level-1);
         }
 
     }
