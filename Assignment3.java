@@ -29,7 +29,7 @@ public class Assignment3 {
 //            int stateNumber = 0;
 //            int actionNumber = 0;
 //
-//            while (scanner.hasNext() && actionNumber < Direction.nrMoves) {
+//            while (scanner.hasNext() && actionNumber < Action.nrActions) {
 //
 //                String notAction = scanner.next();
 //                while (!notAction.equals("Action")) {

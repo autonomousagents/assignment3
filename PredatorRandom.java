@@ -33,13 +33,13 @@ public class PredatorRandom implements Agent{
     @Override
     public void doMove(ArrayList<Position> others) {
         double p = Math.random();
-        double start = 1.0/Direction.nrMoves;
-        for(int i=0;i<Direction.nrMoves;i++){
+        double start = 1.0/Action.nrActions;
+        for(int i=0;i<Action.nrActions;i++){
             if(p<start){
                 myPos.adjustPosition(i);
                 break;
             }
-            start += 1.0/Direction.nrMoves;
+            start += 1.0/Action.nrActions;
         }
     }
 
