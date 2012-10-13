@@ -34,12 +34,19 @@ public class StateRep {
 	 }
 	 
 	 public void test() {
-         Position bla = new Position(1,1);
+         
          ArrayList<Position> otherPositions = new ArrayList<Position>();
-         for (int i=0; i < nrOtherPredators+1; i++ )
-               otherPositions.add(bla);
 
-         System.out.println(outerPredator.get(bla, otherPositions, Action.HorizontalApproach, nrOtherPredators));
+         Position myPos = new Position(3,3);
+
+         Position preyPos = new Position(2,1);
+         otherPositions.add(preyPos);
+
+         Position otherPredatorPos = new Position(1,1);
+         for (int i=0; i < nrOtherPredators+1; i++ )
+               otherPositions.add(otherPredatorPos);
+
+         System.out.println(outerPredator.get(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators));
      }
 	    
 }
