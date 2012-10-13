@@ -46,6 +46,8 @@ public class StateRep {
          for (int i=0; i < nrOtherPredators+1; i++ )
                otherPositions.add(otherPredatorPos);
 
+         outerPredator.set(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators,5);
+         
          System.out.println(outerPredator.get(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators));
      }
 	    

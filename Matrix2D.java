@@ -78,5 +78,19 @@ public class Matrix2D<T> {
 
     }
 
+    public void set(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, int level, double value) {
+
+        if (level == 1 ) { // set in RelativeStateRep
+            int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
+
+            bottomMatrix[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()]. setValue(lIndex, myAction, value);
+        }
+        else {
+            // ga bij innerlijke matrix setten (via deze zelfde functie, level-1)
+            innerMatrix2D[allOtherPositions.get(level).getX()][allOtherPositions.get(level).getY()] . set(myPos, allOtherPositions, myAction, level-1, value);
+        }
+
+    }
+
 
 }
