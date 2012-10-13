@@ -7,6 +7,7 @@ public class StateRep {
     private int nrOtherPredators;
     private double initialValue;
     private Matrix2D outerPredator; // recursieve structuur
+    private RelativeStateRep onePredator; // als er maar één predator is
 
     public StateRep(double init, boolean isPrey, int nrPredators) {
 
@@ -21,8 +22,13 @@ public class StateRep {
      * create the layers of matrices  and set all values and "initialValue"
      */
     private void initStates() {
-        outerPredator = new Matrix2D(Environment.HEIGHT, Environment.WIDTH);
-        outerPredator.init(nrOtherPredators, initialValue);
+        if (nrOtherPredators > 0) {
+            outerPredator = new Matrix2D(Environment.HEIGHT, Environment.WIDTH);
+            outerPredator.init(nrOtherPredators, initialValue);
+        }
+        else {
+           onePredator = new RelativeStateRep(initialValue);
+        }
     }
 
     
@@ -42,7 +48,14 @@ public class StateRep {
      * (except when the Agent in question, is the prey, then it should be it's "reference predator")
      */
     public void setActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, double value) {
-        outerPredator.setActionValue(myPos, allOtherPositions, myAction, nrOtherPredators, value);
+        if (nrOtherPredators > 0) {
+            outerPredator.setActionValue(myPos, allOtherPositions, myAction, nrOtherPredators, value);
+        }
+        else {
+             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
+             onePredator.setValue(lIndex, myAction, value);
+        }
+
     }
 
 
@@ -53,7 +66,13 @@ public class StateRep {
      * (except when the Agent in question, is the prey, then it should be it's "reference predator")
      */
     public double getActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction) {
-        return outerPredator.getActionValue(myPos, allOtherPositions, myAction, nrOtherPredators);
+        if (nrOtherPredators > 0) {
+            return outerPredator.getActionValue(myPos, allOtherPositions, myAction, nrOtherPredators);
+        }
+        else {
+            int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
+            return onePredator.getValue(lIndex, myAction);
+        }
     }
 
 
@@ -66,7 +85,13 @@ public class StateRep {
      * (except when the Agent in question, is the prey, then it should be it's "reference predator")
      */
     public double[] getAllActionValues(Position myPos, ArrayList<Position> allOtherPositions) {
-        return outerPredator.getAllActionValues(myPos, allOtherPositions, nrOtherPredators);
+         if (nrOtherPredators > 0) {
+            return outerPredator.getAllActionValues(myPos, allOtherPositions, nrOtherPredators);
+        }
+         else {
+            int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
+            return onePredator.getStateActionPairValues(lIndex);
+         }
     }
 
 
@@ -87,7 +112,12 @@ public class StateRep {
 
         boolean print = false; // set to true if you want to debug
 
-        return outerPredator.getMove(myPos, allOtherPositions, stateRepAction, nrOtherPredators, print);
+         if (nrOtherPredators > 0) {
+             return outerPredator.getMove(myPos, allOtherPositions, stateRepAction, nrOtherPredators, print);
+        }
+         else {
+                return onePredator.getMove(myPos, allOtherPositions.get(0), stateRepAction, print);
+         }
     }
 
 
@@ -105,7 +135,7 @@ public class StateRep {
             otherPositions.add(otherPredatorPos);
         }
 
-        outerPredator.setActionValue(myPos, otherPositions, Action.VerticalApproach, nrOtherPredators, 5);
+        setActionValue(myPos, otherPositions, Action.VerticalApproach,  5);
 
 //         System.out.println(outerPredator.getActionValue(myPos, otherPositions, Action.HorizontalApproach, nrOtherPredators));
 //         System.out.println(outerPredator.getActionValue(new Position(1,2), otherPositions, Action.HorizontalApproach, nrOtherPredators));

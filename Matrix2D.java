@@ -29,6 +29,9 @@ public class Matrix2D {
      */
     public void init(int level, double initValue) {
 
+      
+        //  System.out.println(level);
+        
         if (level == 1) { // first other predator
 
             bottomMatrix = new RelativeStateRep[nRows][nCols]; // bevat 2D matrix met daarin RelativeStateRep's (voor prey and this predator)
