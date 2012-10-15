@@ -372,7 +372,7 @@ public class Assignment3 {
         for(int i = 0; i<nrPredators;i++){
             startPosPreds.add(new Position(options[i][0],options[i][1]));
         }
-        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds), new StateRep(), nrRuns);
+        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds), new StateRep(15, true, nrPredators), nrRuns);
         Agent a;
         ArrayList<Position> others;
         for(int i = 0; i<nrPredators;i++){
@@ -383,18 +383,24 @@ public class Assignment3 {
                     others.add(new Position(startPosPreds.get(j)));
                 }
             }
-            StateRep s = new StateRep();
+            StateRep s = new StateRep(15, false, nrPredators);
             predators.add(new PredatorRandom(startPosPreds.get(i), others, s ,nrRuns));
         }
         Environment env = new Environment(predators, prey);
+        View v = new View(env);
+        while(!env.isEnded()){
+            env.nextTimeStep();
+            System.out.println("reward: "+env.reward(false)+"\n");
+            v.printSimple();
+        }
     }
 
     public static void main(String[] args) {
         Assignment3 a = new Assignment3();
-       // a.testEnvironment(1,3);
+        a.testEnvironment(1,3);
 
-        StateRep rep = new StateRep(10,false,3);
-        rep.test();
+//        StateRep rep = new StateRep(10,false,3);
+//        rep.test();
 
     }
 }

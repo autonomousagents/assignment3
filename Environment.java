@@ -74,30 +74,7 @@ public class Environment {
         return positions;
     }
 
-    public boolean isEnded() {
-        return isEnded;
-    }
 
-    public Position getPreyPos() {
-        return prey.getPos();
-    }
-
-
-
-    private  boolean checkForEnd() {
-        if(reward(true) != 0){
-            isEnded = true;
-        }
-        return isEnded;
-    }
-
-    public void reset() {
-        prey.reset();
-        isEnded = false;
-        for(Agent predator:predators){
-            predator.reset();
-        }
-    }
 
     /**
      * Reward function for the environment
@@ -163,5 +140,43 @@ public class Environment {
             reset();
         }
 
+    }
+    
+        public boolean isEnded() {
+        return isEnded;
+    }
+
+    public Position getPreyPos() {
+        return prey.getPos();
+    }
+
+
+
+    private  boolean checkForEnd() {
+        if(reward(true) != 0){
+            isEnded = true;
+        }
+        return isEnded;
+    }
+
+    public void reset() {
+        prey.reset();
+        isEnded = false;
+        for(Agent predator:predators){
+            predator.reset();
+        }
+    }
+    
+    public Position getPredatorPos(int predatorNr){
+        return predators.get(predatorNr).getPos();
+    }
+    
+    public boolean predatorStandsHere (Position p){
+        for(int i = 0; i<predators.size();i++){
+            if(predators.get(i).getPos().equals(p)){
+                return true;
+            }
+        }
+        return false;
     }
 }
