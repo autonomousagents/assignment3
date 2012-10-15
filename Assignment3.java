@@ -364,30 +364,30 @@ public class Assignment3 {
 //        View.episodeMatrixToMatlabScript2D("qLearning_nrSteps.m", nrStepsUsed, initEpsilonValues, "init.val.", "epsilon", "Number of steps");
 //    }
 //
-//    public void testEnvironment(int nrRuns, int nrPredators ){
-//        int [][] options = {{0,0},{2,2},{8,8},{2,8}};
-//        ArrayList<Position> startPosPreds = new ArrayList<>();
-//        ArrayList<Agent> predators = new ArrayList<>();
-//        Position preyPos = new Position(5,5);
-//        for(int i = 0; i<nrPredators;i++){
-//            startPosPreds.add(new Position(options[i][0],options[i][1]));
-//        }
-//        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds), new StateRepresentation(), nrRuns);
-//        Agent a;
-//        ArrayList<Position> others;
-//        for(int i = 0; i<nrPredators;i++){
-//            others = new ArrayList<>();
-//            others.add(preyPos);
-//            for(int j = 0; j<nrPredators;j++){
-//                if(i!=j){
-//                    others.add(new Position(startPosPreds.get(j)));
-//                }
-//            }
-//            StateRepresentation s = new StateRepresentation;
-//            predators.add(new PredatorRandom(startPosPreds.get(i), others, s ,nrRuns));
-//        }
-//        Environment env = new Environment(predators, prey);
-//    }
+    public void testEnvironment(int nrRuns, int nrPredators ){
+        int [][] options = {{0,0},{2,2},{8,8},{2,8}};
+        ArrayList<Position> startPosPreds = new ArrayList<>();
+        ArrayList<Agent> predators = new ArrayList<>();
+        Position preyPos = new Position(5,5);
+        for(int i = 0; i<nrPredators;i++){
+            startPosPreds.add(new Position(options[i][0],options[i][1]));
+        }
+        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds), new StateRep(), nrRuns);
+        Agent a;
+        ArrayList<Position> others;
+        for(int i = 0; i<nrPredators;i++){
+            others = new ArrayList<>();
+            others.add(preyPos);
+            for(int j = 0; j<nrPredators;j++){
+                if(i!=j){
+                    others.add(new Position(startPosPreds.get(j)));
+                }
+            }
+            StateRep s = new StateRep();
+            predators.add(new PredatorRandom(startPosPreds.get(i), others, s ,nrRuns));
+        }
+        Environment env = new Environment(predators, prey);
+    }
 
     public static void main(String[] args) {
         Assignment3 a = new Assignment3();
