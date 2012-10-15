@@ -364,7 +364,12 @@ public class Assignment3 {
 //        View.episodeMatrixToMatlabScript2D("qLearning_nrSteps.m", nrStepsUsed, initEpsilonValues, "init.val.", "epsilon", "Number of steps");
 //    }
 //
-    public void testEnvironment(int nrRuns, int nrPredators ){
+    /**
+     * This function shows if the environment works properly by doing one run with the desired
+     * number of agents and printing each step and the accompanying reward for prey and predator
+     * @param nrPredators = nr of predators in testRun
+     */
+    public void testEnvironment(int nrPredators ){
         int [][] options = {{0,0},{2,2},{8,8},{2,8}};
         ArrayList<Position> startPosPreds = new ArrayList<>();
         ArrayList<Agent> predators = new ArrayList<>();
@@ -372,7 +377,7 @@ public class Assignment3 {
         for(int i = 0; i<nrPredators;i++){
             startPosPreds.add(new Position(options[i][0],options[i][1]));
         }
-        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds), new StateRep(15, true, nrPredators), nrRuns);
+        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds), new StateRep(15, true, nrPredators), 5);
         Agent a;
         ArrayList<Position> others;
         for(int i = 0; i<nrPredators;i++){
@@ -384,20 +389,21 @@ public class Assignment3 {
                 }
             }
             StateRep s = new StateRep(15, false, nrPredators);
-            predators.add(new PredatorRandom(startPosPreds.get(i), others, s ,nrRuns));
+            predators.add(new PredatorRandom(startPosPreds.get(i), others, s ,5));
         }
         Environment env = new Environment(predators, prey);
         View v = new View(env);
         while(!env.isEnded()){
             env.nextTimeStep();
-            System.out.println("reward: "+env.reward(false)+"\n");
+            System.out.print("reward prey: "+env.reward(true));
+            System.out.println(" reward predator: "+env.reward(false)+"\n");
             v.printSimple();
         }
     }
 
     public static void main(String[] args) {
         Assignment3 a = new Assignment3();
-        a.testEnvironment(1,3);
+        a.testEnvironment(3);
 
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
