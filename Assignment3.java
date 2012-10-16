@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import org.apache.commons.math.optimization.OptimizationException;
 
 /**
  * Master AI UvA 2012/2013
@@ -365,7 +366,7 @@ public class Assignment3 {
 //    }
 //
     /**
-     * This function shows if the environment works properly by doing one run with the desired
+     * This function shows that the environment works properly by doing one run with the desired
      * number of agents and printing each step and the accompanying reward for prey and predator
      * @param nrPredators = nr of predators in testRun
      */
@@ -400,10 +401,16 @@ public class Assignment3 {
             v.printSimple();
         }
     }
+    
+    public void miniMax() throws OptimizationException{
+        PredatorMiniMax pred = new PredatorMiniMax(new Position(0,0), new Position(5,5), 15.0, 0.8);
+        pred.learn();
+    }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws OptimizationException {
         Assignment3 a = new Assignment3();
-        a.testEnvironment(3);
+//        a.testEnvironment(3);
+        a.miniMax();
 
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();

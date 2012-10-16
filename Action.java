@@ -11,6 +11,7 @@ public enum Action {
 
     public  final static Action[]  actionValues = Action.values();
     public final static int nrActions=5;
+    public final static double nrActionsDouble=5.0;
 
     public final static String actionNames[] = {String.format("%-15s","Hor.Approach"),
                                                 String.format("%-15s","Hor.Retreat"),
@@ -25,5 +26,16 @@ public enum Action {
 
     int getIntValue(){
         return i;
+    }
+    
+    public static Action getAction(int i){
+        switch(i){
+            case 0: return HorizontalApproach;
+            case 1: return HorizontalRetreat;
+            case 2: return VerticalApproach;
+            case 3: return VerticalRetreat;
+            case 4: return Wait;
+        }
+        return null;
     }
 }
