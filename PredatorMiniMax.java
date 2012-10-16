@@ -103,8 +103,11 @@ public class PredatorMiniMax implements Agent {
 
     private double[] solveEquations(int state) throws OptimizationException {
         Collection constraints = new ArrayList();
+        //for each possible action of the prey
         for(int preyAction=0;preyAction<Action.nrActions;preyAction++){
+            //initialize weigths for this constraint
             double[] Q = new double[Action.nrActions+1];
+            //for each possible action of the predator
             for(int predAction = 0; predAction<Action.nrActions;predAction++){
                 int newStatePred = policy.getLinearIndexForAction(state, Action.getAction(predAction ));
                 int newStatePrey = policy.getLinearIndexForAction(newStatePred, Action.getAction(preyAction));
@@ -142,6 +145,10 @@ public class PredatorMiniMax implements Agent {
         //solve and return
         RealPointValuePair solution = new SimplexSolver().optimize(f, constraints, GoalType.MAXIMIZE, false);
         return solution.getPoint();
+    }
+    
+    private void printEquation(){
+        
     }
     
 }
