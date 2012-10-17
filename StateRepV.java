@@ -411,6 +411,11 @@ public class StateRepV {
 		return ToBReturned;
                 
 	}
+    
+    public int getLinearIndex(Position preyPos, Position predPos){
+        int[] relDis = getRelDistance(predPos, preyPos);
+        return relDistanceToLinearIndex(relDis[0], relDis[1]);
+    }
 }
 
 

@@ -29,8 +29,9 @@ public class PredatorMiniMax implements Agent {
     Position preyPos;
     int nrRuns, maxNrRuns;
     double learningRate;
+    double epsilon;
     
-    public PredatorMiniMax(Position startPos, Position preyStartPos, double init, double learningRate){
+    public PredatorMiniMax(Position startPos, Position preyStartPos, double init, double learningRate, double epsilon){
         this.startPos = startPos;
         myPos = new Position(startPos);
         startPrey = preyStartPos;
@@ -38,6 +39,7 @@ public class PredatorMiniMax implements Agent {
         policy = new StateRepQMinimax(1.0/Action.nrActionsDouble, false);
         vValues = new StateRepV(init, false);
         this.learningRate = learningRate;
+        this.epsilon = epsilon;
     }
     
     @Override
@@ -80,23 +82,35 @@ public class PredatorMiniMax implements Agent {
 
     @Override
     public void observeReward(double reward, ArrayList<Position> others) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
-
-    @Override
-    public double[] policy(Position prey, ArrayList<Position> others) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
     public void learn() throws OptimizationException{
         boolean notConverged = true;
+        int sweep = 0;
         while(notConverged){
+            sweep++;
+            System.out.println("sweep number: " + sweep);
+            double largestDiff = 0.0;
+            double diff;
             for(int state = 0; state<StateRepV.nrStates;state++){
                 double[] values = solveEquations(state);
+                diff = Math.abs(vValues.getV(state)-values[Action.nrActions]);
                 vValues.setValue(state, values[Action.nrActions]);
-                for(int a = 0; a<Action.nrActions;a++){                    
-                    policy.setValue(state, Action.getAction(a), values[a]) ;
+                for(int a = 0; a<Action.nrActions;a++){  
+                    if(values[a]<0.00001){
+                        policy.setValue(state, Action.getAction(a), 0.00001) ;
+                    }
+                    else if(values[a]>0.99999){                        
+                        policy.setValue(state, Action.getAction(a), 1.0) ;
+                    }
+                    else{
+                        policy.setValue(state, Action.getAction(a),values[a]) ;
+                    }
+                    if(diff>largestDiff){
+                        largestDiff = diff;
+                    }
                 }
+                notConverged = largestDiff>epsilon || sweep<1000;
             }            
         }
     }
@@ -121,34 +135,89 @@ public class PredatorMiniMax implements Agent {
                 }
                 //add weight to constraint for this combitnation 
                 if(preyAction == Action.Wait.getIntValue()){
-                    Q[predAction] = expReward+vValues.getV(newStatePrey);
+                    Q[predAction] = expReward+learningRate*vValues.getV(newStatePrey);
                 }
                 else{
-                    Q[predAction] = expReward+vValues.getV(newStatePrey)*(1.0-Ptrip)+vValues.getV(newStatePred)*Ptrip;
-                }
+                    Q[predAction] = expReward+learningRate*vValues.getV(newStatePrey)*(1.0-Ptrip)+learningRate*vValues.getV(newStatePred)*Ptrip;
+                } 
             }
             //add constraint weight for V
             Q[Action.nrActions] = -1.0;
+            ///print constraint
+//            printEquation(Q, true, false);
             //add constraint
             constraints.add(new LinearConstraint(Q, Relationship.GEQ, 0));
+        }
+        
+        //add constraints that probabilities need to be > 0
+        for(int predAction = 0; predAction<Action.nrActions;predAction++){
+                double[] constraintProb = new double[Action.nrActions+1];
+                Arrays.fill(constraintProb,0.0);
+                constraintProb[predAction] = 1.0;
+//                printEquation(constraintProb, true, false);
+                constraints.add(new LinearConstraint(constraintProb, Relationship.GEQ, 0));
         }
         //add total is zero constraint
         double[] totalZero = new double[Action.nrActions+1];
         Arrays.fill(totalZero,1.0);
         totalZero[Action.nrActions] = 0.0;
         constraints.add(new LinearConstraint(totalZero, Relationship.EQ, 1.0));
+//        printEquation(totalZero, true, true);
         //build objective function
         double[] objective = new double[Action.nrActions+1];
         Arrays.fill(objective,0.0);
         objective[Action.nrActions] = 1.0;
+//        printEquation(objective, false, false);
          LinearObjectiveFunction f = new LinearObjectiveFunction(objective, 0);
+        
         //solve and return
         RealPointValuePair solution = new SimplexSolver().optimize(f, constraints, GoalType.MAXIMIZE, false);
+//        System.out.println("solution: ");
+//        printSolution(solution, Action.nrActions);
         return solution.getPoint();
     }
     
-    private void printEquation(){
+    private void printEquation(double[] Q, boolean isConstraint, boolean eqZero){
+        if(isConstraint){
+            for(int i = 0; i<Q.length-1;i++){
+                System.out.print(Q[i]+" pi" + i + " + ");
+            }
+            if(eqZero){
+                System.out.println(Q[Q.length-1]+"V = 1");
+            }
+            else{
+                System.out.println(Q[Q.length-1]+"V >= 0");
+            }
+        }
+        else{
+            System.out.println("Maximize: ");
+            for(int i = 0; i<Q.length-1;i++){
+                System.out.print(Q[i]+" pi" + i + " + ");
+            }
+            System.out.println(Q[Q.length-1]+"V\n");
+        }
         
     }
+
+    private void printSolution(RealPointValuePair solution, int nrVar) {
+        for(int i = 0;i<nrVar;i++){
+            System.out.print("pi"+i+"="+solution.getPoint()[i]+" ");
+        }
+        System.out.println(" V = " + solution.getValue());
+        System.out.println(" V = " + solution.getPoint()[nrVar]+"\n\n");
+    }
+
+    @Override
+    public double[] policy(Position prey, Position predatorItself, ArrayList<Position> others) {
+        double[] pActions = new double[Action.nrActions];
+        int linIndex = vValues.getLinearIndex(prey, predatorItself);
+        for(int i = 0;i<Action.nrActions;i++){            
+            pActions[i] = policy.getValue(linIndex, Action.getAction(i));
+        }
+        return pActions;
+    }
+
+
+
     
 }
