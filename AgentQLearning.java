@@ -52,6 +52,7 @@ public class AgentQLearning implements Agent {
 		this.gamma = gamma;
 		this.alpha = alpha;
 		this.actionSelectionParameter = actionSelectionParameter;
+		this.maxChange = maxChange;
 		
 		this.startPos = new Position(startPos);
 		this.myPos = new Position(startPos);
