@@ -403,8 +403,24 @@ public class Assignment3 {
     }
     
     public void miniMax() throws OptimizationException{
-        PredatorMiniMax pred = new PredatorMiniMax(new Position(0,0), new Position(5,5), 15.0, 0.8);
+        PredatorMiniMax pred = new PredatorMiniMax(new Position(0,0), new Position(5,5), 15.0, 0.8, 0.001);
         pred.learn();
+        ArrayList<Position> others = new ArrayList<Position>();
+        others.add(new Position(0,0));
+        ArrayList<Agent> preds = new ArrayList<Agent>();
+        preds.add(pred);
+        PreyRandom prey = new PreyRandom(new Position(5,5), others, new StateRep(15, true, 1),100 );
+        Environment env = new Environment(preds, prey);
+       
+        View v = new View(env);
+        v.printPolicy(pred, 5,5);
+        while(!env.isEnded()){
+            env.nextTimeStep();
+            System.out.print("reward prey: "+env.reward(true));
+            System.out.println(" reward predator: "+env.reward(false)+"\n");
+            v.printSimple();
+        }
+        
     }
 
     public void independentQLearning(int nrPredators) {

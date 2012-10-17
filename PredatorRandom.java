@@ -71,9 +71,8 @@ public class PredatorRandom implements Agent{
     }
 
     @Override
-    public double[] policy(Position prey, ArrayList<Position> others) {
-        //Useless in case of a random agent
-        return null;
+    public double[] policy(Position prey, Position predatorItself, ArrayList<Position> others) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
