@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class StateRep {
 
-    private int nrOtherPredators;
+    private int nrOtherAgents;
     private double initialValue;
     private Matrix2D outerPredator; // recursieve structuur
     private RelativeStateRep onePredator; // als er maar één predator is
@@ -11,7 +11,7 @@ public class StateRep {
     public StateRep(double init, int nrPredators) {
 
        
-        this.nrOtherPredators = nrPredators - 1;
+        this.nrOtherAgents = nrPredators - 1;
         this.initialValue = init;
 
         initStates();
@@ -21,9 +21,9 @@ public class StateRep {
      * create the layers of matrices  and set all values and "initialValue"
      */
     private void initStates() {
-        if (nrOtherPredators > 0) {
+        if (nrOtherAgents > 0) {
             outerPredator = new Matrix2D(Environment.HEIGHT, Environment.WIDTH);
-            outerPredator.init(nrOtherPredators, initialValue);
+            outerPredator.init(nrOtherAgents, initialValue);
         }
         else {
            onePredator = new RelativeStateRep(initialValue);
@@ -47,8 +47,8 @@ public class StateRep {
      * (except when the Agent in question, is the prey, then it should be it's "reference predator")
      */
     public void setActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, double value) {
-        if (nrOtherPredators > 0) {
-            outerPredator.setActionValue(myPos, allOtherPositions, myAction, nrOtherPredators, value);
+        if (nrOtherAgents > 0) {
+            outerPredator.setActionValue(myPos, allOtherPositions, myAction, nrOtherAgents, value);
         }
         else {
              int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
@@ -65,8 +65,8 @@ public class StateRep {
      * (except when the Agent in question, is the prey, then it should be it's "reference predator")
      */
     public double getActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction) {
-        if (nrOtherPredators > 0) {
-            return outerPredator.getActionValue(myPos, allOtherPositions, myAction, nrOtherPredators);
+        if (nrOtherAgents > 0) {
+            return outerPredator.getActionValue(myPos, allOtherPositions, myAction, nrOtherAgents);
         }
         else {
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
@@ -84,8 +84,8 @@ public class StateRep {
      * (except when the Agent in question, is the prey, then it should be it's "reference predator")
      */
     public double[] getAllActionValues(Position myPos, ArrayList<Position> allOtherPositions) {
-         if (nrOtherPredators > 0) {
-            return outerPredator.getAllActionValues(myPos, allOtherPositions, nrOtherPredators);
+         if (nrOtherAgents > 0) {
+            return outerPredator.getAllActionValues(myPos, allOtherPositions, nrOtherAgents);
         }
          else {
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
@@ -111,8 +111,8 @@ public class StateRep {
 
         boolean print = false; // set to true if you want to debug
 
-         if (nrOtherPredators > 0) {
-             return outerPredator.getMove(myPos, allOtherPositions, stateRepAction, nrOtherPredators, print);
+         if (nrOtherAgents > 0) {
+             return outerPredator.getMove(myPos, allOtherPositions, stateRepAction, nrOtherAgents, print);
         }
          else {
                 return onePredator.getMove(myPos, allOtherPositions.get(0), stateRepAction, print);
@@ -130,7 +130,7 @@ public class StateRep {
         otherPositions.add(preyPos);
 
         Position otherPredatorPos = new Position(1, 1);
-        for (int i = 0; i < nrOtherPredators; i++) {
+        for (int i = 0; i < nrOtherAgents; i++) {
             otherPositions.add(otherPredatorPos);
         }
 

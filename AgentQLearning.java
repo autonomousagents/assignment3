@@ -71,19 +71,19 @@ public class AgentQLearning implements Agent {
 	private double getBestActionValue(ArrayList<Position> others) {
 
 
-		double[] actionvalues = stateSpace.getStateActionPairValues(currentState); // return
-															// stateRep[pos.getY()][pos.getX()];
+		double[] actionvalues = stateSpace.getAllActionValues(myPos, others) ; 
+		
 		double bestActionValue = Environment.minimumReward;
 
 		// get best action value
-		for (int i = 0; i < StateRepresentation.nrActions; i++) {
+		for (int i = 0; i < Action.nrActions; i++) {
 
 			if (actionvalues[i] > bestActionValue) {
 				bestActionValue = actionvalues[i];
 			}
 		}
 		return bestActionValue;
-		return 0;
+	
 	}
 
 	/**
@@ -109,15 +109,14 @@ public class AgentQLearning implements Agent {
 		double oldQValue = stateSpace.getActionValue(oldPos, oldPosOthers, oldAction) ;
 		double maxActionValue =  getBestActionValue(others);
 
-		double TDvalue = 	alpha *
-							(currentReward + (gamma * maxActionValue) - oldQValue);
+		double TDvalue = 	alpha *	(currentReward + (gamma * maxActionValue) - oldQValue);
 
 		double newQValue = oldQValue + TDvalue;
+		
+		System.out.println("QValue from " + oldQValue + "  to " + newQValue);
 
 		/** Update Q(s,a) value **/
 		stateSpace.setActionValue(oldPos, oldPosOthers, oldAction, newQValue);
-
-		
 	}
 
 	
