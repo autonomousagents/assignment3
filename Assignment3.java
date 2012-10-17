@@ -407,11 +407,31 @@ public class Assignment3 {
         pred.learn();
     }
 
+    public void independentQLearning(int nrPredators) {
+    	
+    	 double gamma = 0.9;
+    	 double alpha=0.5;
+    	 double epsilon= 0.1;
+    	
+    	 
+    	 int [][] options = {{0,0},{2,2},{8,8},{2,8}};
+         ArrayList<Position> startPosPreds = new ArrayList<Position>();
+         ArrayList<Agent> predators = new ArrayList<Agent>();
+         Position preyPos = new Position(5,5);
+         
+         for(int i = 0; i < nrPredators;i++){
+             startPosPreds.add(new Position(options[i][0],options[i][1]));
+         }
+         						// gamma, double alpha, int nrOtherPredators, double maxChange, double actionSelectionParameter, Position startPos
+         AgentQLearning prey = new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, preyPos);
+    	
+    }
+    
     public static void main(String[] args) throws OptimizationException {
         Assignment3 a = new Assignment3();
 //        a.testEnvironment(3);
-        a.miniMax();
-
+      //  a.miniMax();
+          a.independentQLearning();
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
 
