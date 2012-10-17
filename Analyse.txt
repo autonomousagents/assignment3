@@ -1,0 +1,28 @@
+(M) 2.1
+Apply independent Q-learning and analyze what happens for 1,
+2, 3 and 4 predators. Note that the prey learns also. Illustrate the
+performance of this algorithm for different parameter settings,
+with informative graphs.
+
+
+variable 1: episodes
+variable 2: alpha
+variable 3: gamma
+variable 4: cases (1 pred, 2 pred, .. etc.)
+
+===>	find best value for alpha
+	x-axis: episodes
+	y-axis: cases
+	z-axis: alpha
+	fixed gamma
+
+===>	find best value for gamma
+	x-axis: episodes
+	y-axis: cases
+	z-axis: gamma
+	fixed alpha
+
+===>	x-axis: episodes
+	y-axis: cases
+	z-axis: catch probability
+	fixed alpha & fixed gamma (the best found)
