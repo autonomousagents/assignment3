@@ -403,24 +403,23 @@ public class Assignment3 {
     }
     
     public void miniMax() throws OptimizationException{
-        PredatorMiniMax pred = new PredatorMiniMax(new Position(0,0), new Position(5,5), 0.0, 0.8, 0.001);
+        PredatorMiniMax pred = new PredatorMiniMax(new Position(0,0), new Position(5,5), 15.0, 0.8, 0.001);
         pred.learn();
         ArrayList<Position> others = new ArrayList<Position>();
         others.add(new Position(0,0));
         ArrayList<Agent> preds = new ArrayList<Agent>();
         preds.add(pred);
-        PreyRandom prey = new PreyRandom(new Position(5,5), others, new StateRep(0.0, 1),100 );
+        PreyRandom prey = new PreyRandom(new Position(5,5), others, new StateRep(15,  1),100 );
         Environment env = new Environment(preds, prey);
        
         View v = new View(env);
-        pred.printV(false);
         v.printPolicy(pred, 5,5);
-//        while(!env.isEnded()){
-//            env.nextTimeStep();
-//            System.out.print("reward prey: "+env.reward(true));
-//            System.out.println(" reward predator: "+env.reward(false)+"\n");
-//            v.printSimple();
-//        }
+        while(!env.isEnded()){
+            env.nextTimeStep();
+            System.out.print("reward prey: "+env.reward(true));
+            System.out.println(" reward predator: "+env.reward(false)+"\n");
+            v.printSimple();
+        }
         
     }
 
@@ -431,16 +430,27 @@ public class Assignment3 {
     	 double epsilon= 0.1;
     	
     	 
-    	 int [][] options = {{0,0},{2,2},{8,8},{2,8}};
-         ArrayList<Position> startPosPreds = new ArrayList<Position>();
+    	 int [][] options = {{0,0},{10,10},{0,10},{10,0}};
+    	 Position preyPos = new Position(5,5);
+    	 
          ArrayList<Agent> predators = new ArrayList<Agent>();
-         Position preyPos = new Position(5,5);
          
-         for(int i = 0; i < nrPredators;i++){
-             startPosPreds.add(new Position(options[i][0],options[i][1]));
+         
+         for(int i = 0; i < nrPredators;i++){ //// gamma, double alpha, int nrOtherPredators, double maxChange, double actionSelectionParameter, Position startPos
+        	 predators.add(new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, new Position(options[i][0],options[i][1])));
          }
-         						// gamma, double alpha, int nrOtherPredators, double maxChange, double actionSelectionParameter, Position startPos
+         						
          AgentQLearning prey = new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, preyPos);
+         
+         Environment env = new Environment(predators, prey);        
+         
+         View v = new View(env);
+         while(!env.isEnded()){
+             env.nextTimeStep();
+             System.out.print("reward prey: "+env.reward(true));
+             System.out.println(" reward predator: "+env.reward(false)+"\n");
+             v.printSimple();
+         }
     	
     }
     
@@ -448,9 +458,10 @@ public class Assignment3 {
         Assignment3 a = new Assignment3();
 //        a.testEnvironment(3);
       //  a.miniMax();
-          a.independentQLearning();
+          a.independentQLearning(2);
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
 
     }
 }
+
