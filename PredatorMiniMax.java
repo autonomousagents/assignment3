@@ -89,18 +89,23 @@ public class PredatorMiniMax implements Agent {
         int sweep = 0;
         while(notConverged){
             sweep++;
-            System.out.println("sweep number: " + sweep);
+            if(sweep%100==0){
+                System.out.println("sweep number: " + sweep);                
+            }
             double largestDiff = 0.0;
-            double diff;
+            double diff = 0.0;
             for(int state = 0; state<StateRepV.nrStates;state++){
+//                System.out.println("state nr: " + state);
                 double[] values = solveEquations(state);
-                diff = Math.abs(vValues.getV(state)-values[Action.nrActions]);
-                vValues.setValue(state, values[Action.nrActions]);
+                if(state!=0){
+                    diff = Math.abs(vValues.getV(state)-values[Action.nrActions]);
+                    vValues.setValue(state, values[Action.nrActions]);
+                }
                 for(int a = 0; a<Action.nrActions;a++){  
-                    if(values[a]<0.00001){
-                        policy.setValue(state, Action.getAction(a), 0.00001) ;
+                    if(values[a]<0.00000001){
+                        policy.setValue(state, Action.getAction(a), 0.00000001) ;
                     }
-                    else if(values[a]>0.99999){                        
+                    else if(values[a]>0.99999999){                        
                         policy.setValue(state, Action.getAction(a), 1.0) ;
                     }
                     else{
@@ -110,7 +115,7 @@ public class PredatorMiniMax implements Agent {
                         largestDiff = diff;
                     }
                 }
-                notConverged = largestDiff>epsilon || sweep<1000;
+                notConverged = largestDiff>epsilon || sweep<500;
             }            
         }
     }
@@ -211,13 +216,20 @@ public class PredatorMiniMax implements Agent {
     public double[] policy(Position prey, Position predatorItself, ArrayList<Position> others) {
         double[] pActions = new double[Action.nrActions];
         int linIndex = vValues.getLinearIndex(prey, predatorItself);
-        for(int i = 0;i<Action.nrActions;i++){            
-            pActions[i] = policy.getValue(linIndex, Action.getAction(i));
-        }
+        for(int i = 0;i<Action.nrActions;i++){   
+            int index = vValues.getMove(predatorItself, prey, i, false);
+            pActions[index] = policy.getValue(linIndex, Action.getAction(i));
+        }            
         return pActions;
     }
+    
+    public double [][] getVMatrix(){
+        return vValues.getMatrix();
+    }
 
-
+    public void printV(boolean latex){
+        vValues.printAll(latex);
+    }
 
     
 }
