@@ -251,9 +251,9 @@ public class AgentQLearning implements Agent {
 
 
 	@Override
-	public double[] policy(Position prey, ArrayList<Position> others) {
+	public double[] policy(Position prey,Position myPos ,ArrayList<Position> others) {
 		// TODO Auto-generated method stub
-		return null;
+		return new double[]{0,0};
 	}
 
 }
