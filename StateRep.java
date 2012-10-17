@@ -3,15 +3,14 @@ import java.util.ArrayList;
 
 public class StateRep {
 
-    private boolean isPrey;
     private int nrOtherPredators;
     private double initialValue;
     private Matrix2D outerPredator; // recursieve structuur
     private RelativeStateRep onePredator; // als er maar één predator is
 
-    public StateRep(double init, boolean isPrey, int nrPredators) {
+    public StateRep(double init, int nrPredators) {
 
-        this.isPrey = isPrey;
+       
         this.nrOtherPredators = nrPredators - 1;
         this.initialValue = init;
 

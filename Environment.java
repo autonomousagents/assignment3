@@ -20,6 +20,8 @@ public class Environment {
     public static final double minimumReward = -10;
     public static final double normalReward = 0;
     int nrSteps;
+    
+    public static final int maxPredators = 4;
 
 
     public Environment(ArrayList<Agent> predators, Agent prey) {
@@ -27,7 +29,7 @@ public class Environment {
         this.predators = predators;
         this.prey = prey;
         nrSteps = 0;
-        if(predators.size()>4){
+        if(predators.size()> Environment.maxPredators){
             System.out.println("too many predators");
         }
         if(predators.size()==0){
@@ -178,5 +180,9 @@ public class Environment {
             }
         }
         return false;
+    }
+    
+    public int nrOtherAgents() {
+    	return predators.size();
     }
 }

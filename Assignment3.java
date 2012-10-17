@@ -372,24 +372,24 @@ public class Assignment3 {
      */
     public void testEnvironment(int nrPredators ){
         int [][] options = {{0,0},{2,2},{8,8},{2,8}};
-        ArrayList<Position> startPosPreds = new ArrayList<>();
-        ArrayList<Agent> predators = new ArrayList<>();
+        ArrayList<Position> startPosPreds = new ArrayList<Position>();
+        ArrayList<Agent> predators = new ArrayList<Agent>();
         Position preyPos = new Position(5,5);
         for(int i = 0; i<nrPredators;i++){
             startPosPreds.add(new Position(options[i][0],options[i][1]));
         }
-        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds), new StateRep(15, true, nrPredators), 5);
+        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds), new StateRep(15,  nrPredators), 5);
         Agent a;
         ArrayList<Position> others;
         for(int i = 0; i<nrPredators;i++){
-            others = new ArrayList<>();
+            others = new ArrayList<Position>();
             others.add(preyPos);
             for(int j = 0; j<nrPredators;j++){
                 if(i!=j){
                     others.add(new Position(startPosPreds.get(j)));
                 }
             }
-            StateRep s = new StateRep(15, false, nrPredators);
+            StateRep s = new StateRep(15, nrPredators);
             predators.add(new PredatorRandom(startPosPreds.get(i), others, s ,5));
         }
         Environment env = new Environment(predators, prey);
