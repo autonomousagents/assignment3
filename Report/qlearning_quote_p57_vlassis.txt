@@ -1,0 +1,9 @@
+Although independent Q-learning cannot be justiﬁed theoretically, the method has
+been employed in practice with reported success (Matari´ , 1994, Sen et al., 1994, Tan, 1993).
+
+Claus and Boutilier (1998) examine the conditions under which independent Q-learning leads
+to individual policies that form a Nash equilibrium in a single state coordination problem, ar-
+guing that under general conditions the method converges. However, the resulting equilibrium
+may not be Pareto optimal. Similarly, Wolpert et al. (1999) show that for a constrained class
+of problems independent Q-learning may converge to a Nash equilibrium.
+
