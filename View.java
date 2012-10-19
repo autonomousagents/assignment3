@@ -195,7 +195,7 @@ public class View {
      *
      * @see Assignment2, QLearning functions
      */
-    public static void episodeMatrixToMatlabScript(String filename, double episodesMatrix[][], double paramValues[], String paramName, String yLabel) {
+    public static void episodeMatrixToMatlabScript(String filename, double episodesMatrix[][], double paramValues[], String paramName, String yLabel,String legendLocation) {
         int nrEpisodes = episodesMatrix[0].length;
         int nrParamValues = episodesMatrix.length;
 
@@ -250,7 +250,7 @@ public class View {
                      legend.append(",");
                 legend.append("'" + paramName + " = " + paramValues[j] + "'");
             }
-            legend.append(");");
+            legend.append(", 'Location','"+legendLocation+"');");
             out.write(legend.toString());
 
             out.flush();

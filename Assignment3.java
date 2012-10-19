@@ -531,7 +531,20 @@ public class Assignment3 {
         }
     }
 
-    public void independentQLearning(int nrEpisodes, int nrTrials, int nrPredators, boolean print) {
+    public void processIQL(int nrEpisodes, int nrTrials, double[] nrPredatorsSettings, boolean print) {
+
+        double episodesMatrix[][] = new double[nrPredatorsSettings.length][nrEpisodes];
+        String paramName = "Nr. predators";
+        String yLabel = "Percentage of times predators won";
+
+        for (int i=0; i < nrPredatorsSettings.length; i++) {
+            episodesMatrix[i] = independentQLearning( nrEpisodes,  nrTrials,  (int) nrPredatorsSettings[i],  print);
+        }
+        View.episodeMatrixToMatlabScript("IQL_winning.m", episodesMatrix, nrPredatorsSettings, paramName, yLabel,"NorthWest");
+
+    }
+
+    public double[] independentQLearning(int nrEpisodes, int nrTrials, int nrPredators, boolean print) {
 
         /** init parameters and positions **/
         double gamma = 0.9;
@@ -544,9 +557,13 @@ public class Assignment3 {
         ArrayList<Agent> predators = new ArrayList<Agent>();
         for (int i = 0; i < nrPredators; i++) { //// gamma, double alpha, int nrOtherPredators, double maxChange, double actionSelectionParameter, Position startPos
             predators.add(new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, new Position(options[i][0], options[i][1])));
+            System.out.println("made agent");
+
         }
         AgentQLearning prey = new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, preyPos);
 
+        System.out.println("made agents");
+        
         /** get statistics **/
         double[] percentageTrialsPredatorsWonPerEpisode = new double[nrEpisodes];
 
@@ -555,6 +572,7 @@ public class Assignment3 {
 
             System.out.println("% trials predators won: " + percentageTrialsPredatorsWonPerEpisode[episodeNr]);
         }
+        return percentageTrialsPredatorsWonPerEpisode;
     }
 
     /**
@@ -602,8 +620,10 @@ public class Assignment3 {
 //        a.testEnvironment(3);
 //        a.miniMax();
         //   a.minimaxPredVsRandomPrey(true);
-        a.independentQLearning(5, 4, 3, false); // nr episodes, nr trials (per episode), nr predators, print
+    //    a.independentQLearning(5, 4, 4, false); // nr episodes, nr trials (per episode), nr predators, print
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
+
+        a.processIQL(2000, 200, new double[]{2,3}, false);
     }
 }

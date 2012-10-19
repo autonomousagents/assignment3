@@ -161,9 +161,13 @@ public class AgentQLearning implements Agent {
 					bestActions.add(Action.actionValues[i]);
 				}
 			}
-			// take random greedy action from the greedy actions.
-			action = bestActions.get((int) (Math.random() * bestActions.size()));
+			
+            if (! bestActions.isEmpty()) // take random greedy action from the greedy actions.
+                action = bestActions.get((int) (Math.random() * bestActions.size()));
+            else    // all actions sucked (were not higher than Math.min(Environment.minimumReward, initialValue))
+                action =  Action.actionValues[(int) (Math.random() * Direction.nrMoves)];
 		}
+
 		return action;
 		
 	}
