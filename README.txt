@@ -13,9 +13,7 @@ To do's
 
 RANDOM POLICY TEST ENVIRONMENT
 
-Independent Q-learning voor agents implementeren
-
-Resultaten genereren en in report zetten
+Resultaten Q-learning genereren en in report zetten
 
 Ander leer learning/planning algorithm implementeren
 

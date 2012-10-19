@@ -552,7 +552,9 @@ public class Assignment3 {
          						
          AgentQLearning prey = new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, preyPos);
          
-         Environment env = new Environment(predators, prey);        
+         Environment env = new Environment(predators, prey);
+
+         
          
          View v = new View(env);
          while(!env.isEnded()){
@@ -570,8 +572,8 @@ public class Assignment3 {
         Assignment3 a = new Assignment3();
 //        a.testEnvironment(3);
 //        a.miniMax();
-        a.minimaxPredVsRandomPrey(true);
-//        a.independentQLearning(2);
+     //   a.minimaxPredVsRandomPrey(true);
+        a.independentQLearning(2);
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
     }

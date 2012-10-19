@@ -21,10 +21,8 @@ public class AgentQLearning implements Agent {
 	private final double doubleComparisonEpsilon = 0.000001;
 	private Action oldAction;
 	private double currentReward;
-	private int oldState;
 	private int oldActionNumber;
 
-	private int currentState;
 	
 	private int nrOtherPredators;
 
@@ -105,6 +103,9 @@ public class AgentQLearning implements Agent {
 	 */
 	public void observeReward(double reward, ArrayList<Position> others) {
 
+       
+        System.out.println();
+        
 		currentReward = reward;
 
 		double oldQValue = stateSpace.getActionValue(oldPos, oldPosOthers, oldAction) ;
