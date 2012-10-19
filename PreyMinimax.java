@@ -19,7 +19,7 @@ import org.apache.commons.math.optimization.linear.SimplexSolver;/*
 public class PreyMinimax implements Agent{
     private static final double Ptrip = 0.2;
     private Position startPos, myPos;
-    StateRepQMinimax policy;
+    RelativeStateRep policy;
     StateRepV vValues;
     Position startPred;
     Position predPos;
@@ -33,7 +33,7 @@ public class PreyMinimax implements Agent{
         myPos = new Position(startPos);
         this.startPred  = startPred;
         this.predPos = new Position(startPred);
-        policy = new StateRepQMinimax(1.0/Action.nrActionsDouble, true);
+        policy = new RelativeStateRep(1.0/Action.nrActionsDouble);
         vValues = new StateRepV(init, true);
         this.learningRate = learningRate;
         this.epsilon = epsilon;
@@ -45,7 +45,7 @@ public class PreyMinimax implements Agent{
         predPos = new Position(others.get(0));
         double p = Math.random();
         if(p>Ptrip){
-            int linIndex = policy.getLinearIndex(predPos, myPos);
+            int linIndex = policy.getLinearIndexFromPositions(myPos, predPos);
             double [] prob = policy.getStateActionPairValues(linIndex);
             double [] probCum = new double [Action.nrActions];
             probCum[0] = prob[0];
@@ -55,13 +55,13 @@ public class PreyMinimax implements Agent{
             probCum[Action.nrActions-1] = 1.0;
             p = Math.random();
             int action = -1;
-            for(int i = 1; i<Action.nrActions-1;i++){
+            for(int i = 0; i<Action.nrActions;i++){
                 if(p<=probCum[i]){
                     action = i;
                     break;
                 }
             }
-            myPos.adjustPosition(policy.getMove(myPos, predPos, action, false));
+            myPos.adjustPosition(policy.getMove(predPos, myPos, Action.getAction(action), false));
         }
     }
 
@@ -85,14 +85,17 @@ public class PreyMinimax implements Agent{
     public void observeReward(double reward, ArrayList<Position> others) {
         predPos = new Position(others.get(0));
     }
+    
     public void learn(int sweeps) throws OptimizationException{
 //        int sweep = 0;
         largestDif = 0.0;
+        StateRepV newV = new StateRepV(0.0, true);
         for(int i =0;i<sweeps;i++){
 //            sweep++;
 //            if(sweep%100==0){
 //                System.out.println("sweep number: " + sweep);                
 //            }
+            
             double diff = 0.0;
             for(int state = 0; state<StateRepV.nrStates;state++){
 //                System.out.println("state nr: " + state);
@@ -102,7 +105,7 @@ public class PreyMinimax implements Agent{
                     if(diff>largestDif){
                         largestDif = diff;
                     }
-                    vValues.setValue(state, values[Action.nrActions]);
+                    newV.setValue(state, values[Action.nrActions]);
                 }
                 for(int a = 0; a<Action.nrActions;a++){  
                     if(values[a]<0.00000001){
@@ -115,7 +118,10 @@ public class PreyMinimax implements Agent{
                         policy.setValue(state, Action.getAction(a),values[a]) ;
                     }
                 }
-            }            
+            }   
+            newV.printAll(false);
+            vValues = newV;
+            newV = new StateRepV(0.0, true);
         }
     }
 
@@ -127,15 +133,15 @@ public class PreyMinimax implements Agent{
             double[] Q = new double[Action.nrActions+1];
             //for each possible action of the predator
             for(int predAction = 0; predAction<Action.nrActions;predAction++){
-                int newStatePred = policy.getLinearIndexForAction(state, Action.getAction(predAction ));
+                int newStatePred = policy.getLinearIndexForAction(state, Action.getReverseAction(predAction));
                 int newStatePrey = policy.getLinearIndexForAction(newStatePred, Action.getAction(preyAction));
                 //calculate expected reward R(s,a,o)
                 double expReward = 0;
                 if(preyAction == Action.Wait.getIntValue()){
-                    expReward = policy.getReward(newStatePrey);
+                    expReward = policy.getReward(newStatePrey, true);
                 }
                 else{
-                    expReward = policy.getReward(newStatePrey)*(1.0-Ptrip)+policy.getReward(newStatePred)*Ptrip;
+                    expReward = policy.getReward(newStatePrey, true)*(1.0-Ptrip)+policy.getReward(newStatePred, true)*Ptrip;
                 }
                 //add weight to constraint for this combitnation 
                 if(preyAction == Action.Wait.getIntValue()){
@@ -235,7 +241,7 @@ public class PreyMinimax implements Agent{
     }
     
     public void forgetLearning(){
-        policy = new StateRepQMinimax(1.0/Action.nrActionsDouble, false);
+        policy = new RelativeStateRep(1.0/Action.nrActionsDouble);
         vValues = new StateRepV(init, false);
     }
 }

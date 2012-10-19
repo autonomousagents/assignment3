@@ -38,4 +38,18 @@ public enum Action {
         }
         return null;
     }
+    
+    
+    public static Action getReverseAction(int i){
+        switch(i){
+            case 0: return HorizontalRetreat;
+            case 1: return HorizontalApproach;
+            case 2: return VerticalRetreat;
+            case 3: return VerticalApproach;
+            case 4: return Wait;
+        }
+        return null;
+    }
+    
+    
 }

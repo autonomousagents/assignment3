@@ -110,12 +110,17 @@ public class RelativeStateRep  {
      * @param linearIndex = linear index of state s
      * @return reward received in state s
      */
-    public double getReward(int linearIndex) {
+    public double getReward(int linearIndex, boolean isPrey) {
         if (linearIndex == 0) {
-            return Environment.maximumReward;
+            if(!isPrey){
+                return Environment.maximumReward;
+            }
+            else{
+                return Environment.minimumReward;
+            }
         }
         else {
-            return Environment.minimumReward;
+            return Environment.normalReward;
         }
     }
 
