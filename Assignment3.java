@@ -531,20 +531,37 @@ public class Assignment3 {
         }
     }
 
-    public void processIQL(int nrEpisodes, int nrTrials, double[] nrPredatorsSettings, boolean print) {
+    public void processIQLwinning(int nrEpisodes, int nrTrials, double[] nrPredatorsSettings, boolean print) {
+
+        String metric="winning";
 
         double episodesMatrix[][] = new double[nrPredatorsSettings.length][nrEpisodes];
         String paramName = "Nr. predators";
         String yLabel = "Percentage of times predators won";
 
         for (int i=0; i < nrPredatorsSettings.length; i++) {
-            episodesMatrix[i] = independentQLearning( nrEpisodes,  nrTrials,  (int) nrPredatorsSettings[i],  print);
+            episodesMatrix[i] = independentQLearning( nrEpisodes,  nrTrials,  (int) nrPredatorsSettings[i],  print, metric);
         }
         View.episodeMatrixToMatlabScript("IQL_winning.m", episodesMatrix, nrPredatorsSettings, paramName, yLabel,"NorthWest");
 
     }
 
-    public double[] independentQLearning(int nrEpisodes, int nrTrials, int nrPredators, boolean print) {
+    public void processIQLnrTimeSteps(int nrEpisodes, int nrTrials, double[] nrPredatorsSettings, boolean print) {
+
+        String metric="nrTimeSteps";
+
+        double episodesMatrix[][] = new double[nrPredatorsSettings.length][nrEpisodes];
+        String paramName = "Nr. predators";
+        String yLabel = "Avg. number time steps";
+
+        for (int i=0; i < nrPredatorsSettings.length; i++) {
+            episodesMatrix[i] = independentQLearning( nrEpisodes,  nrTrials,  (int) nrPredatorsSettings[i],  print,metric);
+        }
+        View.episodeMatrixToMatlabScript("IQL_nrTimeSteps.m", episodesMatrix, nrPredatorsSettings, paramName, yLabel,"NorthWest");
+
+    }
+
+    public double[] independentQLearning(int nrEpisodes, int nrTrials, int nrPredators, boolean print, String metric) {
 
         /** init parameters and positions **/
         double gamma = 0.9;
@@ -565,14 +582,14 @@ public class Assignment3 {
         System.out.println("made agents");
         
         /** get statistics **/
-        double[] percentageTrialsPredatorsWonPerEpisode = new double[nrEpisodes];
+        double[] metricValues = new double[nrEpisodes];
 
         for (int episodeNr = 0; episodeNr < nrEpisodes; episodeNr++) {
-            percentageTrialsPredatorsWonPerEpisode[episodeNr] = independentQLearningTrial(predators, prey, nrTrials, nrPredators, print);
+            metricValues[episodeNr] = independentQLearningTrials(predators, prey, nrTrials, nrPredators, print, metric);
 
-            System.out.println("% trials predators won: " + percentageTrialsPredatorsWonPerEpisode[episodeNr]);
+            System.out.println("% trials predators won: " + metricValues[episodeNr]);
         }
-        return percentageTrialsPredatorsWonPerEpisode;
+        return metricValues;
     }
 
     /**
@@ -587,9 +604,10 @@ public class Assignment3 {
      * @param print
      * @return
      */
-    public double independentQLearningTrial(ArrayList<Agent> predators, Agent prey, int nrTrials, int nrPredators, boolean print) {
+    public double independentQLearningTrials(ArrayList<Agent> predators, Agent prey, int nrTrials, int nrPredators, boolean print, String metric) {
 
         int nrTrialsPredatorsWon = 0;
+        int nrTimeSteps=0;
 
         for (int i = 0; i < nrTrials; i++) {
             Environment env = new Environment(predators, prey);
@@ -597,8 +615,11 @@ public class Assignment3 {
             //  if (print) {
             //      System.out.println("\nEpisode " + i );
             //  }
+            
             while (!env.isEnded()) {
                 env.nextTimeStep();
+                nrTimeSteps++;
+
                 if (print) {
                     v.printSimple();
                 }
@@ -611,8 +632,16 @@ public class Assignment3 {
            // System.out.println("reward prey:" + env.reward(true));
             env.reset();
         }
-      
-        return ((double) nrTrialsPredatorsWon / nrTrials) * 100;
+
+
+        if (metric == "winning")
+            return ((double) nrTrialsPredatorsWon / nrTrials) * 100;
+        else  if (metric == "nrTimeSteps")
+            return ((double) nrTimeSteps) / nrTrials;
+        else {
+            System.out.println("ERROR: Wrong value for param metric");
+            return 0;
+        }
     }
 
     public static void main(String[] args) throws OptimizationException {
@@ -624,6 +653,7 @@ public class Assignment3 {
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
 
-        a.processIQL(2000, 200, new double[]{2,3}, false);
+        a.processIQLwinning(2000, 200, new double[]{2,3}, false);
+        a.processIQLnrTimeSteps(2000, 200, new double[]{2,3}, false);
     }
 }
