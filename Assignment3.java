@@ -653,7 +653,7 @@ public class Assignment3 {
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
 
-      //  a.processIQLwinning(2000, 200, new double[]{2,3}, false);
-        a.processIQLnrTimeSteps(3000, 200, new double[]{2,3}, false);
+        a.processIQLwinning(5000, 200, new double[]{2,3}, false);
+        a.processIQLnrTimeSteps(5000, 200, new double[]{2,3}, false);
     }
 }
