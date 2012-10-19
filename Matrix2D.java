@@ -65,10 +65,6 @@ public class Matrix2D {
     public double getActionValue(Position myPos, ArrayList<Position> allOtherPositions, Action myAction, int level) {
 
 
-        for (int i=0; i < allOtherPositions.size(); i++) {
-            System.out.println(allOtherPositions.get(i).getX());
-        }
-
         if (level == 1) { // ask from RelativeStateRep
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
 

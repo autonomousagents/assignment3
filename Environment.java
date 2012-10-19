@@ -23,6 +23,8 @@ public class Environment {
     
     public static final int maxPredators = 4;
 
+    public static final int doRunNTLmax = 20000;
+
 
     public Environment(ArrayList<Agent> predators, Agent prey) {
         this.isEnded = false;
@@ -195,13 +197,12 @@ public class Environment {
     }
 
     public int doRunNTL() {
-        int max = 2000000;
         while(!isEnded){
-            if(nrSteps<max){
+            if(nrSteps < doRunNTLmax){
                 nextTimeStep();
             }
-            else{                
-                return max;
+            else {
+                return doRunNTLmax;
             }
         }
         reset();

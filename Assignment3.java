@@ -13,65 +13,65 @@ import org.apache.commons.math.optimization.OptimizationException;
  * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
  */
 public class Assignment3 {
-    
-    public int minimaxPredVsRandomPrey (boolean print){
-        Position preyPos = new Position(5,5);
-        Position predPos = new Position(0,0);
+
+    public int minimaxPredVsRandomPrey(boolean print) {
+        Position preyPos = new Position(5, 5);
+        Position predPos = new Position(0, 0);
         PredatorMiniMax predMVsR = new PredatorMiniMax(predPos, preyPos, 0.0, 0.8, 0.001);
-        ArrayList <Position> others2 = new ArrayList<Position>();
+        ArrayList<Position> others2 = new ArrayList<Position>();
         others2.add(preyPos);
         PreyRandom preyRVsM = new PreyRandom(preyPos, others2);
-        ArrayList<Agent> a= new ArrayList<Agent>();
+        ArrayList<Agent> a = new ArrayList<Agent>();
         a.add(predMVsR);
         Environment env = new Environment(a, preyRVsM);
         View v = new View(env);
         v.printPolicy(predMVsR, 5, 5);
-        while(!env.isEnded()){
-            if(print){
-            v.printSimple();
+        while (!env.isEnded()) {
+            if (print) {
+                v.printSimple();
             }
             env.nextTimeStep();
-        }        
-        if(print){
+        }
+        if (print) {
             v.printSimple();
-            }
-        System.out.println("nr steps: "+env.getNrSteps());
+        }
+        System.out.println("nr steps: " + env.getNrSteps());
         return env.getNrSteps();
     }
-    
-        public void miniMax() throws OptimizationException{
+
+    public void miniMax() throws OptimizationException {
         int nrMatches = 3;
         int nrSweeps = 25;
         int averageOver = 50;
-        Position preyPos = new Position(5,5);
-        Position predPos = new Position(0,0);
+        Position preyPos = new Position(5, 5);
+        Position predPos = new Position(0, 0);
         PredatorMiniMax predMVsR = new PredatorMiniMax(predPos, preyPos, 0.0, 0.8, 0.001);
         PredatorMiniMax predMVsM = new PredatorMiniMax(predPos, preyPos, 0.0, 0.8, 0.001);
-        ArrayList <Position> others1 = new ArrayList<Position>();
+        ArrayList<Position> others1 = new ArrayList<Position>();
         others1.add(preyPos);
         PredatorRandom predRVsM = new PredatorRandom(predPos, others1);
-        ArrayList <Position> others2 = new ArrayList<Position>();
+        ArrayList<Position> others2 = new ArrayList<Position>();
         others2.add(preyPos);
         PreyRandom preyRVsM = new PreyRandom(preyPos, others2);
         PreyMinimax preyMVsR = new PreyMinimax(preyPos, predPos, 0.0, 0.8, 0.001);
         PreyMinimax preyMVsM = new PreyMinimax(preyPos, predPos, 0.0, 0.8, 0.001);
-        
-        int [][] steps = new int[nrMatches][nrSweeps];
-        double [][] maxDif = new double [nrMatches][nrSweeps];
-        
+
+        int[][] steps = new int[nrMatches][nrSweeps];
+        double[][] maxDif = new double[nrMatches][nrSweeps];
+
         System.out.println("Match random prey vs minimax predator");
         //Match random prey vs minimax predator
-        ArrayList<Agent> a= new ArrayList<Agent>();
+        ArrayList<Agent> a = new ArrayList<Agent>();
         a.add(predMVsR);
         Environment env = new Environment(a, preyRVsM);
         View v = new View(env);
-        for(int n = 0; n<averageOver;n++ ){
-            for(int s = 0; s<nrSweeps;s++){
+        for (int n = 0; n < averageOver; n++) {
+            for (int s = 0; s < nrSweeps; s++) {
                 System.out.println("sweep number " + s);
                 int envRes = env.doRunNTL();
                 System.out.println("ran env");
                 steps[0][s] += env.getNrSteps();
-                if(envRes !=-1){
+                if (envRes != -1) {
                     System.out.println("invalid run");
                 }
                 predMVsR.learn(1);
@@ -79,51 +79,51 @@ public class Assignment3 {
                 predMVsR.printV(false);
                 v.printPolicy(predMVsR, 5, 5);
             }
-            if(n==0){
+            if (n == 0) {
                 predMVsR.printV(true);
             }
-            predMVsR.forgetLearning();            
+            predMVsR.forgetLearning();
         }
-        
+
         System.out.println("Match random predator vs minimax prey");
         //Match random predator vs minimax prey
-         a= new ArrayList<Agent>();
+        a = new ArrayList<Agent>();
         a.add(predRVsM);
         env = new Environment(a, preyMVsR);
-        for(int n = 0; n<averageOver;n++ ){
-            for(int s = 0; s<nrSweeps;s++){
+        for (int n = 0; n < averageOver; n++) {
+            for (int s = 0; s < nrSweeps; s++) {
                 System.out.println("sweepNr = " + s);
                 env.doRun();
                 steps[1][s] += env.getNrSteps();
                 preyMVsR.learn(1);
                 maxDif[1][s] += preyMVsR.getLargestDiff();
             }
-            if(n==0){
+            if (n == 0) {
                 preyMVsR.printV(true);
             }
-            preyMVsR.forgetLearning();            
+            preyMVsR.forgetLearning();
         }
-        
+
         System.out.println("Match random predator vs minimax prey");
         //Match random predator vs minimax prey
-        a= new ArrayList<Agent>();
+        a = new ArrayList<Agent>();
         a.add(predMVsM);
         env = new Environment(a, preyMVsM);
-        for(int n = 0; n<averageOver;n++ ){
-            for(int s = 0; s<nrSweeps;s++){
+        for (int n = 0; n < averageOver; n++) {
+            for (int s = 0; s < nrSweeps; s++) {
                 env.doRunNTL();
                 steps[2][s] += env.getNrSteps();
                 predMVsM.learn(1);
                 preyMVsM.learn(1);
             }
-            if(n==0){
+            if (n == 0) {
                 preyMVsM.printV(true);
                 predMVsM.printV(true);
             }
-            preyMVsM.forgetLearning();   
+            preyMVsM.forgetLearning();
             predMVsM.forgetLearning();
         }
-        
+
 //        PredatorMiniMax pred = new PredatorMiniMax(new Position(0,0), new Position(5,5), 15.0, 0.8, 0.001);
 //        pred.learn();
 //        ArrayList<Position> others = new ArrayList<Position>();
@@ -132,7 +132,7 @@ public class Assignment3 {
 //        preds.add(pred);
 //        PreyRandom prey = new PreyRandom(new Position(5,5), others, new StateRep(15,  1),100 );
 //        Environment env = new Environment(preds, prey);
-       
+
 //        View v = new View(env);
 //        v.printPolicy(pred, 5,5);
 //        while(!env.isEnded()){
@@ -141,7 +141,7 @@ public class Assignment3 {
 //            System.out.println(" reward predator: "+env.reward(false)+"\n");
 //            v.printSimple();
 //        }
-        
+
     }
 
 //    /**
@@ -500,22 +500,22 @@ public class Assignment3 {
      * number of agents and printing each step and the accompanying reward for prey and predator
      * @param nrPredators = nr of predators in testRun
      */
-    public void testEnvironment(int nrPredators ){
-        int [][] options = {{0,0},{2,2},{8,8},{2,8}};
+    public void testEnvironment(int nrPredators) {
+        int[][] options = {{0, 0}, {2, 2}, {8, 8}, {2, 8}};
         ArrayList<Position> startPosPreds = new ArrayList<Position>();
         ArrayList<Agent> predators = new ArrayList<Agent>();
-        Position preyPos = new Position(5,5);
-        for(int i = 0; i<nrPredators;i++){
-            startPosPreds.add(new Position(options[i][0],options[i][1]));
+        Position preyPos = new Position(5, 5);
+        for (int i = 0; i < nrPredators; i++) {
+            startPosPreds.add(new Position(options[i][0], options[i][1]));
         }
-        PreyRandom prey = new PreyRandom(new Position(5,5), Position.deepCopyList(startPosPreds));
+        PreyRandom prey = new PreyRandom(new Position(5, 5), Position.deepCopyList(startPosPreds));
         Agent a;
         ArrayList<Position> others;
-        for(int i = 0; i<nrPredators;i++){
+        for (int i = 0; i < nrPredators; i++) {
             others = new ArrayList<Position>();
             others.add(preyPos);
-            for(int j = 0; j<nrPredators;j++){
-                if(i!=j){
+            for (int j = 0; j < nrPredators; j++) {
+                if (i != j) {
                     others.add(new Position(startPosPreds.get(j)));
                 }
             }
@@ -523,59 +523,78 @@ public class Assignment3 {
         }
         Environment env = new Environment(predators, prey);
         View v = new View(env);
-        while(!env.isEnded()){
+        while (!env.isEnded()) {
             env.nextTimeStep();
-            System.out.print("reward prey: "+env.reward(true));
-            System.out.println(" reward predator: "+env.reward(false)+"\n");
+            System.out.print("reward prey: " + env.reward(true));
+            System.out.println(" reward predator: " + env.reward(false) + "\n");
             v.printSimple();
         }
     }
-    
+
+    public void independentQLearning(int nrEpisodes, int nrTrials, int nrPredators, boolean print) {
+
+        double gamma = 0.9;
+        double alpha = 0.5;
+        double epsilon = 0.1;
 
 
-    public void independentQLearning(int nrPredators) {
-    	
-    	 double gamma = 0.9;
-    	 double alpha=0.5;
-    	 double epsilon= 0.1;
-    	
-    	 
-    	 int [][] options = {{0,0},{10,10},{0,10},{10,0}};
-    	 Position preyPos = new Position(5,5);
-    	 
-         ArrayList<Agent> predators = new ArrayList<Agent>();
-         
-         
-         for(int i = 0; i < nrPredators;i++){ //// gamma, double alpha, int nrOtherPredators, double maxChange, double actionSelectionParameter, Position startPos
-        	 predators.add(new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, new Position(options[i][0],options[i][1])));
-         }
-         						
-         AgentQLearning prey = new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, preyPos);
-         
-         Environment env = new Environment(predators, prey);
+        int[][] options = {{0, 0}, {10, 10}, {0, 10}, {10, 0}};
+        Position preyPos = new Position(5, 5);
 
-         
-         
-         View v = new View(env);
-         while(!env.isEnded()){
-             env.nextTimeStep();
-             System.out.print("reward prey: "+env.reward(true));
-             System.out.println(" reward predator: "+env.reward(false)+"\n");
-             v.printSimple();
-         }
-    	
+        ArrayList<Agent> predators = new ArrayList<Agent>();
+
+
+        for (int i = 0; i < nrPredators; i++) { //// gamma, double alpha, int nrOtherPredators, double maxChange, double actionSelectionParameter, Position startPos
+            predators.add(new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, new Position(options[i][0], options[i][1])));
+        }
+
+        AgentQLearning prey = new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, preyPos);
+
+
+        double[] percentageTrialsPredatorsWonPerEpisode = new double[nrEpisodes];
+
+        for (int episodeNr = 0; episodeNr < nrEpisodes; episodeNr++) {
+
+            percentageTrialsPredatorsWonPerEpisode[episodeNr] = independentQLearningTrial(predators, prey, nrTrials, nrPredators, print);
+            System.out.println(percentageTrialsPredatorsWonPerEpisode[episodeNr]);
+
+        }
+
     }
-    
-    
-    
+
+    public double independentQLearningTrial(ArrayList<Agent> predators, Agent prey, int nrTrials, int nrPredators, boolean print) {
+
+        int nrTrialsPredatorsWon = 0;
+
+        for (int i = 0; i < nrTrials; i++) {
+            Environment env = new Environment(predators, prey);
+            View v = new View(env);
+            //  if (print) {
+            //System.out.println("\nEpisode " + i );
+            //  }
+            while (!env.isEnded()) {
+                env.nextTimeStep();
+                if (print) {
+                    v.printSimple();
+                }
+            }
+
+            if (env.reward(false) == Environment.maximumReward) { // if predators accomplished mission
+                nrTrialsPredatorsWon++;
+            }
+            env.reset();
+        }
+      
+        return ((double) nrTrialsPredatorsWon / nrTrials) * 100;
+    }
+
     public static void main(String[] args) throws OptimizationException {
         Assignment3 a = new Assignment3();
 //        a.testEnvironment(3);
 //        a.miniMax();
-     //   a.minimaxPredVsRandomPrey(true);
-        a.independentQLearning(2);
+        //   a.minimaxPredVsRandomPrey(true);
+        a.independentQLearning(2000, 6, 3, false);
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
     }
 }
-

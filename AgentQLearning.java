@@ -102,10 +102,7 @@ public class AgentQLearning implements Agent {
 	 *            : position of prey
 	 */
 	public void observeReward(double reward, ArrayList<Position> others) {
-
        
-        System.out.println();
-        
 		currentReward = reward;
 
 		double oldQValue = stateSpace.getActionValue(oldPos, oldPosOthers, oldAction) ;
@@ -115,7 +112,7 @@ public class AgentQLearning implements Agent {
 
 		double newQValue = oldQValue + TDvalue;
 		
-		System.out.println("QValue from " + oldQValue + "  to " + newQValue);
+		//System.out.println("QValue from " + oldQValue + "  to " + newQValue);
 
 		/** Update Q(s,a) value **/
 		stateSpace.setActionValue(oldPos, oldPosOthers, oldAction, newQValue);
