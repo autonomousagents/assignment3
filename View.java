@@ -48,8 +48,14 @@ public class View {
      * Prints the real world "grid world" including the prey and predator in it
      */
     public void printSimple(){
+        System.out.print("  ");
+        for(int j = 0; j<Environment.WIDTH;j++){
+            System.out.print(j+" ");
+        }
+        System.out.print("\n");
         for(int i =0;i<Environment.HEIGHT;i++){
-            for(int j = 0; j<Environment.WIDTH;j++){
+            System.out.print(i+ " ");
+            for(int j = 0; j<Environment.WIDTH;j++){                
                 if(env.getPreyPos().equals(new Position(j,i))){
                     System.out.print(PREY);
                 }

@@ -14,20 +14,17 @@ public class PreyRandom implements Agent {
     
     private static final double Ptrip = 0.2;
     private Position startPos, myPos;
-    StateRep representation;
     ArrayList<Position> startOthers;
     ArrayList<Position> others;
-    int nrRuns, maxNrRuns;
+    int nrRuns;
     
     
-    public PreyRandom(Position startPos, ArrayList<Position> startOthers, StateRep rep, int maxNrRuns){
+    public PreyRandom(Position startPos, ArrayList<Position> startOthers){
         this.startPos =startPos;
         this.startOthers = startOthers;
-        others = Position.deepCopyList(startOthers);
-        representation = rep; 
+        others = Position.deepCopyList(startOthers);        
         myPos = new Position(startPos);
         nrRuns=0;
-        this.nrRuns=maxNrRuns;
     }
     
     @Override
@@ -60,7 +57,7 @@ public class PreyRandom implements Agent {
 
     @Override
     public boolean isConverged() {
-        return nrRuns < maxNrRuns;
+        return true;
     }
 
     /**

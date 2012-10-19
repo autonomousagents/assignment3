@@ -19,7 +19,7 @@ public class Environment {
     public static final double maximumReward = 10;
     public static final double minimumReward = -10;
     public static final double normalReward = 0;
-    int nrSteps;
+    private int nrSteps;
     
     public static final int maxPredators = 4;
 
@@ -42,13 +42,15 @@ public class Environment {
      * Makes prey do move, makes predator do move, and then makes predator observe reward (and thus update values etc.)
      */
     public void nextTimeStep() {
-        int agentNr = 0;
-        for(Agent predator: predators){
-            agentNr++;
-            predator.doMove(positionsOthers(agentNr));
+        ArrayList<ArrayList<Position>> posOthers= new ArrayList<ArrayList<Position>>();
+        for(int j = 0; j<predators.size()+1;j++){
+            posOthers.add(positionsOthers(j));
         }
-        agentNr = 0;
-        prey.doMove(positionsOthers(agentNr));
+        for(int i = 1; i==predators.size();i++){
+            predators.get(i-1).doMove(posOthers.get(i));
+        }
+        prey.doMove(posOthers.get(0));
+        int agentNr = 0;
         prey.observeReward(reward(true), positionsOthers(agentNr));
         for(Agent predator:predators){
             agentNr++;
@@ -121,28 +123,33 @@ public class Environment {
     }
 
     public void doRun(){
-        boolean validRun = false;
-        int invalidRun = 0;
-        while(!validRun){
-            while(!isEnded){
-                if(nrSteps<80000){
-                    nextTimeStep();
-                    nrSteps++;
-                    if(isEnded){
-                        validRun = true;
-                    }
-                }
-                else{
-                    nrSteps = 0;
-                  //  System.out.println("invalid run" +invalidRun);
-                    invalidRun++;
-                    break;
-                }
-            }
-            reset();
+        while(!isEnded){
+            nextTimeStep();
         }
-
+        reset();
     }
+    
+//    public void doRunInvalid(){
+//        boolean validRun = false;
+//        int invalidRun = 0;
+//        while(!validRun){
+//            while(!isEnded){
+//                if(nrSteps<10000000){
+//                    nextTimeStep();
+//                    if(isEnded){
+//                        validRun = true;
+//                    }
+//                }
+//                else{
+//                    nrSteps = 0;
+//                    System.out.println("invalid run" +invalidRun);
+//                    invalidRun++;
+//                    break;
+//                }
+//            }
+//            reset();
+//        }
+//    }
     
         public boolean isEnded() {
         return isEnded;
@@ -184,5 +191,19 @@ public class Environment {
     
     public int nrOtherAgents() {
     	return predators.size();
+    }
+
+    public int doRunNTL() {
+        int max = 2000000;
+        while(!isEnded){
+            if(nrSteps<max){
+                nextTimeStep();
+            }
+            else{                
+                return max;
+            }
+        }
+        reset();
+        return -1;        
     }
 }

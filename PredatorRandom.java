@@ -14,20 +14,17 @@ public class PredatorRandom implements Agent{
 
     private static final double Ptrip = 0.2;
     private Position startPos, myPos;
-    StateRep representation;
     ArrayList<Position> startOthers;
     ArrayList<Position> others;
-    int nrRuns, maxNrRuns;
+    int nrRuns;
     
     
-    public PredatorRandom(Position startPos, ArrayList<Position> startOthers, StateRep rep, int maxNrRuns){
+    public PredatorRandom(Position startPos, ArrayList<Position> startOthers){
         this.startPos =startPos;
         this.startOthers = startOthers;
         others = Position.deepCopyList(startOthers);
-        representation = rep; 
         myPos = new Position(startPos);
         nrRuns=0;
-        this.nrRuns=maxNrRuns;
     }
     
     @Override
@@ -57,7 +54,7 @@ public class PredatorRandom implements Agent{
 
     @Override
     public boolean isConverged() {
-        return nrRuns < maxNrRuns;
+        return true;
     }
 
     /**
