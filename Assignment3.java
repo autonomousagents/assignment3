@@ -533,35 +533,42 @@ public class Assignment3 {
 
     public void independentQLearning(int nrEpisodes, int nrTrials, int nrPredators, boolean print) {
 
+        /** init parameters and positions **/
         double gamma = 0.9;
         double alpha = 0.5;
         double epsilon = 0.1;
-
 
         int[][] options = {{0, 0}, {10, 10}, {0, 10}, {10, 0}};
         Position preyPos = new Position(5, 5);
 
         ArrayList<Agent> predators = new ArrayList<Agent>();
-
-
         for (int i = 0; i < nrPredators; i++) { //// gamma, double alpha, int nrOtherPredators, double maxChange, double actionSelectionParameter, Position startPos
             predators.add(new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, new Position(options[i][0], options[i][1])));
         }
-
         AgentQLearning prey = new AgentQLearning(gamma, alpha, nrPredators, 0, epsilon, preyPos);
 
-
+        /** get statistics **/
         double[] percentageTrialsPredatorsWonPerEpisode = new double[nrEpisodes];
 
         for (int episodeNr = 0; episodeNr < nrEpisodes; episodeNr++) {
-
             percentageTrialsPredatorsWonPerEpisode[episodeNr] = independentQLearningTrial(predators, prey, nrTrials, nrPredators, print);
-            System.out.println(percentageTrialsPredatorsWonPerEpisode[episodeNr]);
 
+            System.out.println("% trials predators won: " + percentageTrialsPredatorsWonPerEpisode[episodeNr]);
         }
-
     }
 
+    /**
+     *
+     * Note that when using just 1 predator, the return value will be "100" always, because then the game is only ended
+     * when the predator catches the prey
+     * 
+     * @param predators
+     * @param prey
+     * @param nrTrials
+     * @param nrPredators
+     * @param print
+     * @return
+     */
     public double independentQLearningTrial(ArrayList<Agent> predators, Agent prey, int nrTrials, int nrPredators, boolean print) {
 
         int nrTrialsPredatorsWon = 0;
@@ -570,7 +577,7 @@ public class Assignment3 {
             Environment env = new Environment(predators, prey);
             View v = new View(env);
             //  if (print) {
-            //System.out.println("\nEpisode " + i );
+            //      System.out.println("\nEpisode " + i );
             //  }
             while (!env.isEnded()) {
                 env.nextTimeStep();
@@ -582,6 +589,8 @@ public class Assignment3 {
             if (env.reward(false) == Environment.maximumReward) { // if predators accomplished mission
                 nrTrialsPredatorsWon++;
             }
+           // System.out.println("reward predator:" + env.reward(false));
+           // System.out.println("reward prey:" + env.reward(true));
             env.reset();
         }
       
@@ -593,7 +602,7 @@ public class Assignment3 {
 //        a.testEnvironment(3);
 //        a.miniMax();
         //   a.minimaxPredVsRandomPrey(true);
-        a.independentQLearning(2000, 6, 3, false);
+        a.independentQLearning(20, 4, 4, false); // nr episodes, nr trials (per episode), nr predators, print
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
     }
