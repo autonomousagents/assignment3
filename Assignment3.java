@@ -587,7 +587,7 @@ public class Assignment3 {
         for (int episodeNr = 0; episodeNr < nrEpisodes; episodeNr++) {
             metricValues[episodeNr] = independentQLearningTrials(predators, prey, nrTrials, nrPredators, print, metric);
 
-            System.out.println("% trials predators won: " + metricValues[episodeNr]);
+            System.out.println("metric: " + metricValues[episodeNr]);
         }
         return metricValues;
     }
@@ -653,7 +653,7 @@ public class Assignment3 {
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
 
-        a.processIQLwinning(2000, 200, new double[]{2,3}, false);
+      //  a.processIQLwinning(2000, 200, new double[]{2,3}, false);
         a.processIQLnrTimeSteps(2000, 200, new double[]{2,3}, false);
     }
 }
