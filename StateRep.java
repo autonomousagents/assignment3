@@ -5,7 +5,7 @@ public class StateRep {
 
     private int nrOtherAgents;
     private double initialValue;
-    private Matrix2D outerPredator; // recursieve structuur
+    private Matrix2DReduced outerPredator; // recursieve structuur
     private RelativeStateRep onePredator; // als er maar één predator is
 
     public StateRep(double init, int nrPredators) {
@@ -22,7 +22,7 @@ public class StateRep {
      */
     private void initStates() {
         if (nrOtherAgents > 0) {
-            outerPredator = new Matrix2D(Environment.HEIGHT, Environment.WIDTH);
+            outerPredator = new Matrix2DReduced(Environment.HEIGHT, Environment.WIDTH);
             outerPredator.init(nrOtherAgents, initialValue);
         }
         else {

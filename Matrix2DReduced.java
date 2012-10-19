@@ -91,7 +91,7 @@ public class Matrix2DReduced {
     		bottomMatrix[pos.getX()][pos.getY()] = state;
     	}
     	else {
-    		for (int i = 0;i<= posArray.size();i++){
+    		for (int i = 0;i< posArray.size();i++){
     			Position pos = posArray.get(i);
 				ArrayList<Position> tempArray = (ArrayList<Position>) posArray.clone();
 				tempArray.remove(i);
@@ -124,6 +124,7 @@ public class Matrix2DReduced {
     
     public double[] getAllActionValues(Position myPos, ArrayList<Position> allOtherPositions, int level) {
 
+               
         if (level == 1) { // ask from RelativeStateRep
             int lIndex = RelativeStateRep.getLinearIndexFromPositions(myPos, allOtherPositions.get(0));
 

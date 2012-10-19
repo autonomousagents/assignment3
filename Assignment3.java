@@ -602,7 +602,7 @@ public class Assignment3 {
 //        a.testEnvironment(3);
 //        a.miniMax();
         //   a.minimaxPredVsRandomPrey(true);
-        a.independentQLearning(20, 4, 4, false); // nr episodes, nr trials (per episode), nr predators, print
+        a.independentQLearning(5, 4, 3, false); // nr episodes, nr trials (per episode), nr predators, print
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
     }
