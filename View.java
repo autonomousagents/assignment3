@@ -54,13 +54,14 @@ public class View {
         }
         System.out.print("\n");
         for(int i =0;i<Environment.HEIGHT;i++){
-            System.out.print(i+ " ");
-            for(int j = 0; j<Environment.WIDTH;j++){                
-                if(env.getPreyPos().equals(new Position(j,i))){
-                    System.out.print(PREY);
-                }
-                else if(env.predatorStandsHere(new Position(j,i))){
+            System.out.print(String.format("%2d ",i));
+            for(int j = 0; j<Environment.WIDTH;j++){               
+                
+                if(env.predatorStandsHere(new Position(j,i))){
                     System.out.print(PREDATOR);
+                }
+                else if(env.getPreyPos().equals(new Position(j,i))){
+                    System.out.print(PREY);
                 }
                 else{
                     System.out.print(EMPTY);
