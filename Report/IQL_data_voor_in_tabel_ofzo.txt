@@ -1,0 +1,35 @@
+This was all for 5000 episodes
+
+avg nr time steps (avg over 200 trials)
+---------------------------
+---------------------------
+
+agents=2  :
+-----------------
+variance =  6.1725
+mean = 19.7133
+lastvalue =  19.7300 
+
+agents=3:
+-----------------
+variance = 14.1899
+mean = 16.2191
+lastvalue =   13.6150
+
+
+percentage of times (avg over 200 trials) predators are winning
+---------------------------
+---------------------------
+
+agents = 2:
+-----------------
+mean =  69.6308
+variance = 121.5650
+lastvalue =   53.5000
+
+
+agents = 3:
+-----------------
+mean =  60.4699 
+variance = 56.6520
+lastvalue =  58.5000

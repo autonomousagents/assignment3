@@ -639,7 +639,7 @@ public class Assignment3 {
         else  if (metric == "nrTimeSteps")
             return ((double) nrTimeSteps) / nrTrials;
         else {
-            System.out.println("ERROR: Wrong value for param metric");
+           // System.out.println("ERROR: Wrong value for param metric");
             return 0;
         }
     }
@@ -649,11 +649,11 @@ public class Assignment3 {
 //        a.testEnvironment(3);
 //        a.miniMax();
         //   a.minimaxPredVsRandomPrey(true);
-    //    a.independentQLearning(5, 4, 4, false); // nr episodes, nr trials (per episode), nr predators, print
+        a.independentQLearning(5, 4, 4, false,"measureNothing"); // nr episodes, nr trials (per episode), nr predators, print, metric("nrTimeSteps","winning" of niks
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
 
-        a.processIQLwinning(5000, 200, new double[]{2,3}, false);
-        a.processIQLnrTimeSteps(5000, 200, new double[]{2,3}, false);
+       // a.processIQLwinning(5000, 200, new double[]{2,3}, false);
+      //  a.processIQLnrTimeSteps(5000, 200, new double[]{2,3}, false);
     }
 }
