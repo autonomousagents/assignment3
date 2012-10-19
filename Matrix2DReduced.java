@@ -13,6 +13,7 @@ public class Matrix2DReduced {
     // he only has/uses ONE of these, so perhaps create an interface/superclass for Matrix2D and RelativeStateRep
     private Matrix2DReduced[][] innerMatrix2D;
     private RelativeStateRep[][] bottomMatrix;
+    //private int counter = 0;
 
     public Matrix2DReduced(int nrows, int ncols) {
         nRows = nrows;
@@ -66,15 +67,17 @@ public class Matrix2DReduced {
     	//until bottom is reached, then fill the corresponding posarray combinations with state.
     	if (level == 0) {
     		RelativeStateRep state = new RelativeStateRep(initValue);
+    		//System.out.println("state " + counter + " made");
     		reduceStates(posArray, state);
+    		//counter++;
     		return;
     	}
     	//for each level give along the corresponding pos
     	for(int i = linearIndex; i <= maxLinearIndex;i++){
     		@SuppressWarnings("unchecked")
 			ArrayList<Position> tempPosArray = (ArrayList<Position>) posArray.clone();
-    		tempPosArray.add(linearIndexToPos(linearIndex));
-    		leveledStateAssignment(level-1, linearIndex, tempPosArray, initValue);
+    		tempPosArray.add(linearIndexToPos(i));
+    		leveledStateAssignment(level-1, i, tempPosArray, initValue);
     	}
     }
     
@@ -89,11 +92,13 @@ public class Matrix2DReduced {
     	if(posArray.size() == 1) {
     		Position pos = posArray.get(0);
     		bottomMatrix[pos.getX()][pos.getY()] = state;
+    		//System.out.println(pos.getX()+ ", " + pos.getY() + "--> state " + counter);
     	}
     	else {
     		for (int i = 0;i< posArray.size();i++){
     			Position pos = posArray.get(i);
 				ArrayList<Position> tempArray = (ArrayList<Position>) posArray.clone();
+				//System.out.print(pos.getX()+ ", " + pos.getY() + "--> ");
 				tempArray.remove(i);
 				innerMatrix2D[pos.getX()][pos.getY()].reduceStates(tempArray, state);
     		}
