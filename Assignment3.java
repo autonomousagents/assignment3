@@ -654,6 +654,6 @@ public class Assignment3 {
 //        rep.test();
 
       //  a.processIQLwinning(2000, 200, new double[]{2,3}, false);
-        a.processIQLnrTimeSteps(2000, 200, new double[]{2,3}, false);
+        a.processIQLnrTimeSteps(3000, 200, new double[]{2,3}, false);
     }
 }
