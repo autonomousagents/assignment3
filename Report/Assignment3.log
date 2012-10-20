@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.10.3)  20 OCT 2012 14:17
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.10.3)  20 OCT 2012 15:08
 entering extended mode
 **Assignment3.tex
 (C:\Users\Lyltje\Documents\GitHub\assignment3\Report\Assignment3.tex
@@ -609,56 +609,32 @@ Package caption Info: End \AtBeginDocument code.
 \makeMPintoPDFobject=\count141
 \everyMPtoPDFconversion=\toks42
 ) ABD: EveryShipout initializing macros
-(C:\Users\Lyltje\Documents\GitHub\assignment3\Report\intro.tex
-
-LaTeX Warning: Reference `fig:statespaceSymm' on page 1 undefined on input line
- 11.
-
-
-LaTeX Warning: Reference `fig:NewStateRep' on page 1 undefined on input line 14
-.
-
-
-LaTeX Warning: Reference `fig:statespaceSymm' on page 1 undefined on input line
- 15.
-
-[1
+(C:\Users\Lyltje\Documents\GitHub\assignment3\Report\intro.tex [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-<statespaceSymm.png, id=20, 574.145pt x 391.4625pt>
+<statespaceSymm.png, id=19, 574.145pt x 391.4625pt>
 File: statespaceSymm.png Graphic file (type png)
  <use statespaceSymm.png>
 Package pdftex.def Info: statespaceSymm.png used on input line 22.
 (pdftex.def)             Requested size: 234.8775pt x 160.14226pt.
 
-<VMatrixNewStateRep.png, id=21, 654.94687pt x 536.75531pt>
+<VMatrixNewStateRep.png, id=20, 654.94687pt x 536.75531pt>
 File: VMatrixNewStateRep.png Graphic file (type png)
 
 <use VMatrixNewStateRep.png>
 Package pdftex.def Info: VMatrixNewStateRep.png used on input line 26.
 (pdftex.def)             Requested size: 187.89914pt x 153.99243pt.
-
-
-LaTeX Warning: Reference `sec:IQL' on page 2 undefined on input line 31.
-
-
-LaTeX Warning: Reference `app:classDiagram' on page 2 undefined on input line 3
-4.
-
-) (C:\Users\Lyltje\Documents\GitHub\assignment3\Report\independentQLearning.tex
+)
+(C:\Users\Lyltje\Documents\GitHub\assignment3\Report\independentQLearning.tex
 [2 <C:/Users/Lyltje/Documents/GitHub/assignment3/Report/statespaceSymm.png> <C:
 /Users/Lyltje/Documents/GitHub/assignment3/Report/VMatrixNewStateRep.png>]
-
-LaTeX Warning: Reference `sec:stateSpaceIntro' on page 3 undefined on input lin
-e 13.
-
 [3]
 
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 42.
 
 
-<IQLpercentageWinning5000episodesavg200trials.pdf, id=42, 614.295pt x 794.97pt>
+<IQLpercentageWinning5000episodesavg200trials.pdf, id=41, 614.295pt x 794.97pt>
 File: IQLpercentageWinning5000episodesavg200trials.pdf Graphic file (type pdf)
 <use IQLpercentageWinning5000episodesavg200trials.pdf>
 Package pdftex.def Info: IQLpercentageWinning5000episodesavg200trials.pdf used 
@@ -669,7 +645,7 @@ on input line 42.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 54.
 
-<IQLgrid9by9ErrorBars.pdf, id=44, 614.295pt x 794.97pt>
+<IQLgrid9by9ErrorBars.pdf, id=43, 614.295pt x 794.97pt>
 File: IQLgrid9by9ErrorBars.pdf Graphic file (type pdf)
 
 <use IQLgrid9by9ErrorBars.pdf>
@@ -679,35 +655,52 @@ Package pdftex.def Info: IQLgrid9by9ErrorBars.pdf used on input line 54.
 00episodesavg200trials.pdf>])
 (C:\Users\Lyltje\Documents\GitHub\assignment3\Report\miniMax.tex
 
-LaTeX Warning: Reference `minimax' on page 5 undefined on input line 5.
+LaTeX Warning: Reference `minimax' on page 5 undefined on input line 6.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
 [5 <C:/Users/Lyltje/Documents/GitHub/assignment3/Report/IQLgrid9by9ErrorBars.pd
 f>]
-No file Assignment3.bbl.
 
-LaTeX Warning: Reference `commonsmath' on page 6 undefined on input line 38.
+LaTeX Warning: Reference `commonsmath' on page 6 undefined on input line 39.
 
-) (C:\Users\Lyltje\Documents\GitHub\assignment3\Report\appendix.tex [6])
-(C:\Users\Lyltje\Documents\GitHub\assignment3\Report\references.tex [7]
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+
+ []
+
+[6]) (C:\Users\Lyltje\Documents\GitHub\assignment3\Report\appendix.tex
+Overfull \hbox (22.89445pt too wide) in paragraph at lines 17--87
+ [][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 23.36888pt on input line 87.
+
+
+Overfull \hbox (22.89445pt too wide) in paragraph at lines 95--165
+ [][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 23.36888pt on input line 165.
+
+) (C:\Users\Lyltje\Documents\GitHub\assignment3\Report\references.tex [7]
+[8] [9]
 No file Assignment3.bbl.
-[8] (C:\Users\Lyltje\Documents\GitHub\assignment3\Report\Assignment3.aux)
+[10] (C:\Users\Lyltje\Documents\GitHub\assignment3\Report\Assignment3.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) ) 
 Here is how much of TeX's memory you used:
- 12651 strings out of 494045
- 233978 string characters out of 3145966
- 281439 words of memory out of 3000000
- 15674 multiletter control sequences out of 15000+200000
+ 12660 strings out of 494045
+ 234105 string characters out of 3145966
+ 370598 words of memory out of 3000000
+ 15683 multiletter control sequences out of 15000+200000
  11932 words of font info for 42 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  63i,9n,74p,868b,372s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -735,9 +728,9 @@ amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmti9.pfb>
-Output written on Assignment3.pdf (8 pages, 325104 bytes).
+Output written on Assignment3.pdf (10 pages, 342336 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
+ 150 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  45 words of extra memory for PDF output out of 10000 (max. 10000000)
 
