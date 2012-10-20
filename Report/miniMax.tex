@@ -1,3 +1,13 @@
-\newpage
 \section{(S) Minimax-Q algorithm}
+The Minimax-Q algorithm is an implementation of the general Minimax principle for Markov Games such as the prey-predator scenario in this assignment. This algorithm needs a strictly competitive scenario and is therefore implemented for the one prey and one predator setting. The Minimax principle is stated in \ref{minimax} as: "Behave so as to maximize your reward in the worst case". This means that the policy should be such that the agent takes the action resulting in the highest expected reward under the assumption that the opponent will also take the action that results in the highest expected reward for the opponent.  
 
+The value of a state $s\in S$ in a Markov Game is:
+\begin{align}
+V(s) &= \operatorname*{arg\,max}_{\pi \in PD(A)}
+\operatorname*{arg\,min}_{o \in O}
+\sum_{a \in A} Q(s,a,o) \pi_a
+\end{align}
+where
+\begin{align}
+Q(s,a,o) &= R(s,a,o) + \gamma \sum_{s'} T(s,a,o,s')V(s')
+\end{align}
