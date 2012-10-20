@@ -18,7 +18,11 @@ public class PredatorRandom implements Agent{
     ArrayList<Position> others;
     int nrRuns;
     
-    
+    /**
+     * Constructor
+     * @param startPos = starting position of the random predator
+     * @param startOthers = array list with starting position of the agent(s)
+     */
     public PredatorRandom(Position startPos, ArrayList<Position> startOthers){
         this.startPos =startPos;
         this.startOthers = startOthers;
@@ -27,6 +31,10 @@ public class PredatorRandom implements Agent{
         nrRuns=0;
     }
     
+    /**
+     * Returns the move according to the policy of the random prey
+     * @param others = array list of position of the other agents
+     */
     @Override
     public void doMove(ArrayList<Position> others) {
         double p = Math.random();
@@ -40,11 +48,18 @@ public class PredatorRandom implements Agent{
         }
     }
 
+    /**
+     * Get position of the predator
+     * @return position
+     */
     @Override
     public Position getPos() {
         return myPos;
     }
 
+    /**
+     * resets the agent for a new run
+     */
     @Override
     public void reset() {
         myPos = new Position(startPos);
@@ -52,13 +67,18 @@ public class PredatorRandom implements Agent{
         nrRuns++;
     }
 
+    /**
+     * useless function but part of the interface Agent
+     * @return 
+     */
     @Override
     public boolean isConverged() {
+        //Useless in case of a random agent
         return true;
     }
 
     /**
-     *
+     * useless function here but part of the interface Agent
      * @param reward
      * @param others
      */
@@ -67,9 +87,15 @@ public class PredatorRandom implements Agent{
         //Useless in case of a random agent
     }
 
+    /**
+     * useless function here but part of the interface Agent
+     * @param reward
+     * @param others
+     */
     @Override
     public double[] policy(Position prey, Position predatorItself) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //Useless in case of a random agent
+        return null;
     }
     
 }

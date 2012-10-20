@@ -26,6 +26,11 @@ public class Environment {
     public static final int doRunNTLmax = 5000000;
 
 
+    /**
+     * constructor of the environment
+     * @param predators = array list with the predators
+     * @param prey = the prey
+     */
     public Environment(ArrayList<Agent> predators, Agent prey) {
         this.isEnded = false;
         this.predators = predators;
@@ -63,6 +68,11 @@ public class Environment {
         nrSteps++;
     }
     
+    /**
+     * returns the positions of all agents except one
+     * @param agent = agents whose position should not be returned
+     * @return 
+     */
     private ArrayList<Position> positionsOthers(int agent){
         ArrayList<Position> positions = new ArrayList<Position>();
         if(agent == 0){
@@ -117,53 +127,51 @@ public class Environment {
         return normalReward;
     }   
     
+    /**
+     * returns the number of steps of a run
+     * @return 
+     */
     public int getNrSteps(){
         return nrSteps;
     }
 
+    /**
+     * erases the number of steps
+     */
     public void resetNrSteps(){
         nrSteps = 0;
     }
 
+    /**
+     * do one run
+     */
     public void doRun(){
         while(!isEnded){
             nextTimeStep();
         }
         reset();
     }
-    
-//    public void doRunInvalid(){
-//        boolean validRun = false;
-//        int invalidRun = 0;
-//        while(!validRun){
-//            while(!isEnded){
-//                if(nrSteps<10000000){
-//                    nextTimeStep();
-//                    if(isEnded){
-//                        validRun = true;
-//                    }
-//                }
-//                else{
-//                    nrSteps = 0;
-//                    System.out.println("invalid run" +invalidRun);
-//                    invalidRun++;
-//                    break;
-//                }
-//            }
-//            reset();
-//        }
-//    }
-    
+   
+    /**
+     * returns whether or not the run has ended
+     * @return position
+     */
         public boolean isEnded() {
         return isEnded;
     }
 
+    /**
+     * returns the position of the prey
+     * @return position
+     */
     public Position getPreyPos() {
         return prey.getPos();
     }
 
-
-
+    /**
+     * Checks if the run has ended
+     * @return 
+     */
     private  boolean checkForEnd() {
         if(reward(true) != 0){
             isEnded = true;
@@ -171,6 +179,9 @@ public class Environment {
         return isEnded;
     }
 
+    /**
+     * resets the environment for a new run
+     */
     public void reset() {
         prey.reset();
         isEnded = false;
@@ -179,10 +190,20 @@ public class Environment {
         }
     }
     
+    /**
+     * returns position of a specific predator
+     * @param predatorNr = predator for which the position is requested
+     * @return position
+     */
     public Position getPredatorPos(int predatorNr){
         return predators.get(predatorNr).getPos();
     }
     
+    /**
+     * returns whether or not a predator is standing on position p
+     * @param p = position
+     * @return boolean whether or not a predator is standing on position p
+     */
     public boolean predatorStandsHere (Position p){
         for(int i = 0; i<predators.size();i++){
             if(predators.get(i).getPos().equals(p)){
@@ -192,10 +213,18 @@ public class Environment {
         return false;
     }
     
+    /**
+     * returns the number of predators
+     * @return nr of predators
+     */
     public int nrOtherAgents() {
     	return predators.size();
     }
 
+    /**
+     * does a run with a maximum number of steps
+     * @return maximal number of steps if that is reached or -1 if it terminated by itself
+     */
     public int doRunNTL() {
         while(!isEnded){
             if(nrSteps < doRunNTLmax){

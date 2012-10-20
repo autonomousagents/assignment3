@@ -24,25 +24,6 @@ public class View {
         this.env = env;
     }
 
-//    /**
-//     * Print the gridworld as a gridworld
-//     */
-//    public void print() {
-//        world[env.getPreyPos().getY()][env.getPreyPos().getX()] = PREY;
-//        world[env.getPredatorPos().getY()][env.getPredatorPos().getX()] = PREDATOR;
-//
-//        for (String[] row : world) {
-//            for (String place : row) {
-//                System.out.print(place + "  ");
-//            }
-//            System.out.println();
-//        }
-//        System.out.println();
-//
-//        world[env.getPredatorPos().getY()][env.getPredatorPos().getX()] = EMPTY;
-//        world[env.getPreyPos().getY()][env.getPreyPos().getX()] = EMPTY;
-//    }
-
     /*
      * Prints the real world "grid world" including the prey and predator in it
      */
@@ -72,11 +53,15 @@ public class View {
         System.out.print("\n");
     }
 
-//    private void fill() {
-//        for (String[] row : world) {
-//            Arrays.fill(row, EMPTY);
-//        }
-//    }
+
+    /**
+     * prints the results of the minimax function to an m-file
+     * @param steps = the steps for all matches and sweeps
+     * @param filename = name of the m-file written to
+     * @param nrMatches = number of matches
+     * @param nrAveraged = averaged over how many iterations
+     * @param nrSweeps  = number of sweeps done
+     */
     public static void writeMinimaxResultsToMatlab(int[][] steps, String filename, int nrMatches, int nrAveraged, int nrSweeps) {
         try {
             FileWriter fstream = new FileWriter(filename, false);
