@@ -3,10 +3,9 @@
 The Minimax-Q algorithm can be used for planning in a Markov Game. It is an implementation of the general Minimax principle for Markov Games such as the prey-predator scenario in this assignment. This algorithm needs a strictly competitive scenario and is therefore implemented for the one prey and one predator setting. 
 
 \subsection{Minimax principle and translation to Markov Games}
-The Minimax principle is stated in \cite{minimax} as: ``Behave so as to maximize your reward in the worst case''. This means that the policy should be such that the agent takes the action resulting in the highest expected reward under the assumption that the opponent will also take the action that results in the highest expected reward for the opponent.  
+The Minimax principle is stated in \cite{minimax} as: ``Behave so as to maximize your reward in the worst case''. This means that the policy should be such that the agent takes the action resulting in the highest expected reward under the assumption that the opponent will also take the action that results in the highest expected reward for the opponent.
 
- 
-The value of a state $s\in S$ in a Markov Game is:
+\noindent The value of a state $s\in S$ in a Markov Game is:
 \begin{align*}
 V(s) &= \operatorname*{arg\,max}_{\pi \in PD(A)}
 \operatorname*{arg\,min}_{o \in O}
@@ -24,8 +23,7 @@ Choosing the action that maximizes the reward in the worst case is than the poli
 ...\\
 \pi_1 \cdot Q(s,a_1,o_n)+ ... + \pi_n \cdot Q(s,a_n,o_n) \geq V\\
 \end{align*}
-
-Off course the probabilities of $\pi$ are bounded by the constraints that they cannot be negative and they need to add up to one. After adding those constraints:
+Of course the probabilities of $\pi$ are bounded by the constraints that they cannot be negative and they need to add up to one. After adding those constraints:
 
 \begin{align*}
 \pi_1 + ... + \pi_n &= 1\\
@@ -33,7 +31,6 @@ Off course the probabilities of $\pi$ are bounded by the constraints that they c
 ...\\
 \pi_n  \geq 0\\
 \end{align*}
-
 The maximal value for $V$ that can be found for which all constraints hold is stored as $V$ for the next sweep. The resulting values for $\pi$ for each state are the policy used by the agent.
 
 \subsection{Implementation}
@@ -54,7 +51,7 @@ Minimax Predator vs Minimax Prey & 221& 5000000& 5000000& 5000000& 5000000\\
 \FloatBarrier
 
 \subsection{Results}
-Three ``matches'' have been held using the Minimax-Q algorithm. The first match is a Random Prey versus a Minimax Predator, the second one a Random Predator versus a Minimax Prey and finally a Minimax Prey versus a Minimax Predator. After each sweep of planning 25 runs in the actual environment are held and the number of steps necessary to catch the prey is recorded. This averaged can then be compared for each sweep and between the different matches. The results for the first five sweeps can be found in \ref{tab:minimaxTable}, the pattern found here does not change when increasing the number of sweeps. The $V$-values for the Minimax Predator can be found in table \ref{tab:predM} and for the Minimax Prey in table \ref{tab:preyM} .  The resulting policies can be found in Appendix \ref{app:policiesM} 
+Three ``matches'' have been held using the Minimax-Q algorithm. The first match is a Random Prey versus a Minimax Predator, the second one a Random Predator versus a Minimax Prey and finally a Minimax Prey versus a Minimax Predator. After each sweep of planning 25 runs in the actual environment are held and the number of steps necessary to catch the prey is recorded. This averaged can then be compared for each sweep and between the different matches. The results for the first five sweeps can be found in \ref{tab:minimaxTable}, the pattern found here does not change when increasing the number of sweeps. The $V$-values for the Minimax Predator can be found in table \ref{tab:predM} and for the Minimax Prey in table \ref{tab:preyM} .  The resulting policies can be found in Appendix \ref{app:policiesM}.
 
 As can be seen in the tables with the $V$-values these look as would be expected based on their definition as described above. For the predator the values increase as the predator is closer to the prey. However for the prey all values are 0. This seems strange but remember that the $V$ values are a linear combination of $Q(s,a,o)$'s and their weights are the corresponding $\pi$'s. In order to maximize the value of $V$ the $\pi$'s that are corresponding to those $Q(s,a,o)$'s that are negative due to the predator catching the prey, will become zero. The maximal reward the prey can have is zero (not getting caught) and therefore the maximal value for $V$ is also zero.  
 
