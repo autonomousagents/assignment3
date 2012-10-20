@@ -3,7 +3,7 @@
 The Minimax-Q algorithm can be used for planning in a Markov Game. It is an implementation of the general Minimax principle for Markov Games such as the prey-predator scenario in this assignment. This algorithm needs a strictly competitive scenario and is therefore implemented for the one prey and one predator setting. 
 
 \subsection{Minimax principle and translation to Markov Games}
-The Minimax principle is stated in \ref{minimax} as: "Behave so as to maximize your reward in the worst case". This means that the policy should be such that the agent takes the action resulting in the highest expected reward under the assumption that the opponent will also take the action that results in the highest expected reward for the opponent.  \\
+The Minimax principle is stated in \cite{minimax} as: "Behave so as to maximize your reward in the worst case". This means that the policy should be such that the agent takes the action resulting in the highest expected reward under the assumption that the opponent will also take the action that results in the highest expected reward for the opponent.  \\
 
  
 The value of a state $s\in S$ in a Markov Game is:
@@ -34,14 +34,10 @@ Off course the probabilities of $\pi$ are bounded by the constraints that they c
 \pi_n  \geq 0\\
 \end{align*}
 
-the maximal value for $V$ can be found for which all constraints hold using linear programming. The resulting values for $\pi$ for each state are the policy used by the agent.
+The maximal value for $V$ that can be found for which all constraints hold is stored as $V$ for the next sweep. The resulting values for $\pi$ for each state are the policy used by the agent.
 
 \subsection{Implementation}
-The Minimax-Q algorithm is implemented for this assignment using a JAVA-library for Linear Programming named Commons Math which can be found on \ref{commonsmath}. The agent keeps track of a table of $V$-values to be able to calculate $Q(s,a,o)$ in order to find the right values for $\pi$. This can be done a number of times (or sweeps as they are called) as in Value Iteration. The resulting policy is used to behave in the environment to either catch the prey or avoid the predator.
-
-\subsection{Results}
-Three "matches" have been held using the Minimax-Q algorithm. The first match is a Random Prey versus a Minimax Predator, the second one a Random Predator versus a Minimax Prey and finally a Minimax Prey versus a Minimax Predator. After each sweep of planning 25 runs in the actual environment are held and the number of steps necessary to catch the prey is recorded. This averaged can then be compared for each sweep and between the different matches. The results for the first five sweeps can be found in \ref{tab:minimaxTable}, the pattern found here does not change when increasing the number of sweeps. The $V$-values for the Minimax Predator can be found in \ref{tab:predM} and for the Minimax Prey in \ref{tab:preyM} .  The resulting policies can be found in \ref{app:policiesM} \\\\
-As can be seen in the tables with the $V$-values they 
+The maximal $V$-value for which the constraints above hold can be found using linear programming. For this purpose a JAVA-library for Linear Programming named Commons Math is used, which can be found on \cite{commonsmath}. The agent keeps track of a table of $V$-values to be able to calculate $Q(s,a,o)$ in order to find the right values for $\pi$. This can be done a number of times (or sweeps as they are called) as in Value Iteration. The resulting policy is used to behave in the environment to either catch the prey or avoid the predator.
 
 \begin{table}[htb]
 \centering
@@ -54,6 +50,15 @@ Minimax Predator vs Minimax Prey & 221& 5000000& 5000000& 5000000& 5000000\\
 \caption{Number of steps after each sweep for the three matches using a learningrate of 0.8}
 \label{tab:minimaxTable}
 \end{table}
+
+\FloatBarrier
+
+\subsection{Results}
+Three "matches" have been held using the Minimax-Q algorithm. The first match is a Random Prey versus a Minimax Predator, the second one a Random Predator versus a Minimax Prey and finally a Minimax Prey versus a Minimax Predator. After each sweep of planning 25 runs in the actual environment are held and the number of steps necessary to catch the prey is recorded. This averaged can then be compared for each sweep and between the different matches. The results for the first five sweeps can be found in \ref{tab:minimaxTable}, the pattern found here does not change when increasing the number of sweeps. The $V$-values for the Minimax Predator can be found in table \ref{tab:predM} and for the Minimax Prey in table \ref{tab:preyM} .  The resulting policies can be found in Appendix \ref{app:policiesM} \\\\
+As can be seen in the tables with the $V$-values these look as would be expected based on their definition as described above. For the predator the values increase as the predator is closer to the prey. However for the prey all values are 0. This seems strange but remember that the $V$ values are a linear combination of $Q(s,a,o)$'s and their weights are the corresponding $\pi$'s. In order to maximize the value of $V$ the $\pi$'s that are corresponding to those $Q(s,a,o)$'s that are negative due to the predator catching the prey, will become zero. The maximal reward the prey can have is zero (not getting caught) and therefore the maximal value for $V$ is also zero.  \\
+Unfortunately, the resulting policies make no sense. There are loops present, where the prey or predator keeps jumping forward and backward and the policy does not direct the predator towards the prey or the prey away from the predator. Whether this is due to a bug in the implementation (which we have not been able to find) or to the fact that there are multiple solutions to the constraints above which maximize $V$ is uncertain. If there are multiple solution for two states not all solutions fit necessarily well together, this might cause the bad policies. i.e. for different states the policy might have converged to a different equilibrium.\\
+The effect of this can be found in the number of steps it takes to catch the prey. For the first match, where the Minimax Predator tries to catch the Random Prey, there is no improvement in the number of steps at all. This is due to the resulting policy. For the second match, Random Predator versus Minimax prey, the number of steps needed becomes larger than 5 million (at which point the run is ended due to death of the predator by exhaustion) after the first sweep. The same applies to the third match, Minimax Predator versus Minimax Prey. It is expected that for these two matches the number of steps needed would be larger, since the prey now is an intelligent agent. However, due to the fact that the prey trips one of every five moves, it would be expected that with optimal policies it would take the predator fifty moves to catch the prey. The prey and predator start ten moves apart from each other and each time the prey trips the predator can move in on the prey one move, which happens every five moves, hence fifty moves are approximately needed to catch a Minimax Prey with an optimal policy.  
+
 
 \begin{table}[htb]
 \centering
