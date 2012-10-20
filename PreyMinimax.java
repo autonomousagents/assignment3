@@ -186,7 +186,7 @@ public class PreyMinimax implements Agent{
         //solve and return
         RealPointValuePair solution = new SimplexSolver().optimize(f, constraints, GoalType.MAXIMIZE, false);
 //        System.out.println("solution: ");
-        printSolution(solution, Action.nrActions);
+//        printSolution(solution, Action.nrActions);
         return solution.getPoint();
     }
     
