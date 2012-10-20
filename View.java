@@ -78,6 +78,33 @@ public class View {
 //            Arrays.fill(row, EMPTY);
 //        }
 //    }
+    
+    public static void writeMinimaxResultsToMatlab(int[][] steps, String filename, int nrMatches, int nrAveraged, int nrSweeps){
+        try {
+            FileWriter fstream = new FileWriter(filename, false);
+            BufferedWriter out = new BufferedWriter(fstream);
+            out.write("clear;clc;");
+            out.newLine();
+            for(int i = 0; i<nrMatches;i++ ){
+                StringBuilder vector = new StringBuilder();
+                vector.append("match"+i+" = [");
+                for(int j=0;j<nrSweeps;j++){
+                    vector.append(steps[i][j]/nrAveraged);
+                    if(j<nrSweeps-1){
+                        vector.append(",");
+                    }
+                }
+                vector.append("];");
+                out.write(vector.toString());
+            }
+            out.flush();
+            fstream.close();
+            out.close();
+        }
+        catch (IOException e) {
+            System.out.println("Error in writeVMatrix(): " + e);
+        }
+    }
 
     /**
      * Write a matlab script that plots a colormap of 2D VMatrix to a file
