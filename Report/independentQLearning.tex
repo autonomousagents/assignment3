@@ -1,4 +1,4 @@
-\section{Independent Q-Learning}
+\section{Independent Q-Learning}\label{sec:IQL}
 Q-Learning is an off-policy temporal-difference control algorithm. Temporal-difference methods can learn directly from raw experience without a model of the environment's dynamics. Furthermore, it updates estimates based in part on other learned estimates, without waiting for a final outcome.\footnote{Sutton, Barto (1998) \textit{Reinforcement Learning: An Introduction} Cambridge, Massachusetts: The MIT press. p. 133}
 
 While the distinguishing feature of on-policy methods is that they estimate the value of a policy while using it for control, these two functions are separated in off-policy methods. The behavior policy, used to generate behavior, and the estimation policy, that is evaluated and improved, may in fact be unrelated. This separation is an advantage because the estimation policy may be deterministic (e.g., greedy), while the behavior policy can continue to sample all possible actions.\footnote{Sutton, Barto (1998) \textit{Reinforcement Learning: An Introduction} Cambridge, Massachusetts: The MIT press. p. 126} Its simplest form, \textit{one-step Q-learning}, is defined by\footnote{Sutton, Barto (1998) \textit{Reinforcement Learning: An Introduction} Cambridge, Massachusetts: The MIT press. p. 148}:
@@ -7,3 +7,21 @@ Q(s_t,a_t) & \leftarrow Q(s_t,a_t) + \alpha \left[ r_{t+1} + \gamma \displaystyl
 \end{align*}
 
 For this assignment, we implemented Q-learning and used it for all our agents, the predators and the prey. Each agent will have its own state representation and learning and will view the other agents as part of the environment. We used $\epsilon$-greedy action selection, which behaves greedily most of the time, but with probability $\epsilon$, instead select an action at random, uniformly, independently of the action-value estimates.\footnote{Sutton, Barto (1998) \textit{Reinforcement Learning: An Introduction} Cambridge, Massachusetts: The MIT press. p. 28} In this case, we used $\epsilon = 0.1$. We initiated the values of our Q-learning table optimistically with a value of 15 for all cells in the table.
+
+\subsection{State space} \label{sec:stateSpaceIQL}
+The state space is of crucial importance to Independent Q-Learning. In the experiments described the previous report, were we had just one prey and one predator, we initially used a state space that was an intuitive, yet cumbersome representation. We then changed the state space representation to a more efficient one in the second assignment, referred to as the `efficient' state space, which led to a reduction of 697 times less states, resulting in just 21 different states. See Section \ref{sec:stateSpaceIntro} for details.
+
+The default amount of states for this assignment would be $121^{p+1}$ for each agent, where p equals the number of predators. By using the efficient state space this has been reduced to $21\cdot 121^{p-1}$ because the prey's position is fixed in the state space representation and the predator to which this state space belongs moves along those $21$ states, the rest is used to determine in which state the predator currently resides. In this assignment however the prey also learns, so to make use of our state space representation, a single predator will be used as reference point every time so that the predator is fixed at the position $(0, 0)$ in our state space and the prey would be moving around the $21$ states just like a predator. 
+
+The reduction is increased further by pointing to the same state for each combination of current positions of the other predators, though this is only effective for more than two predators. A simple example would be a case three predators and a prey, the current predator ($p_1$) which has to find his current state would take the position of the first other predator ($p_2$) and then the position of the second other predator ($p_3$) to locate his state in the state space. In this case it shouldn't matter which position, $p_2$ or $p_3$, would be looked up first. In this case both $p_2$ then $p_3$ and $p_3$ then $p_2$ would point to the same state. This reduces the state space to:
+
+\[
+\mathrm{stateSpaces}(p) = 
+\begin{cases}
+	21 & p = 1\\
+    21 \cdot 121 & p = 2 \\
+    \frac{21\cdot 121^{p-1}}{(p-1)!}& p > 2
+\end{cases}
+\]
+
+
