@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.3.1)  20 OCT 2012 16:00
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.3.1)  20 OCT 2012 16:45
 entering extended mode
 **Assignment3.tex
 
@@ -659,7 +659,7 @@ on input line 42.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 54.
 
-<IQLgrid9by9ErrorBars.pdf, id=41, 614.295pt x 794.97pt>
+<IQLgrid9by9ErrorBars.pdf, id=42, 614.295pt x 794.97pt>
 File: IQLgrid9by9ErrorBars.pdf Graphic file (type pdf)
 
 <use IQLgrid9by9ErrorBars.pdf>
@@ -669,20 +669,12 @@ Package pdftex.def Info: IQLgrid9by9ErrorBars.pdf used on input line 54.
 /IQLpercentageWinning5000episodesavg200trials.pdf>])
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\mi
 niMax.tex"
-
-LaTeX Warning: Reference `minimax' on page 5 undefined on input line 6.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
 [5 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/ass3/assignment3/Report/
 IQLgrid9by9ErrorBars.pdf>]
-
-LaTeX Warning: Reference `commonsmath' on page 6 undefined on input line 39.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
@@ -701,41 +693,37 @@ ferences.tex" [10
 No file Assignment3.bbl.
 [11]
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\As
-signment3.aux")
-
-LaTeX Warning: There were undefined references.
-
- ) ) 
+signment3.aux") ) ) 
 Here is how much of TeX's memory you used:
- 12635 strings out of 494045
- 235155 string characters out of 3147582
+ 12637 strings out of 494045
+ 235171 string characters out of 3147582
  320998 words of memory out of 3000000
  15659 multiletter control sequences out of 15000+200000
- 11580 words of font info for 41 fonts, out of 3000000 for 9000
+ 12199 words of font info for 43 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 63i,9n,74p,832b,372s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C
-:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Prog
-ram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program F
-iles (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (
-x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmr17.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.
-pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/
-Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program 
-Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x
-86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmti9.pfb>
-Output written on Assignment3.pdf (11 pages, 325150 bytes).
+ 63i,9n,74p,880b,372s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmbx10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx
+12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pf
+b><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/
+Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Progra
+m Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files
+ (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr7.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.p
+fb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/P
+rogram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program
+ Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files 
+(x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmti9.pfb>
+Output written on Assignment3.pdf (11 pages, 325512 bytes).
 PDF statistics:
  145 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

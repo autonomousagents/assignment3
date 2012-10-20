@@ -17,7 +17,7 @@ The default amount of states for this assignment would be $121^{p+1}$ for each a
 The reduction is increased further by pointing to the same state for each combination of current positions of the other predators, though this is only effective for more than two predators. A simple example would be a case three predators and a prey, the current predator ($p_1$) which has to find his current state would take the position of the first other predator ($p_2$) and then the position of the second other predator ($p_3$) to locate his state in the state space. In this case it shouldn't matter which position, $p_2$ or $p_3$, would be looked up first. In this case both $p_2$ then $p_3$ and $p_3$ then $p_2$ would point to the same state. This reduces the state space to:
 
 \[
-\mathrm{stateSpaces}(p) = 
+\mathbf{stateSpaces}(p) = 
 \begin{cases}
 	21 & p = 1\\
     21 \cdot 121 & p = 2 \\
