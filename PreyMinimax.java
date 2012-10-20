@@ -89,7 +89,7 @@ public class PreyMinimax implements Agent{
     public void learn(int sweeps) throws OptimizationException{
 //        int sweep = 0;
         largestDif = 0.0;
-        StateRepV newV = new StateRepV(0.0, true);
+        StateRepV newV = new StateRepV(init, true);
         for(int i =0;i<sweeps;i++){
 //            sweep++;
 //            if(sweep%100==0){
@@ -119,9 +119,9 @@ public class PreyMinimax implements Agent{
                     }
                 }
             }   
-            newV.printAll(false);
+//            newV.printAll(false);
             vValues = newV;
-            newV = new StateRepV(0.0, true);
+            newV = new StateRepV(init, true);            
         }
     }
 
@@ -141,6 +141,9 @@ public class PreyMinimax implements Agent{
                     expReward = policy.getReward(newStatePrey, true);
                 }
                 else{
+//                    if(newStatePred == 0){
+//                        System.out.println("Exp Reward"+policy.getReward(newStatePred, true)*Ptrip);
+//                    }
                     expReward = policy.getReward(newStatePrey, true)*(1.0-Ptrip)+policy.getReward(newStatePred, true)*Ptrip;
                 }
                 //add weight to constraint for this combitnation 
@@ -183,7 +186,7 @@ public class PreyMinimax implements Agent{
         //solve and return
         RealPointValuePair solution = new SimplexSolver().optimize(f, constraints, GoalType.MAXIMIZE, false);
 //        System.out.println("solution: ");
-//        printSolution(solution, Action.nrActions);
+        printSolution(solution, Action.nrActions);
         return solution.getPoint();
     }
     

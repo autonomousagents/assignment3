@@ -118,8 +118,8 @@ public class PredatorMiniMax implements Agent {
                     }                    
                 }
             }      
-            vValues = newV;
-            newV = new StateRepV(0.0, false); 
+            vValues = newV;  
+            newV = new StateRepV(init, false);
         }
     }
 

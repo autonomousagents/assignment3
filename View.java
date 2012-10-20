@@ -127,7 +127,7 @@ public class View {
      * @param xPrey : x position of prey in real world
      * @param yPrey : y position of prey in real world
      */
-    public void printPolicy(Agent agent, int xPrey, int yPrey) {
+    public void printPolicy(Agent agent, int xPrey, int yPrey, boolean forPred) {
         System.out.println(" \\begin{table}[htbp]\n"
                 + "\\caption{policy}\n"
                 + "\\label{policyLabel}\n"
@@ -164,7 +164,12 @@ public class View {
                             System.out.print(directions[i] + " " + String.format("%.3f",probabilities[col][i]));
                         }
                         else if(i == 2){
-                            System.out.print("Prey");
+                            if(forPred){
+                                System.out.print("Prey");
+                            }
+                            else{
+                                System.out.print("Pred");
+                            }                            
                         }
                         if(col == Environment.WIDTH-1){
                             System.out.println("\\\\");
