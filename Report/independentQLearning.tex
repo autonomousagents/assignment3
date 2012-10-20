@@ -1,5 +1,5 @@
 \section{Independent Q-Learning}\label{sec:IQL}
-Q-Learning is an off-policy temporal-difference control algorithm. Temporal-difference methods can learn directly from raw experience without a model of the environment's dynamics. Furthermore, it updates estimates based in part on other learned estimates, without waiting for a final outcome.\footnote{Sutton, Barto (1998) \textit{Reinforcement Learning: An Introduction} Cambridge, Massachusetts: The MIT press. p. 133}
+Q-Learning is an off-policy temporal difference control algorithm. Temporal difference methods can learn directly from raw experience without a model of the environment's dynamics. Furthermore, it updates estimates based in part on other learned estimates, without waiting for a final outcome.\footnote{Sutton, Barto (1998) \textit{Reinforcement Learning: An Introduction} Cambridge, Massachusetts: The MIT press. p. 133}
 
 While the distinguishing feature of on-policy methods is that they estimate the value of a policy while using it for control, these two functions are separated in off-policy methods. The behavior policy, used to generate behavior, and the estimation policy, that is evaluated and improved, may in fact be unrelated. This separation is an advantage because the estimation policy may be deterministic (e.g., greedy), while the behavior policy can continue to sample all possible actions.\footnote{Sutton, Barto (1998) \textit{Reinforcement Learning: An Introduction} Cambridge, Massachusetts: The MIT press. p. 126} Its simplest form, \textit{one-step Q-learning}, is defined by\footnote{Sutton, Barto (1998) \textit{Reinforcement Learning: An Introduction} Cambridge, Massachusetts: The MIT press. p. 148}:
 \begin{align*}
@@ -24,4 +24,24 @@ The reduction is increased further by pointing to the same state for each combin
 \end{cases}
 \]
 
+\subsection{Implementation}
+
+Hier iets over met 4 predators lukte niet met 11x11 grid
+
+\subsection{Results}
+Bla bla
+
+\subsubsection{Using an 11 $\times$ 11 grid}
+
+\begin{figure}[hbt]
+\centering
+%bb = llx, lly, urx, and ury;
+\includegraphics[bb = 1.1in 2.3in 8in 8.5in,clip,width=0.7\textwidth]{IQLpercentageWinning5000episodesavg200trials.pdf} 
+\caption{Performance for uniform input data for a GP trained on the \code{chirps.mat} data}
+\label{randomPerformance}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{Using a 9 $\times$ 9 grid}
 
