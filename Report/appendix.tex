@@ -1,4 +1,4 @@
-\newpage
+\clearpage
 \appendix
 \appendixpage
 
@@ -6,14 +6,14 @@
 
 Hier klassediagram
 
+\clearpage
 \section{Policies for Minimax-Q} \label{app:policiesM}
-The policies resulting from Minimax-Q can be found in table \ref{policyLabelPred} for the predator and in table \ref{policyLabelPrey} for the prey.
-
+%The policies resulting from Minimax-Q can be found in table \ref{policyLabelPred} for the predator and in table \ref{policyLabelPrey} for the prey.
+\subsection{Policy for predator}
 \begin{table}[htbp]
-\caption{Policy resulting from Minimax-Q for the predator}
 \label{policyLabelPred}
 \centering
-\begin{footnotesize}
+\begin{tiny}
 \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}
 &0&1&2&3&4&5&6&7&8&9&10\\ \hline\\
 0&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000\\
@@ -83,15 +83,15 @@ The policies resulting from Minimax-Q can be found in table \ref{policyLabelPred
 &W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000\\
 \hline \\
 \end{tabular}
-\end{footnotesize}
+\end{tiny}
+\caption{Policy resulting from Minimax-Q for the predator}
 \end{table}
-
-
+\clearpage
+\subsection{Policy for prey}
  \begin{table}[htbp]
-\caption{Policy resulting from Minimax-Q for the prey}
 \label{policyLabelPrey}
 \centering
-\begin{footnotesize}
+\begin{tiny}
 \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}
 &0&1&2&3&4&5&6&7&8&9&10\\ \hline\\
 0&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000&U 0,000\\
@@ -161,5 +161,6 @@ The policies resulting from Minimax-Q can be found in table \ref{policyLabelPred
 &W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000&W 0,000\\
 \hline \\
 \end{tabular}
-\end{footnotesize}
+\end{tiny}
+\caption{Policy resulting from Minimax-Q for the prey}
 \end{table}
