@@ -581,8 +581,12 @@ public class Assignment3 {
         for (int episodeNr = 0; episodeNr < nrEpisodes; episodeNr++) {
             metricValues[episodeNr] = independentQLearningTrials(predators, prey, nrTrials, nrPredators, print, metric);
 
-            System.out.println("metric: " + metricValues[episodeNr]);
+          //  System.out.println("metric: " + metricValues[episodeNr]);
         }
+
+          View.printPolicy(predators.get(0),5,5 , true);
+          System.out.println("\n for prey: \n");
+          View.printPolicy(prey,5,5 , false);
         return metricValues;
     }
 
@@ -641,7 +645,7 @@ public class Assignment3 {
     public static void main(String[] args) throws OptimizationException {
         Assignment3 a = new Assignment3();
 //        a.testEnvironment(3);
-        a.miniMax();
+    //    a.miniMax();
         //   a.minimaxPredVsRandomPrey(true);
        // a.independentQLearning(5, 4, 4, false,"measureNothing"); // nr episodes, nr trials (per episode), nr predators, print, metric("nrTimeSteps","winning" of niks
 //        a.independentQLearning(5, 4, 4, false,"measureNothing"); // nr episodes, nr trials (per episode), nr predators, print, metric("nrTimeSteps","winning" of niks
@@ -649,6 +653,8 @@ public class Assignment3 {
 //        rep.test();
 
 //        a.processIQLwinning(5000, 200, new double[]{2,3,4}, false);
-//        a.processIQLnrTimeSteps(5000, 200, new double[]{2,3,4}, false);
+   //     a.processIQLnrTimeSteps(1000, 200, new double[]{1}, false);
+
+         a.independentQLearning(2500, 25,  1, false, " ");
     }
 }

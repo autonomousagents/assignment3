@@ -90,4 +90,6 @@ The effect of this can be found in the number of steps it takes to catch the pre
 
 \FloatBarrier
 
-\subsection*{}
+\subsection{Comparison with Independent Q-Learning}\label{sec:comparisonIQLandMinimax}
+
+A policy resulting from Independent Q-Learning (see Section \ref{sec:IQL}) can be compared to a policy found with Minimax-Q for the case in which there is just one predator and one prey. We ran IQL under these settings for 2500 episodes and constructed policies for the predator and the prey. These policies can be found in Appendix \ref{app:policiesIQL} (the corresponding policies for Minimax-Q are in Appendix \ref{app:policiesM}). The policies are very different, but what they share is that for both algorithms they seem to make little sense on first sight. Perhaps the game simply refuses to end when both opposing agents (with the same potential ``skill'') get smarter and smarter, finding equilibria which are expressed as loops in the policy table.

@@ -33,8 +33,9 @@ The reduction is increased further by pointing to the same state for each combin
 \subsection{Results}
 
 We analyzed what happened in the case of 2, 3 and 4 predators.
+For the case of one predator (and one prey), we have not used this case here, we used this case in the comparison with the Minimax-Q algorithm (in Section \ref{sec:comparisonIQLandMinimax}).
 
-However, even when using this efficient state space representation we ran out of time while trying to initialize one prey and four predators for the $11 \times 11$ grid world. We dedicated around $3.6$ GB heap space for the JVM on a $64$-bit machine with $4$ processor cores of $2.67$ Ghz, and under these settings it took more than $7$ hours to declare and initialize four predators, the prey not being created and initialized yet.
+Even though we were using an efficient state space representation we ran out of time while trying to initialize one prey and four predators for the $11 \times 11$ grid world. We dedicated around $3.6$ GB heap space for the JVM on a $64$-bit machine with $4$ processor cores of $2.67$ Ghz, and under these settings it took more than $7$ hours to declare and initialize four predators, the prey not being created and initialized yet.
 However, when using a $9 \times 9$ grid world instead of a $11 \times 11$ one, the five agents were in short time up and running. 
 Therefore we will show the results for $2$, $3$ and $4$ predators for this $9 \times 9$
  grid world first, and later we will attempt to make a comparison with the $11 \times 11$ grid world.

@@ -6,7 +6,6 @@
  *
  * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
  */
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -47,23 +46,23 @@ public class View {
     /*
      * Prints the real world "grid world" including the prey and predator in it
      */
-    public void printSimple(){
+    public void printSimple() {
         System.out.print("  ");
-        for(int j = 0; j<Environment.WIDTH;j++){
-            System.out.print(j+" ");
+        for (int j = 0; j < Environment.WIDTH; j++) {
+            System.out.print(j + " ");
         }
         System.out.print("\n");
-        for(int i =0;i<Environment.HEIGHT;i++){
-            System.out.print(String.format("%2d ",i));
-            for(int j = 0; j<Environment.WIDTH;j++){               
-                
-                if(env.predatorStandsHere(new Position(j,i))){
+        for (int i = 0; i < Environment.HEIGHT; i++) {
+            System.out.print(String.format("%2d ", i));
+            for (int j = 0; j < Environment.WIDTH; j++) {
+
+                if (env.predatorStandsHere(new Position(j, i))) {
                     System.out.print(PREDATOR);
                 }
-                else if(env.getPreyPos().equals(new Position(j,i))){
+                else if (env.getPreyPos().equals(new Position(j, i))) {
                     System.out.print(PREY);
                 }
-                else{
+                else {
                     System.out.print(EMPTY);
                 }
                 System.out.print(" ");
@@ -78,19 +77,18 @@ public class View {
 //            Arrays.fill(row, EMPTY);
 //        }
 //    }
-    
-    public static void writeMinimaxResultsToMatlab(int[][] steps, String filename, int nrMatches, int nrAveraged, int nrSweeps){
+    public static void writeMinimaxResultsToMatlab(int[][] steps, String filename, int nrMatches, int nrAveraged, int nrSweeps) {
         try {
             FileWriter fstream = new FileWriter(filename, false);
             BufferedWriter out = new BufferedWriter(fstream);
             out.write("clear;clc;");
             out.newLine();
-            for(int i = 0; i<nrMatches;i++ ){
+            for (int i = 0; i < nrMatches; i++) {
                 StringBuilder vector = new StringBuilder();
-                vector.append("match"+i+" = [");
-                for(int j=0;j<nrSweeps;j++){
-                    vector.append(steps[i][j]/nrAveraged);
-                    if(j<nrSweeps-1){
+                vector.append("match" + i + " = [");
+                for (int j = 0; j < nrSweeps; j++) {
+                    vector.append(steps[i][j] / nrAveraged);
+                    if (j < nrSweeps - 1) {
                         vector.append(",");
                     }
                 }
@@ -145,8 +143,7 @@ public class View {
         }
     }
 
-
-     /**
+    /**
      * Print the policy of a given agent in a grid-world view
      * where the prey is FIXED on one position in that grid-world
      *
@@ -154,9 +151,8 @@ public class View {
      * @param xPrey : x position of prey in real world
      * @param yPrey : y position of prey in real world
      */
-    public void printPolicy(Agent agent, int xPrey, int yPrey, boolean forPred) {
+    public static void printPolicy(Agent agent, int xPrey, int yPrey, boolean forPred) {
         System.out.println(" \\begin{table}[htbp]\n"
-                + "\\caption{policy}\n"
                 + "\\label{policyLabel}\n"
                 + "\\centering\n"
                 + "\\begin{tiny}\n"
@@ -165,55 +161,55 @@ public class View {
         Position prey = new Position(xPrey, yPrey);
         double[][] probabilities = new double[Environment.WIDTH][Action.nrActions];
         //For each y-coordinate
-        for(int row = 0; row <Environment.HEIGHT;row++){
+        for (int row = 0; row < Environment.HEIGHT; row++) {
             //for each x-coordinate
-           for(int col = 0; col <Environment.WIDTH;col++){
+            for (int col = 0; col < Environment.WIDTH; col++) {
                 //If it is not the goal state
-                if(xPrey != col || yPrey!=row){
+                if (xPrey != col || yPrey != row) {
                     //Get the probabilities for real world actions
-                    double [] prob = agent.policy(prey, new Position(col,row));
-                    for(int i = 0; i<Action.nrActions;i++){
-                        probabilities[col][i]=prob[i];
+                    double[] prob = agent.policy(prey, new Position(col,row));
+                    for (int i = 0; i < Action.nrActions; i++) {
+                        probabilities[col][i] = prob[i];
                     }
-             }
+                }
             }
-            String [] directions = {"U", "R", "D", "L","W"};
+            String[] directions = {"U", "R", "D", "L", "W"};
             //Print probabilities for each action
-            for(int i = 0; i<Action.nrActions;i++){
-                    if(i==0){
-                        System.out.print(row + "&");
+            for (int i = 0; i < Action.nrActions; i++) {
+                if (i == 0) {
+                    System.out.print(row + "&");
+                }
+                else {
+                    System.out.print("&");
+                }
+                for (int col = 0; col < Environment.WIDTH; col++) {
+                    if (xPrey != col || yPrey != row) {
+                        System.out.print(directions[i] + " " + String.format("%.3f", probabilities[col][i]));
                     }
-                    else{
-                       System.out.print("&");
-                    }
-                    for(int col = 0; col<Environment.WIDTH;col++){
-                        if(xPrey != col || yPrey!=row){
-                            System.out.print(directions[i] + " " + String.format("%.3f",probabilities[col][i]));
+                    else if (i == 2) {
+                        if (forPred) {
+                            System.out.print("Prey");
                         }
-                        else if(i == 2){
-                            if(forPred){
-                                System.out.print("Prey");
-                            }
-                            else{
-                                System.out.print("Pred");
-                            }                            
-                        }
-                        if(col == Environment.WIDTH-1){
-                            System.out.println("\\\\");
-                        }
-                        else{
-                            System.out.print("&");
+                        else {
+                            System.out.print("Pred");
                         }
                     }
+                    if (col == Environment.WIDTH - 1) {
+                        System.out.println("\\\\");
+                    }
+                    else {
+                        System.out.print("&");
+                    }
+                }
             }
             System.out.println("\\hline \\\\");
 
         }
-        System.out.print("\\end{tabular}\n"+
-                        "\\end{footnotesize}\n"+
-                       "\\end{table}\n");
+        System.out.print("\\end{tabular}\n"
+                + "\\end{tiny}\n"
+                + "\\caption{policy}\n"
+                + "\\end{table}\n");
     }
-
 
     /**
      * Writes a Matlab script that plots performance measures given different parameter
@@ -227,7 +223,7 @@ public class View {
      *
      * @see Assignment2, QLearning functions
      */
-    public static void episodeMatrixToMatlabScript(String filename, double episodesMatrix[][], double paramValues[], String paramName, String yLabel,String legendLocation) {
+    public static void episodeMatrixToMatlabScript(String filename, double episodesMatrix[][], double paramValues[], String paramName, String yLabel, String legendLocation) {
         int nrEpisodes = episodesMatrix[0].length;
         int nrParamValues = episodesMatrix.length;
 
@@ -240,7 +236,7 @@ public class View {
             out.write("nrEpisodes = " + nrEpisodes + ";");
             out.newLine();
 
-            for (int j=0; j < nrParamValues; j++) {
+            for (int j = 0; j < nrParamValues; j++) {
                 for (int i = 0; i < nrEpisodes; i++) {
 
                     String number;
@@ -259,9 +255,10 @@ public class View {
 
             StringBuilder plotText = new StringBuilder();
             plotText.append("plot(");
-            for (int j=0; j < nrParamValues; j++) {
-                if (j != 0 )
-                     plotText.append(",");
+            for (int j = 0; j < nrParamValues; j++) {
+                if (j != 0) {
+                    plotText.append(",");
+                }
                 plotText.append("xAxis, E").append(j);
             }
             plotText.append(", 'LineWidth',1.5");
@@ -271,18 +268,19 @@ public class View {
             out.newLine();
 
             out.write("title('Agent performance');"
-                        + "xlabel('Episode');"
-                        + "ylabel('" + yLabel + "');");
+                    + "xlabel('Episode');"
+                    + "ylabel('" + yLabel + "');");
             out.newLine();
 
             StringBuilder legend = new StringBuilder();
             legend.append("legend(");
-            for (int j=0; j < nrParamValues; j++) {
-                if (j != 0 )
-                     legend.append(",");
+            for (int j = 0; j < nrParamValues; j++) {
+                if (j != 0) {
+                    legend.append(",");
+                }
                 legend.append("'" + paramName + " = " + paramValues[j] + "'");
             }
-            legend.append(", 'Location','"+legendLocation+"');");
+            legend.append(", 'Location','" + legendLocation + "');");
             out.write(legend.toString());
 
             out.flush();
@@ -319,7 +317,7 @@ public class View {
             out.write("nrEpisodes = " + nrEpisodes + ";");
             out.newLine();
 
-            for (int j=0; j < nrParamValues; j++) {
+            for (int j = 0; j < nrParamValues; j++) {
                 for (int i = 0; i < nrEpisodes; i++) {
                     String number;
                     number = String.format("%.4f", episodesMatrix[j][i]);
@@ -341,9 +339,10 @@ public class View {
 
             StringBuilder plotText = new StringBuilder();
             plotText.append("plot(");
-            for (int j=0; j < nrParamValues; j++) {
-                if (j != 0 )
-                     plotText.append(",");
+            for (int j = 0; j < nrParamValues; j++) {
+                if (j != 0) {
+                    plotText.append(",");
+                }
                 plotText.append("xAxis, E").append(j);
             }
             plotText.append(", 'LineWidth',1.5");
@@ -353,15 +352,16 @@ public class View {
             out.newLine();
 
             out.write("title('Agent performance');"
-                        + "xlabel('Episode');"
-                        + "ylabel('" + yLabel + "');");
+                    + "xlabel('Episode');"
+                    + "ylabel('" + yLabel + "');");
             out.newLine();
 
             StringBuilder legend = new StringBuilder();
             legend.append("legend(");
-            for (int j=0; j < nrParamValues; j++) {
-                if (j != 0 )
-                     legend.append(",");
+            for (int j = 0; j < nrParamValues; j++) {
+                if (j != 0) {
+                    legend.append(",");
+                }
                 legend.append("'" + paramName1 + "=" + paramValues[j][0] + ", " + paramName2 + "=" + paramValues[j][1] + "'");
             }
             legend.append(");");
@@ -375,5 +375,4 @@ public class View {
             System.out.println("Error in episodeMatrixToMatlabScript(..): " + e);
         }
     }
-
 }

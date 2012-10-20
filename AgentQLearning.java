@@ -255,14 +255,24 @@ public class AgentQLearning implements Agent {
 		
         ArrayList<Position> allOthers = new ArrayList<Position> ();
         allOthers.add(other);
-        double[] pSRActions =   stateSpace.getAllActionValues(me, allOthers);// HR, HA etc.
+        double[] pSRActions =   stateSpace.getAllActionValues(me, allOthers);// HA, HR etc.
         double[] pActions = new double[Action.nrActions];
 
         for (int i=0; i < Action.nrActions; i++) {
             int index = stateSpace.getMove(myPos, allOthers, oldAction); // real world action
             pActions[index] = pSRActions[i];
         }
-        return pActions;
+        
+        double sum=0;
+        for (int i=0; i < Action.nrActions; i++) {
+            sum +=   pActions[i];
+        }
+
+        double[] probActions = new double[Action.nrActions];
+        for (int i=0; i < Action.nrActions; i++) {
+            probActions[i] =  pActions[i] /sum;
+        }
+        return probActions;
 
 	}
 
