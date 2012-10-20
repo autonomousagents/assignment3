@@ -8,10 +8,37 @@
 \usepackage{graphicx}
 \usepackage{todonotes}
 \usepackage{tikz}
-
 \usetikzlibrary{fit,positioning}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{color,soul}
+\usepackage{framed}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.1mm}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+% dit is voor twee plaatjes naast elkaar 
+%-----------------------
+\newcommand{\twopicsf}{
+	\begingroup
+  	\catcode`_=12 
+  	\triplet
+}
+\newcommand{\twopics}[6]{
+	\begingroup
+		\begin{figure}[htbp]
+			\centering			
+		      	\subcaptionbox{#1}[70mm]{\includegraphics[width=0.5\textwidth]{#2}}    
+		  	\hspace{10mm}  
+		      	\subcaptionbox{#3}[70mm]{\includegraphics[width=0.5\textwidth]{#4}}   		   
+		    \hspace{1mm}
+		  	\caption{#5}
+		  	\label{#6}
+		\end{figure}		
+	\endgroup
+}
+%-----------------------
 
 \begin{document}
 
@@ -36,5 +63,7 @@
 \input{independentQLearning}
 
 \input{miniMax}
+
+
 
 \end{document}
