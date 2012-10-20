@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.3.1)  20 OCT 2012 13:05
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.3.1)  20 OCT 2012 13:11
 entering extended mode
 **Assignment3.tex
 
@@ -556,7 +556,11 @@ Package: framed 2007/10/04 v 0.95: framed or shaded text with page breaks
 \FrameSep=\dimen181
 )
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\As
-signment3.aux")
+signment3.aux"
+
+LaTeX Warning: Label `randomPerformance' multiply defined.
+
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
@@ -642,63 +646,77 @@ Package pdftex.def Info: VMatrixNewStateRep.png used on input line 26.
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\in
 dependentQLearning.tex" [2 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/
 ass3/assignment3/Report/statespaceSymm.png> <L:/3.Documents/huiswerk_20122013/A
-utonomous Agents/ass3/assignment3/Report/VMatrixNewStateRep.png>]
+utonomous Agents/ass3/assignment3/Report/VMatrixNewStateRep.png>] [3]
 
 Package pdftex.def Warning: Option `bb' does not make sense,
-(pdftex.def)                using `viewport' instead on input line 39.
+(pdftex.def)                using `viewport' instead on input line 42.
 
 
-<IQLpercentageWinning5000episodesavg200trials.pdf, id=34, 614.295pt x 794.97pt>
+<IQLpercentageWinning5000episodesavg200trials.pdf, id=41, 614.295pt x 794.97pt>
 File: IQLpercentageWinning5000episodesavg200trials.pdf Graphic file (type pdf)
 <use IQLpercentageWinning5000episodesavg200trials.pdf>
 Package pdftex.def Info: IQLpercentageWinning5000episodesavg200trials.pdf used 
-on input line 39.
-(pdftex.def)             Requested size: 328.82707pt x 295.46982pt.
- [3])
+on input line 42.
+(pdftex.def)             Requested size: 328.82707pt x 247.74821pt.
+
+
+Package pdftex.def Warning: Option `bb' does not make sense,
+(pdftex.def)                using `viewport' instead on input line 54.
+
+<IQLgrid9by9ErrorBars.pdf, id=43, 614.295pt x 794.97pt>
+File: IQLgrid9by9ErrorBars.pdf Graphic file (type pdf)
+
+<use IQLgrid9by9ErrorBars.pdf>
+Package pdftex.def Info: IQLgrid9by9ErrorBars.pdf used on input line 54.
+(pdftex.def)             Requested size: 328.82707pt x 247.74821pt.
+ [4 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/ass3/assignment3/Report
+/IQLpercentageWinning5000episodesavg200trials.pdf>])
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\mi
 niMax.tex")
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\ap
-pendix.tex" [4 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/ass3/assignm
-ent3/Report/IQLpercentageWinning5000episodesavg200trials.pdf>]) [5]
+pendix.tex" [5 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/ass3/assignm
+ent3/Report/IQLgrid9by9ErrorBars.pdf>]) [6]
 No file Assignment3.bbl.
-[6]
+[7]
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\As
-signment3.aux") ) 
+signment3.aux")
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 12617 strings out of 494045
- 234712 string characters out of 3147582
- 279863 words of memory out of 3000000
- 15643 multiletter control sequences out of 15000+200000
- 12100 words of font info for 43 fonts, out of 3000000 for 9000
+ 12622 strings out of 494045
+ 234846 string characters out of 3147582
+ 280902 words of memory out of 3000000
+ 15648 multiletter control sequences out of 15000+200000
+ 11932 words of font info for 42 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 63i,9n,74p,868b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmbx10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12
-.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
-<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Pr
-ogram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program 
-Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (
-x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmr6.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb
-><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pro
-gram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Fil
-es (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x8
-6)/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX/font
-s/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmti8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmti9.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10
-.pfb>
-Output written on Assignment3.pdf (6 pages, 322434 bytes).
+ 63i,9n,74p,868b,372s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/
+Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progra
+m Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Fil
+es (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x8
+6)/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr17.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pf
+b><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Pr
+ogram Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Fi
+les (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86
+)/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mti12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.p
+fb><C:/Program Files (x86)/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb>
+Output written on Assignment3.pdf (7 pages, 314991 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
+ 141 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 34 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
 

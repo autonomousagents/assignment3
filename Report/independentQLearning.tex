@@ -1,3 +1,4 @@
+\newpage
 \section{Independent Q-Learning}\label{sec:IQL}
 Q-Learning is an off-policy temporal difference control algorithm. Temporal difference methods can learn directly from raw experience without a model of the environment's dynamics. Furthermore, it updates estimates based in part on other learned estimates, without waiting for a final outcome.\footnote{Sutton, Barto (1998) \textit{Reinforcement Learning: An Introduction} Cambridge, Massachusetts: The MIT press. p. 133}
 
@@ -33,15 +34,26 @@ Bla bla
 
 \subsubsection{Using an 11 $\times$ 11 grid}
 
+
+
 \begin{figure}[hbt]
 \centering
 %bb = llx, lly, urx, and ury;
-\includegraphics[bb = 1.1in 2.3in 8in 8.5in,clip,width=0.7\textwidth]{IQLpercentageWinning5000episodesavg200trials.pdf} 
-\caption{Performance for uniform input data for a GP trained on the \code{chirps.mat} data}
-\label{randomPerformance}
+\includegraphics[bb = 0.6in 3in 7.9in 8.5in,clip,width=0.7\textwidth]{IQLpercentageWinning5000episodesavg200trials.pdf} 
+\caption{Bla}
+\label{}
 \end{figure}
 
 \FloatBarrier
 
 \subsubsection{Using a 9 $\times$ 9 grid}
 
+\begin{figure}[hbt]
+\centering
+%bb = llx, lly, urx, and ury;
+\includegraphics[bb = 0.6in 3in 7.9in 8.5in,clip,width=0.7\textwidth]{IQLgrid9by9ErrorBars.pdf} 
+\caption{Error bar plot of performance in a 9 $\times$ 9 grid}
+\label{fig:meansSds}
+\end{figure}
+
+\FloatBarrier
