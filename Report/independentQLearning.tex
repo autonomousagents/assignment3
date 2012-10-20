@@ -43,14 +43,57 @@ Therefore we will show the results for $2$,$3$ and $4$ predators for this $9 \ti
 
 
 \subsubsection{Number of predators}
+We kept track of two measures:
+\begin{itemize}
+\item The number of time steps before the game was ended (by collision or catching)
+\item If the predators won the episode, or not 
+\end{itemize}
+We ran each episode $\mathbf{200}$ times. Therefore these measures are displayed as an average value and a percentage value, respectively.
 
-\begin{figure}[hbt]
+In Figure \ref{fig:IQLmeansSds} are the means and standard deviations shown for a total of $5000$ episodes, for the different numbers of predators.
+
+\begin{figure}[htb]
 \centering
 %bb = llx, lly, urx, and ury;
-\includegraphics[bb = 0.6in 3in 7.9in 8.5in,clip,width=0.7\textwidth]{IQLgrid9by9ErrorBars.pdf} 
-\caption{Error bar plot of performance in a 9 $\times$ 9 grid}
-\label{fig:meansSds}
+\includegraphics[bb = 0.6in 3in 7.9in 8.5in,clip,width=0.75\textwidth]{IQLgrid9by9ErrorBars.pdf} 
+\caption{Means and SD's for performance measures for IQL, for 5000 episodes}
+\label{fig:IQLmeansSds}
 \end{figure}
+
+
+
+We can see that in the case of four predators the percentage of times that the predators won an episode is the smallest. This is probably because of the higher chance of collision and more difficult coordination necessities. The variance for this measure for the case of four predators is also pretty high, also suggesting that a ``common'' policy is not developed yet (insofar as a true common policy is possible under IQL). 
+
+The case of there being three predators performs almost the same as the case of there being four predators on the average number of time steps  needed for termination of an episode. However for the case of there being three predators the episode endings are more often in the predators' favor. It seems, that three predators catch the prey less often than when there are two predators, but they do need elss timesteps for it.
+ 
+On the other hand, the case of there being two predators performs surprisingly well on the percentage of times the predators won. But notice that it needs a lot of time steps for that.
+
+\FloatBarrier
+
+
+\begin{table}[hbt]
+\centering
+\begin{tabular}{lllll}
+ Nr. predators  &  Variance& Mean & Last value   \\ 
+\hline   
+ 2 & 50.109 & 64.482 & 62   \\ 
+ 3 & 41.104 & 55.941 & 62.5   \\ 
+ 4 & 99.920  & 36.331 & 60   \\  
+\end{tabular} 
+\caption{Percentage of times predators won}
+\end{table}
+
+\begin{table}[hbt]
+\centering
+\begin{tabular}{lllll}
+ Nr. predators  &  Variance& Mean & Last value   \\ 
+\hline   
+ 2 &3.08 & 17.64 & 16.61   \\ 
+ 3 & 2.435 & 12.297 & 12.155   \\ 
+ 4 & 1.997  & 12.562 & 12.89   \\  
+\end{tabular} 
+\caption{Average number of time steps}
+\end{table}
 
 \FloatBarrier
 

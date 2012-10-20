@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.3.1)  20 OCT 2012 17:22
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.3.1)  20 OCT 2012 17:49
 entering extended mode
 **Assignment3.tex
 
@@ -643,29 +643,37 @@ Package pdftex.def Info: VMatrixNewStateRep.png used on input line 26.
 dependentQLearning.tex" [2 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/
 ass3/assignment3/Report/statespaceSymm.png> <L:/3.Documents/huiswerk_20122013/A
 utonomous Agents/ass3/assignment3/Report/VMatrixNewStateRep.png>] [3]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 48.
+
+("C:\Program Files (x86)\MiKTeX\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
+
 
 Package pdftex.def Warning: Option `bb' does not make sense,
-(pdftex.def)                using `viewport' instead on input line 50.
+(pdftex.def)                using `viewport' instead on input line 58.
 
 <IQLgrid9by9ErrorBars.pdf, id=37, 614.295pt x 794.97pt>
 File: IQLgrid9by9ErrorBars.pdf Graphic file (type pdf)
 
 <use IQLgrid9by9ErrorBars.pdf>
-Package pdftex.def Info: IQLgrid9by9ErrorBars.pdf used on input line 50.
-(pdftex.def)             Requested size: 328.82707pt x 247.74821pt.
-
+Package pdftex.def Info: IQLgrid9by9ErrorBars.pdf used on input line 58.
+(pdftex.def)             Requested size: 352.31625pt x 265.44624pt.
+ [4]
 
 Package pdftex.def Warning: Option `bb' does not make sense,
-(pdftex.def)                using `viewport' instead on input line 65.
+(pdftex.def)                using `viewport' instead on input line 107.
 
 
-<IQLpercentageWinning5000episodesavg200trials.pdf, id=39, 614.295pt x 794.97pt>
+<IQLpercentageWinning5000episodesavg200trials.pdf, id=45, 614.295pt x 794.97pt>
 File: IQLpercentageWinning5000episodesavg200trials.pdf Graphic file (type pdf)
 <use IQLpercentageWinning5000episodesavg200trials.pdf>
 Package pdftex.def Info: IQLpercentageWinning5000episodesavg200trials.pdf used 
-on input line 65.
+on input line 107.
 (pdftex.def)             Requested size: 328.82707pt x 247.74821pt.
- [4 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/ass3/assignment3/Report
+ [5 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/ass3/assignment3/Report
 /IQLgrid9by9ErrorBars.pdf>])
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\mi
 niMax.tex"
@@ -673,32 +681,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-[5 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/ass3/assignment3/Report/
+[6 <L:/3.Documents/huiswerk_20122013/Autonomous Agents/ass3/assignment3/Report/
 IQLpercentageWinning5000episodesavg200trials.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-[6])
+[7])
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\ap
-pendix.tex" [7] [8
+pendix.tex" [8] [9
 
-] [9
+] [10
 
 ])
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\re
-ferences.tex" [10
+ferences.tex" [11
 
 ]
 No file Assignment3.bbl.
-[11]
+[12]
 ("L:\3.Documents\huiswerk_20122013\Autonomous Agents\ass3\assignment3\Report\As
 signment3.aux") ) ) 
 Here is how much of TeX's memory you used:
- 12638 strings out of 494045
- 235180 string characters out of 3147582
- 321003 words of memory out of 3000000
- 15660 multiletter control sequences out of 15000+200000
+ 12655 strings out of 494045
+ 235475 string characters out of 3147582
+ 321005 words of memory out of 3000000
+ 15674 multiletter control sequences out of 15000+200000
  12199 words of font info for 43 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  63i,9n,74p,880b,372s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -723,9 +731,9 @@ iKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX/fonts/t
 ype1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmti9.pfb>
-Output written on Assignment3.pdf (11 pages, 329696 bytes).
+Output written on Assignment3.pdf (12 pages, 331949 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
+ 148 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  45 words of extra memory for PDF output out of 10000 (max. 10000000)
 
