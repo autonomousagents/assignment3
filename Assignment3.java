@@ -41,8 +41,8 @@ public class Assignment3 {
 
     public void miniMax() throws OptimizationException {
         int nrMatches = 3;
-        int nrSweeps = 25;
-        int averageOver = 50;
+        int nrSweeps = 10;
+        int averageOver = 25;
         Position preyPos = new Position(5, 5);
         Position predPos = new Position(0, 0);
         PredatorMiniMax predMVsR = new PredatorMiniMax(predPos, preyPos, 0.0, 0.8, 0.001);
@@ -104,13 +104,13 @@ public class Assignment3 {
             }
             if (n == 0) {
                 preyMVsR.printV(true);
-                v.printPolicy(preyMVsM, 5, 5, false);
+                v.printPolicy(preyMVsR, 5, 5, false);
             }
             preyMVsR.forgetLearning();
         }
 
-        System.out.println("Match random predator vs minimax prey");
-        //Match random predator vs minimax prey
+        System.out.println("Match minimax predator vs minimax prey");
+        //Match minimax predator vs minimax prey
         a = new ArrayList<Agent>();
         a.add(predMVsM);
         env = new Environment(a, preyMVsM);

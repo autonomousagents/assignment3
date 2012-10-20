@@ -23,7 +23,7 @@ public class Environment {
     
     public static final int maxPredators = 4;
 
-    public static final int doRunNTLmax = 20000;
+    public static final int doRunNTLmax = 5000000;
 
 
     public Environment(ArrayList<Agent> predators, Agent prey) {
