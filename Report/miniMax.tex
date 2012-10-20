@@ -1,5 +1,5 @@
 \section{(S) Minimax-Q algorithm}
-The Minimax-Q algorithm is an implementation of the general Minimax principle for Markov Games such as the prey-predator scenario in this assignment. This algorithm needs a strictly competitive scenario and is therefore implemented for the one prey and one predator setting. 
+The Minimax-Q algorithm can be used for planning in a Markov Game. It is an implementation of the general Minimax principle for Markov Games such as the prey-predator scenario in this assignment. This algorithm needs a strictly competitive scenario and is therefore implemented for the one prey and one predator setting. 
 
 \subsection{Minimax principle and translation to Markov Games}
 The Minimax principle is stated in \ref{minimax} as: "Behave so as to maximize your reward in the worst case". This means that the policy should be such that the agent takes the action resulting in the highest expected reward under the assumption that the opponent will also take the action that results in the highest expected reward for the opponent.  \\
@@ -35,4 +35,8 @@ Off course the probabilities of $\pi$ are bounded by the constraints that they c
 the maximal value for $V$ can be found for which all constraints hold using linear programming. The resulting values for $\pi$ for each state are the policy used by the agent.
 
 \subsection{Implementation}
-The Minimax-Q algorithm is implemented for this assignment using the JAVA-library Commons Math which can be found on \ref{commonsmath}
+The Minimax-Q algorithm is implemented for this assignment using a JAVA-library for Linear Programming named Commons Math which can be found on \ref{commonsmath}. The agent keeps track of a table of $V$-values to be able to calculate $Q(s,a,o)$ in order to find the right values for $\pi$.
+The resulting policy is used to behave in the environment to either catch the prey or avoid the predator.
+
+\subsection{Results}
+
