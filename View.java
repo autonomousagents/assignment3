@@ -159,7 +159,7 @@ public class View {
                 + "\\caption{policy}\n"
                 + "\\label{policyLabel}\n"
                 + "\\centering\n"
-                + "\\begin{footnotesize}\n"
+                + "\\begin{tiny}\n"
                 + "\\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}\n"
                 + "&0&1&2&3&4&5&6&7&8&9&10\\\\ \\hline\\\\");
         Position prey = new Position(xPrey, yPrey);
@@ -171,7 +171,7 @@ public class View {
                 //If it is not the goal state
                 if(xPrey != col || yPrey!=row){
                     //Get the probabilities for real world actions
-                    double [] prob = agent.policy(prey, new Position(col,row), new ArrayList<Position>());
+                    double [] prob = agent.policy(prey, new Position(col,row));
                     for(int i = 0; i<Action.nrActions;i++){
                         probabilities[col][i]=prob[i];
                     }

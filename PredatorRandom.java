@@ -68,7 +68,7 @@ public class PredatorRandom implements Agent{
     }
 
     @Override
-    public double[] policy(Position prey, Position predatorItself, ArrayList<Position> others) {
+    public double[] policy(Position prey, Position predatorItself) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

@@ -18,6 +18,6 @@ public interface Agent {
          the other predators, if it is a predator the agent at position 0 is the prey*/
 	public void observeReward(double reward, ArrayList<Position> others);
 
-    public double[] policy(Position prey,Position predatorItself, ArrayList<Position> others);
+    public double[] policy(Position prey,Position predatorItself);
 
 }

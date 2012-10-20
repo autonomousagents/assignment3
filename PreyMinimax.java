@@ -221,7 +221,7 @@ public class PreyMinimax implements Agent{
     }
 
     @Override
-    public double[] policy(Position prey, Position predatorItself, ArrayList<Position> others) {
+    public double[] policy(Position prey, Position predatorItself) {
         double[] pActions = new double[Action.nrActions];
         int linIndex = vValues.getLinearIndex(prey, predatorItself);
         for(int i = 0;i<Action.nrActions;i++){   

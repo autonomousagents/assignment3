@@ -237,9 +237,7 @@ public class AgentQLearning implements Agent {
 
 
 
-	public double[] policy(Position prey, Position predator) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+
 
 	public void printQValues(boolean latex, int action) {
 		// TODO
@@ -253,9 +251,19 @@ public class AgentQLearning implements Agent {
 
 
 	@Override
-	public double[] policy(Position prey,Position myPos ,ArrayList<Position> others) {
-		// TODO Auto-generated method stub
-		return new double[]{0,0};
+	public double[] policy(Position me,Position other ) {
+		
+        ArrayList<Position> allOthers = new ArrayList<Position> ();
+        allOthers.add(other);
+        double[] pSRActions =   stateSpace.getAllActionValues(me, allOthers);// HR, HA etc.
+        double[] pActions = new double[Action.nrActions];
+
+        for (int i=0; i < Action.nrActions; i++) {
+            int index = stateSpace.getMove(myPos, allOthers, oldAction); // real world action
+            pActions[index] = pSRActions[i];
+        }
+        return pActions;
+
 	}
 
 }
