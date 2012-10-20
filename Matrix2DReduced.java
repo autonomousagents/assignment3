@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Matrix2DReduced {
 
-    private static final int maxLinearIndex = 120;
+    private static final int maxLinearIndex = (Environment.HEIGHT*Environment.WIDTH)-1;
 	private int nRows;
     private int nCols;
     // he only has/uses ONE of these, so perhaps create an interface/superclass for Matrix2D and RelativeStateRep

@@ -568,8 +568,9 @@ public class Assignment3 {
         double alpha = 0.5;
         double epsilon = 0.1;
 
-        int[][] options = {{0, 0}, {10, 10}, {0, 10}, {10, 0}};
-        Position preyPos = new Position(5, 5);
+        int[][] options = {{0, 0}, { Environment.HEIGHT-1, Environment.WIDTH-1}, {0, Environment.WIDTH-1}, { Environment.HEIGHT-1, 0}};
+        Position preyPos = new Position((int) Math.floor(Environment.HEIGHT/2), (int) Math.floor(Environment.WIDTH/2));
+        System.out.println(preyPos.getX());
 
         ArrayList<Agent> predators = new ArrayList<Agent>();
         for (int i = 0; i < nrPredators; i++) { //// gamma, double alpha, int nrOtherPredators, double maxChange, double actionSelectionParameter, Position startPos
@@ -649,11 +650,11 @@ public class Assignment3 {
 //        a.testEnvironment(3);
 //        a.miniMax();
         //   a.minimaxPredVsRandomPrey(true);
-        a.independentQLearning(5, 4, 4, false,"measureNothing"); // nr episodes, nr trials (per episode), nr predators, print, metric("nrTimeSteps","winning" of niks
+       // a.independentQLearning(5, 4, 4, false,"measureNothing"); // nr episodes, nr trials (per episode), nr predators, print, metric("nrTimeSteps","winning" of niks
 //        StateRep rep = new StateRep(10,false,3);
 //        rep.test();
 
-       // a.processIQLwinning(5000, 200, new double[]{2,3}, false);
-      //  a.processIQLnrTimeSteps(5000, 200, new double[]{2,3}, false);
+        a.processIQLwinning(5000, 200, new double[]{2,3,4}, false);
+        a.processIQLnrTimeSteps(5000, 200, new double[]{2,3,4}, false);
     }
 }

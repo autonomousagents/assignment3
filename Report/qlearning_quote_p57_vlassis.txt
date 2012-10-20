@@ -1,4 +1,4 @@
-Although independent Q-learning cannot be justiﬁed theoretically, the method has
+﻿Although independent Q-learning cannot be justified theoretically, the method has
 been employed in practice with reported success (Matari´ , 1994, Sen et al., 1994, Tan, 1993).
 
 Claus and Boutilier (1998) examine the conditions under which independent Q-learning leads
