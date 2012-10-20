@@ -102,7 +102,7 @@ In Tables \ref{tab:percentage} and \ref{tab:timeSteps} we show the mean and vari
 We can immediately see that the case of four predators seems to catch pretty well up for the measure of the percentage of times they won. Its mean value is 36.331 but its end value is 60. The case for two predators seems to have ``converged'' long before, with a mean close to its last value.
 
 The variance of the case of four predators, for the measure of the percentage of times they won, is quite large.
-This can mean the agents either learn very slow or learn not at all (but that can not be, because at least the prey has ample learning opportunities in this setting). In Figure \ref{fig:IQLpercentagePlot} we show a plot of the percentage of times the predators won for each predator number setting. We indeed see that in the setting of four predators the learning simply occurs slowly.
+This can mean the agents either learn very slow or because of large fluctuations in the distribution of ``skill'' over the prey and predators over time. In Figure \ref{fig:IQLpercentagePlot} we show a plot of the percentage of times the predators won for each predator number setting. We indeed see that in the setting of four predators the learning simply occurs slowly.
 
 
  In Figure \ref{fig:IQLpercentagePlot} we also see that the predator performance slowly goes down between the 500th and 2000th episode for the case of two predators. Apparently the predators learned to optimize their performance before the prey could, but then the prey learned their policy, and after that escapes more often. The predators apparently can't make a much better policy after that. For the settings of three and four predators, it seems the prey was the first to learn a (up until a certain time) good policy.
@@ -110,14 +110,7 @@ This can mean the agents either learn very slow or learn not at all (but that ca
 As for convergence, the average number of time steps used per episode seems to converge for all three settings, as can also be seen in Figure \ref{fig:IQLnrTimeSteps} (and Table \ref{tab:timeSteps}). The percentage of times the predators won, seems to converge for $5000$ episodes only for the settings of two and three predators. The value for four predators seems not stable yet, as can be seen in Figure \ref{fig:IQLpercentagePlot} (and Table \ref{tab:percentage}).
 
 
-\begin{figure}[htb]
-\centering
-%bb = llx, lly, urx, and ury;
-\includegraphics[bb = 0.6in 2.9in 7.9in 8.2in,clip,width=0.66\textwidth]
-{IQLgrid9by9nrTimeSteps5000episodesavg200trials.pdf} 
-\caption{Average nr. of time steps before an episode ending, for the three predator number settings}
-\label{fig:IQLnrTimeSteps}
-\end{figure}
+
 \begin{figure}[htb]
 \centering
 %bb = llx, lly, urx, and ury;
@@ -126,15 +119,21 @@ As for convergence, the average number of time steps used per episode seems to c
 \caption{Percentage of times the predators won for the three predator number settings}
 \label{fig:IQLpercentagePlot}
 \end{figure}
-
+\begin{figure}[htb]
+\centering
+%bb = llx, lly, urx, and ury;
+\includegraphics[bb = 0.6in 2.9in 7.9in 8.2in,clip,width=0.66\textwidth]
+{IQLgrid9by9nrTimeSteps5000episodesavg200trials.pdf} 
+\caption{Average nr. of time steps before an episode ending, for the three predator number settings}
+\label{fig:IQLnrTimeSteps}
+\end{figure}
 
 
 \FloatBarrier
 \clearpage
 \subsubsection{Using an 11 $\times$ 11 grid}
 
-The results for using a larger, $11 \times 11$ grid seem similar to those in Section \ref{sec:IQLresults1} were we used a $9 \times 9$ grid, except the differences seem more pronounced for the first 1000 episodes.
-Compare Figure \ref{fig:IQLpercentagePlot2} with Figure \ref{fig:IQLpercentagePlot} and Figure \ref{fig:IQLnrTimeSteps2} with Figure \ref{fig:IQLnrTimeSteps}. The percentage of times that the predators won, is  higher for the case of three predators in the $11 \times 11$ setting, probably because of less collision issues.
+The results for using a larger, $11 \times 11$ grid seem roughly similar to those in Section \ref{sec:IQLresults1} were we used a $9 \times 9$ grid. Compare Figure \ref{fig:IQLpercentagePlot2} with Figure \ref{fig:IQLpercentagePlot} and Figure \ref{fig:IQLnrTimeSteps2} with Figure \ref{fig:IQLnrTimeSteps}. The differences seem more pronounced for the first 1000 episodes. Also, the percentage of times that the predators won, is  higher for the case of three predators in the $11 \times 11$ setting, probably because of less collision issues.
 
 \begin{figure}[hbt]
 \centering
