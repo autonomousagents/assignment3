@@ -1,16 +1,16 @@
-
-/**
- * Master AI UvA 2012/2013
- * Autonomous Agents
- * Assignment 1
- *
- * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
- */
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+/**
+ * Master AI UvA 2012/2013
+ * Autonomous Agents
+ * Assignment 3
+ *
+ * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
+ */
 
 public class View {
 

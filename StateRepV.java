@@ -1,23 +1,15 @@
 
 import java.util.Arrays;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Lyltje
- */
-public class StateRepV {
-    /**
  * Master AI UvA 2012/2013
  * Autonomous Agents
- * Assignment 1
+ * Assignment 3
  *
  * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
  */
+
+public class StateRepV {
 
     private double stateRep[][];
     private boolean isPrey;

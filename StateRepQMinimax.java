@@ -1,23 +1,16 @@
 
 import java.util.Arrays;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Lyltje
- */
-public class StateRepQMinimax {
-    /**
  * Master AI UvA 2012/2013
  * Autonomous Agents
- * Assignment 1
+ * Assignment 3
  *
  * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
  */
+
+public class StateRepQMinimax {
+
     private double stateRep[][][];
     private boolean isPrey;
     public static final int stateRepWidth = Math.round(Environment.WIDTH/2)+1;
@@ -190,22 +183,6 @@ public class StateRepQMinimax {
     public double[][][] getMatrix(){
         return stateRep;
        }
- 
-    
-// Aanpassen voor gebruik met state action pairs. 
-    
-//    public void printLatexTable(){
-//        for(int i = 0;i< stateRepHeight;i++){
-//        	System.out.println(i + " & ");
-//        	for(int j = 0; j<stateRepWidth;j++){
-//        		System.out.format("%7.4f",stateRep[i][j]);
-//        		if(j!=stateRepWidth-1){
-//        			System.out.print(" & ");
-//        		}
-//        	}
-//        System.out.println("\\\\");
-//        }
-//    } 
     
     public void setValue(int linearIndex,Action action, double value){
     	Position pos = linearIndexToPosition(linearIndex);

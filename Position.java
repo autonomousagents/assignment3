@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Master AI UvA 2012/2013
  * Autonomous Agents
- * Assignment 1
+ * Assignment 3
  *
  * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
  */
@@ -95,7 +95,7 @@ public class Position {
         System.out.println("x = "+ x + ", y = "+y);
     }
     
-        public static ArrayList<Position> deepCopyList(ArrayList<Position> original){
+    public static ArrayList<Position> deepCopyList(ArrayList<Position> original){
         ArrayList<Position> copy = new ArrayList<Position>();
         for(int i = 0; i<original.size();i++){
             copy.add(new Position(original.get(i)));

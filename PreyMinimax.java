@@ -13,9 +13,13 @@ import org.apache.commons.math.optimization.linear.SimplexSolver;/*
  */
 
 /**
- * 
- * @author Lyltje
+ * Master AI UvA 2012/2013
+ * Autonomous Agents
+ * Assignment 3
+ *
+ * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
  */
+
 public class PreyMinimax implements Agent{
     private static final double Ptrip = 0.2;
     private Position startPos, myPos;

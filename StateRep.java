@@ -1,6 +1,14 @@
 
 import java.util.ArrayList;
 
+/**
+ * Master AI UvA 2012/2013
+ * Autonomous Agents
+ * Assignment 3
+ *
+ * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
+ */
+
 public class StateRep {
 
     private int nrOtherAgents;
@@ -119,7 +127,9 @@ public class StateRep {
          }
     }
 
-
+    /**
+     * Debug function
+     */
     public void test() {
 
         ArrayList<Position> otherPositions = new ArrayList<Position>();
