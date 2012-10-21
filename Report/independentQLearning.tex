@@ -11,7 +11,7 @@ When using Q-Learning in a multi-agent setting independently for each agent, the
 \subsection{Implementation}
 For this assignment, we implemented Independent Q-learning and used it independently for all our agents, the predators and the prey. The agents learn concurrently (i.e. all agents do a move, then all update their estimated values), not sequentially (i.e. after one agent does a move, all other agents update their estimated values). When any two predators bump into each other, the prey wins (reward of $10$) and the predators all lose (reward of $-10$). When a predator catches the prey, the prey loses and all predators win.
 
- Each agent will have its own state representation and learning and will view the other agents as part of the environment. We used $\epsilon$-greedy action selection, which behaves greedily most of the time, but with probability $\epsilon$, instead select an action at random, uniformly, independently of the action-value estimates \cite[pp. 28]{RL1}. In this case, we used $\epsilon = 0.1$. We initiated the values of each Q-learning table optimistically with a value of 15 for all cells for the tables.
+ Each agent will have its own state representation and learning and will view the other agents as part of the environment. We used $\epsilon$-greedy action selection, which behaves greedily most of the time, but with probability $\epsilon$, instead select an action at random, uniformly, independently of the action-value estimates \cite[pp. 28]{RL1}. In this case, we used $\epsilon = 0.1$. We initiated the values of each Q-learning table optimistically with a value of 15 for all cells for the tables. Furthermore the learning rate $\alpha$ was set to 0.5 and the discount factor $\gamma$ was set to 0.9.
 
 \subsubsection{State space} \label{sec:stateSpaceIQL}
 The state space is of crucial importance to Independent Q-Learning, because it grows exponentially with the number of agents. In the experiments described in the previous report, were we had just one prey and one predator, we initially used a state space that was an intuitive, yet cumbersome representation. We then changed the state space representation to a more efficient one in the second assignment, referred to as the `efficient' state space, which led to a reduction of 697 times less states, resulting in just 21 different states. See Section \ref{sec:stateSpaceIntro} for details.
@@ -21,7 +21,7 @@ The default amount of states for this assignment would be $121^{p+1}$ for each a
 The reduction is increased further by pointing to the same state for each combination of current positions of the other predators, though this is only effective for more than two predators. A simple example would be a case three predators and a prey, the current predator ($p_1$) which has to find his current state would take the position of the first other predator ($p_2$) and then the position of the second other predator ($p_3$) to locate his state in the state space. In this case it shouldn't matter which position, $p_2$ or $p_3$, would be looked up first. In this case both $p_2$ then $p_3$ and $p_3$ then $p_2$ would point to the same state. This reduces the state space to:
 
 \[
-\mathbf{stateSpaces}(p) = 
+\mathbf{stateSpaceSize}(p) = 
 \begin{cases}
 	21 & p = 1\\
     21 \cdot 121 & p = 2 \\
@@ -34,6 +34,8 @@ The reduction is increased further by pointing to the same state for each combin
 
 We analyzed what happened in the case of 2, 3 and 4 predators.
 For the case of one predator (and one prey), we have not used this case here, we used this case in the comparison with the Minimax-Q algorithm (in Section \ref{sec:comparisonIQLandMinimax}).
+
+After producing the results it came to our attention that Q-learning did not yet have the prey trip chance implemented, for more than one predator it did not cause an infinite loop (the predators' policies were good enough to catch a prey that cannot trip). However, for the results in Section \ref{sec:comparisonIQLandMinimax}  this was implemented, where before it would cause the prey to stay away from a single predator indefinitely.
 
 Even though we were using an efficient state space representation we ran out of time while trying to initialize one prey and four predators for the $11 \times 11$ grid world. We dedicated around $3.6$ GB heap space for the JVM on a $64$-bit machine with $4$ processor cores of $2.67$ Ghz, and under these settings it took more than $7$ hours to declare and initialize four predators, the prey not being created and initialized yet.
 However, when using a $9 \times 9$ grid world instead of a $11 \times 11$ one, the five agents were in short time up and running. 
