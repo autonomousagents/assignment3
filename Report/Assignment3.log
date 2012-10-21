@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.9.24)  21 OCT 2012 17:23
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.9.24)  21 OCT 2012 17:44
 entering extended mode
 **Assignment3.tex
 (C:\Users\Norrie\Documents\GitHub\assignment3\Report\Assignment3.tex
@@ -693,14 +693,16 @@ SinglePredatorClose.png (PNG copy)>])
 
 ] [14
 
-] [15
-
-])
-(C:\Users\Norrie\Documents\GitHub\assignment3\Report\references.tex [16
+]) (C:\Users\Norrie\Documents\GitHub\assignment3\Report\references.tex
+[15
 
 ]
 No file Assignment3.bbl.
-[17] (C:\Users\Norrie\Documents\GitHub\assignment3\Report\Assignment3.aux) ) ) 
+[16] (C:\Users\Norrie\Documents\GitHub\assignment3\Report\Assignment3.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) ) 
 Here is how much of TeX's memory you used:
  12720 strings out of 494045
  232809 string characters out of 3152062
@@ -709,28 +711,27 @@ Here is how much of TeX's memory you used:
  12199 words of font info for 43 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  63i,10n,74p,1375b,370s stack positions out of 5000i,500n,10000p,200000b,50000s
-<
-E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Apps/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmcsc10.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmex10.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><E:/Ap
-ps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><E:/Apps/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmmi7.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmmi8.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><E:/Apps/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmr5.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-7.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><E:/Apps/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmsy5.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><E:/Ap
-ps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><E:/Apps/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmti10.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmti12.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.p
-fb>
-Output written on Assignment3.pdf (17 pages, 426535 bytes).
+<E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Apps/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><E:/Apps/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmcsc10.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmex10.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><E:/Apps/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmmi7.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmmi8.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><E:/Apps/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><E:/Apps/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr5.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr7.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><E:/Apps
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><E:/Apps/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy5.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
+E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><E:/Apps/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmti10.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmti12.pfb><E:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+ti9.pfb>
+Output written on Assignment3.pdf (16 pages, 426413 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
+ 181 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  88 words of extra memory for PDF output out of 10000 (max. 10000000)
 
