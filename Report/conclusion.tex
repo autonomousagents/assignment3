@@ -1,2 +1,20 @@
 \section{Conclusion}
+%Q-learning
+%2 of meer predators was voldoende om een prey zonder trip te vangen
+With these results at hand we can conclude a few things. In the case of Q-learning, two or more predators was enough to catch a prey that uses Q-learning without it have a chance to trip. This was not the case with only one predator, where the prey would stay away from the predator indefinitely. 
+%ze deden het ook (veel) sneller dan een enkele predator
+Not only could they catch a non-tripping prey, more predators would result in faster capture, though it seems that from two predators onward they converge to approximately the same amount of time steps required before the prey is captured.
+%voor 4 predators states genereren was goed mogelijk voor een grid van 9x9
 
+Generating a state space for four predators on a 11 $\times$ 11 grid took a large amount of time and a large amount of RAM, 3.6 GB and over 7 hours to declare only the predator states. However, using a smaller grid (9 $\times$ 9) was much more feasible for four predators. Requiring about 5 times less states than the normal grid size as shown below.
+%Q-learning misschien beter dan minimax, maar alleen gegeven dat Minimax de juiste implementatie heeft.
+
+\begin{align*}
+11 \times 11 \text{ grid} & & 9 \times 9 \text{ grid}\\
+\frac{21\cdot 121^{4-1}}{(4-1)!} \approx 6200464 & & \frac{15\cdot 81^{4-1}}{(4-1)!} \approx 1328603
+\end{align*}
+
+Minimax-Q on the other hand showed some bugs, such as the possibility of infinite loops in the policy and the predator not catching the prey. If the Minimax-Q is implemented correctly then the independent Q-learning results in a better policy, requiring less time steps to catch the prey. But sadly due to the possibility of bugs in the Minimax-Q code, we cannot conclude anything in regards to comparing Q-learning and Minimax-Q in term of time steps required. 
+%Minimax-Q
+%Resulterende policy heeft mogelijk nog bugs
+%oneindige loops aanwezig in de policy
