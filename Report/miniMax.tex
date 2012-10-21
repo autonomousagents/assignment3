@@ -92,4 +92,18 @@ The effect of this can be found in the number of steps it takes to catch the pre
 
 \subsection{Comparison with Independent Q-Learning}\label{sec:comparisonIQLandMinimax}
 
-A policy resulting from Independent Q-Learning (see Section \ref{sec:IQL}) can be compared to a policy found with Minimax-Q for the case in which there is just one predator and one prey. We ran IQL under these settings for 2500 episodes and constructed policies for the predator and the prey. These policies can be found in Appendix \ref{app:policiesIQL} (the corresponding policies for Minimax-Q are in Appendix \ref{app:policiesM}). The policies are very different, but what they share is that for both algorithms they seem to make little sense on first sight. Perhaps the game simply refuses to end when both opposing agents (with the same potential ``skill'') get smarter and smarter, finding equilibria which are expressed as loops in the policy table.
+A policy resulting from Independent Q-Learning (see Section \ref{sec:IQL}) can be compared to a policy found with Minimax-Q for the case in which there is just one predator and one prey. We ran IQL under these settings for 1000 episodes and constructed policies for the predator and the prey. These policies can be found in Appendix \ref{app:policiesIQL} (the corresponding policies for Minimax-Q are in Appendix \ref{app:policiesM}). The number of steps taken by the predator to reach the prey is shown in figure \ref{fig:onePredQLearn}. Comparing the policies of Q-learning and Minimax-Q shows that for the most part they are both straightforward, prey moves away from the predator and the predator moves toward the prey. The exception is the states next to the prey, where Minimax-Q does not move directly towards the prey. The reason is that Minimax-Q responds to the policy of the prey. Q-learning however uses episodic learning and randomness ($\epsilon$-greedy action selection and prey trip chance) to learn the policy. Because of this, Q-learning cannot respond as precise as Minimax-Q. Even though this is true, the average number of time steps needed (150 according to figure \ref{fig:onePredQLearn1000}) to catch the prey is lower for Q-learning than for Minimax-Q as seen in table \ref{tab:minimaxTable}. From this data alone it is not clear why exactly.
+
+\begin{figure}[ht]
+\centering
+\subfigure[Displays the average number of time steps needed to catch the prey for the first 1000 episodes.]{
+    \includegraphics[width=0.45\textwidth]{IQLnrTimeStepsSinglePredator.png}
+    \label{fig:onePredQLearn1000}
+}
+\subfigure[Close-up of figure \ref{fig:onePredQLearn1000}.]{
+    \includegraphics[width=0.45\textwidth]{IQLnrTimeStepsSinglePredatorClose.png}
+    \label{fig:onePredQLearnCloseup}
+}
+\caption{Plots that display the number of time steps needed, averaged over 200 runs for each episode, for a single predator using Q-learning to catch a prey that also uses Q-learning.}
+\label{fig:onePredQLearn}
+\end{figure}
