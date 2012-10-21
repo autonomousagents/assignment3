@@ -1,6 +1,14 @@
 import java.util.ArrayList;
 
 /**
+ * Master AI UvA 2012/2013
+ * Autonomous Agents
+ * Assignment 3
+ *
+ * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
+ */
+
+/**
  * For independent Q-Learning
  */
 
@@ -192,7 +200,39 @@ public class AgentQLearning implements Agent {
 		myPos.adjustPosition(oldActionNumber);
 	
 	}
+	
+	/**
+	 * this function turns the Q(s,a) values of a given state into probabilities for each action.
+	 */
+	@Override
+	public double[] policy(Position me,Position other ) {
+		
+        ArrayList<Position> allOthers = new ArrayList<Position> ();
+        allOthers.add(other);
+        double[] pSRActions =   stateSpace.getAllActionValues(me, allOthers);// HA, HR etc.
+        double[] pActions = new double[Action.nrActions];
 
+        for (int i=0; i < Action.nrActions; i++) {
+            int index = stateSpace.getMove(myPos, allOthers, oldAction); // real world action
+            pActions[index] = pSRActions[i];
+        }
+        
+        double sum=0;
+        for (int i=0; i < Action.nrActions; i++) {
+            sum +=   pActions[i];
+        }
+
+        double[] probActions = new double[Action.nrActions];
+        for (int i=0; i < Action.nrActions; i++) {
+            probActions[i] =  pActions[i] /sum;
+        }
+        return probActions;
+
+	}
+	
+	/**
+	 * Below here the getters and setters of this class can be found
+	 */
 	@Override
 	public Position getPos() {
 		return myPos;
@@ -219,9 +259,6 @@ public class AgentQLearning implements Agent {
 		
 	}
 
-	
-
-
 	public double getInitialValue() {
 		return initialValue;
 	}
@@ -235,10 +272,6 @@ public class AgentQLearning implements Agent {
 	}
 
 
-
-
-
-
 	public void printQValues(boolean latex, int action) {
 		// TODO
 //		if (action == -1) {
@@ -246,34 +279,6 @@ public class AgentQLearning implements Agent {
 //		} else {
 //			stateSpace.printForOneAction(latex, action);
 //		}
-	}
-
-
-
-	@Override
-	public double[] policy(Position me,Position other ) {
-		
-        ArrayList<Position> allOthers = new ArrayList<Position> ();
-        allOthers.add(other);
-        double[] pSRActions =   stateSpace.getAllActionValues(me, allOthers);// HA, HR etc.
-        double[] pActions = new double[Action.nrActions];
-
-        for (int i=0; i < Action.nrActions; i++) {
-            int index = stateSpace.getMove(myPos, allOthers, oldAction); // real world action
-            pActions[index] = pSRActions[i];
-        }
-        
-        double sum=0;
-        for (int i=0; i < Action.nrActions; i++) {
-            sum +=   pActions[i];
-        }
-
-        double[] probActions = new double[Action.nrActions];
-        for (int i=0; i < Action.nrActions; i++) {
-            probActions[i] =  pActions[i] /sum;
-        }
-        return probActions;
-
 	}
 
 }

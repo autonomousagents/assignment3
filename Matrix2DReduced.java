@@ -1,10 +1,14 @@
 
 import java.util.ArrayList;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Master AI UvA 2012/2013
+ * Autonomous Agents
+ * Assignment 3
+ *
+ * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
  */
+
 public class Matrix2DReduced {
 
     private static final int maxLinearIndex = (Environment.HEIGHT*Environment.WIDTH)-1;
@@ -29,25 +33,25 @@ public class Matrix2DReduced {
      * e.g., when there are 4 predators
      * level:  0 = prey and this predator, 1 = first other predator, 2 = second other predator, 3 = third other predator
      */
+    
+    /**
+     * Addition to the normal state space matrix to reduce the state space further.
+     * In contrast to the normal matrix2D, the matrices are first produced, and 
+     * another function handles the state assignments.
+     * @param level
+     * @param initValue
+     */
     public void init(int level, double initValue) {
     	initMatrices(level, initValue);
     	leveledStateAssignment(level, 0, new ArrayList<Position>(), initValue);
     }
     
     private void initMatrices(int level, double initValue) {
-
-      
-        //  System.out.println(level);
         
         if (level == 1) { // first other predator
 
             bottomMatrix = new RelativeStateRep[nRows][nCols]; // bevat 2D matrix met daarin RelativeStateRep's (voor prey and this predator)
 
-//            for (int i = 0; i < nRows; i++) {
-//                for (int j = 0; j < nCols; j++) {
-//                    bottomMatrix[i][j] = new RelativeStateRep(initValue);
-//                }
-//            }
         }
         else {
 
@@ -62,14 +66,20 @@ public class Matrix2DReduced {
         }
     }
 
-    //level = predators -1 && predators > 1
+    /**
+     * Addition to the normal state space matrix to reduce the state space further.
+     * Function that creates an ArrayList of Positions for each possible Position 
+     * of other predators. 
+     * @param level
+     * @param linearIndex
+     * @param posArray
+     * @param initValue
+     */
     private void leveledStateAssignment (int level, int linearIndex, ArrayList<Position> posArray, double initValue){
     	//until bottom is reached, then fill the corresponding posarray combinations with state.
     	if (level == 0) {
     		RelativeStateRep state = new RelativeStateRep(initValue);
-    		//System.out.println("state " + counter + " made");
     		reduceStates(posArray, state);
-    		//counter++;
     		return;
     	}
     	//for each level give along the corresponding pos
@@ -81,12 +91,20 @@ public class Matrix2DReduced {
     	}
     }
     
+    //converts linear index (left to right) of a grid to a Position 
     private Position linearIndexToPos(int linearIndex) {
     	int x = linearIndex % nCols;
     	int y = (linearIndex - x) / nCols;
 		return new Position(x,y);
 	}
 
+    /**
+     * Addition to the normal state space matrix to reduce the state space further.
+     * Function that assigns the given state to each possible combinations of Positions
+     * for the other predators
+     * @param posArray
+     * @param state
+     */
 	@SuppressWarnings("unchecked")
 	private void reduceStates (ArrayList<Position> posArray, RelativeStateRep state){
     	if(posArray.size() == 1) {

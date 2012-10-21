@@ -8,7 +8,7 @@ import org.apache.commons.math.optimization.OptimizationException;
 /**
  * Master AI UvA 2012/2013
  * Autonomous Agents
- * Assignment 1
+ * Assignment 3
  *
  * @authors Group 7: Agnes van Belle, Maaike Fleuren, Norbert Heijne, Lydia Mennes
  */
@@ -151,6 +151,15 @@ public class Assignment3 {
         }
     }
 
+    
+    /**
+     * Function that creates a matlab script for the plot of the averaged percentage 
+     * of times the predators won per episode over the number of trials.
+     * @param nrEpisodes
+     * @param nrTrials
+     * @param nrPredatorsSettings
+     * @param print
+     */
     public void processIQLwinning(int nrEpisodes, int nrTrials, double[] nrPredatorsSettings, boolean print) {
 
         String metric="winning";
@@ -166,6 +175,15 @@ public class Assignment3 {
 
     }
 
+    
+    /**
+     * Function that creates a matlab script for the plot of the average number 
+     * of timesteps per episode over a number of trials
+     * @param nrEpisodes
+     * @param nrTrials
+     * @param nrPredatorsSettings
+     * @param print
+     */
     public void processIQLnrTimeSteps(int nrEpisodes, int nrTrials, double[] nrPredatorsSettings, boolean print) {
 
         String metric="nrTimeSteps";
@@ -237,9 +255,6 @@ public class Assignment3 {
         for (int i = 0; i < nrTrials; i++) {
             Environment env = new Environment(predators, prey);
             View v = new View(env);
-            //  if (print) {
-            //      System.out.println("\nEpisode " + i );
-            //  }
             
             while (!env.isEnded()) {
                 env.nextTimeStep();
@@ -253,8 +268,7 @@ public class Assignment3 {
             if (env.reward(false) == Environment.maximumReward) { // if predators accomplished mission
                 nrTrialsPredatorsWon++;
             }
-           // System.out.println("reward predator:" + env.reward(false));
-           // System.out.println("reward prey:" + env.reward(true));
+            
             env.reset();
         }
 
@@ -271,17 +285,20 @@ public class Assignment3 {
 
     public static void main(String[] args) throws OptimizationException {
         Assignment3 a = new Assignment3();
-//        a.testEnvironment(3);
-    //    a.miniMax();
-        //   a.minimaxPredVsRandomPrey(true);
-       // a.independentQLearning(5, 4, 4, false,"measureNothing"); // nr episodes, nr trials (per episode), nr predators, print, metric("nrTimeSteps","winning" of niks
-//        a.independentQLearning(5, 4, 4, false,"measureNothing"); // nr episodes, nr trials (per episode), nr predators, print, metric("nrTimeSteps","winning" of niks
-//        StateRep rep = new StateRep(10,false,3);
-//        rep.test();
+//		a.testEnvironment(3);
+//		a.miniMax();
+//		a.minimaxPredVsRandomPrey(true);
+//		a.independentQLearning(5, 4, 4, false,"measureNothing"); // nr episodes, nr trials (per episode), nr predators, print, metric("nrTimeSteps","winning" of niks
+//		a.independentQLearning(5, 4, 4, false,"measureNothing"); // nr episodes, nr trials (per episode), nr predators, print, metric("nrTimeSteps","winning" of niks
 
-//        a.processIQLwinning(5000, 200, new double[]{2,3,4}, false);
-   //     a.processIQLnrTimeSteps(1000, 200, new double[]{1}, false);
-
-         a.independentQLearning(2500, 25,  1, false, " ");
+        //state rep test
+//		StateRep rep = new StateRep(10,false,3);
+//		rep.test();
+        
+        //creating plots		
+//		a.processIQLwinning(5000, 200, new double[]{2,3,4}, false);
+//		a.processIQLnrTimeSteps(1000, 200, new double[]{1}, false);
+	
+//		a.independentQLearning(2500, 25,  1, false, " ");
     }
 }
