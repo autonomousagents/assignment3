@@ -57,7 +57,7 @@ public class PreyMinimax implements Agent{
      * @param others = array list of positions with the position of the predator
      */
     @Override
-    public void doMove(ArrayList<Position> others) {
+    public void doMove(ArrayList<Position> others, boolean isPrey) {
         predPos = new Position(others.get(0));
         double p = Math.random();
         // if the prey does not trip

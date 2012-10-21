@@ -56,7 +56,7 @@ public class PredatorMiniMax implements Agent {
      * @param others = array list of positions with the position of the predator
      */
     @Override
-    public void doMove(ArrayList<Position> others) {
+    public void doMove(ArrayList<Position> others, boolean isPrey) {
         preyPos = new Position(others.get(0));
         int linIndex = policy.getLinearIndexFromPositions(myPos, preyPos);   
         double [] prob = policy.getStateActionPairValues(linIndex);

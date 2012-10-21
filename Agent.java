@@ -6,7 +6,7 @@ public interface Agent {
 
 	
 	
-	public void doMove(ArrayList<Position> others);
+	public void doMove(ArrayList<Position> others, boolean isPrey);
 	
 	public Position getPos();
 	

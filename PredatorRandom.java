@@ -35,7 +35,7 @@ public class PredatorRandom implements Agent{
      * @param others = array list of position of the other agents
      */
     @Override
-    public void doMove(ArrayList<Position> others) {
+    public void doMove(ArrayList<Position> others, boolean isPrey) {
         double p = Math.random();
         double start = 1.0/Action.nrActions;
         for(int i=0;i<Action.nrActions;i++){

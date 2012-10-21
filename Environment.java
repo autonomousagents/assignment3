@@ -54,9 +54,9 @@ public class Environment {
             posOthers.add(positionsOthers(j));
         }
         for(int i = 1; i<predators.size()+1;i++){
-            predators.get(i-1).doMove(posOthers.get(i));
+            predators.get(i-1).doMove(posOthers.get(i), false);
         }
-        prey.doMove(posOthers.get(0));       
+        prey.doMove(posOthers.get(0), true);       
         prey.observeReward(reward(true), posOthers.get(0));
 
         int agentNr = 0;

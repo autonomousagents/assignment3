@@ -35,7 +35,7 @@ public class PreyRandom implements Agent {
      * @param others = array list of position of the predators
      */
     @Override
-    public void doMove(ArrayList<Position> others) {
+    public void doMove(ArrayList<Position> others, boolean isPrey) {
         double p = Math.random();
         // if the prey does not trip
         if(p>Ptrip){

@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 
 public class AgentQLearning implements Agent {
+	
+	private static final double PREY_TRIP = 0.2;
 
 	private double gamma;
 	private double alpha;
@@ -191,8 +193,15 @@ public class AgentQLearning implements Agent {
 	 *            : position of the prey
 	 */
 	@Override
-	public void doMove(ArrayList<Position> others) {
-
+	public void doMove(ArrayList<Position> others, boolean isPrey) {
+		if(isPrey){
+			double p = Math.random();
+			if (p <= PREY_TRIP){
+				oldAction = Action.Wait; // HA, HR, VA, etc.
+				oldActionNumber = 4;//4 equals wait
+			}
+		}
+		
 		oldAction = pickEpsilonGreedyAction(others); // HA, HR, VA, etc.
 
 		oldActionNumber = stateSpace.getMove(myPos, others, oldAction);
