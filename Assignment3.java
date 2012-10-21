@@ -199,6 +199,17 @@ public class Assignment3 {
 
     }
 
+    
+    /**
+     * Independent Q learning 
+     * 
+     * @param nrEpisodes
+     * @param nrTrials
+     * @param nrPredators
+     * @param print
+     * @param metric
+     * @return
+     */
     public double[] independentQLearning(int nrEpisodes, int nrTrials, int nrPredators, boolean print, String metric) {
 
         /** init parameters and positions **/
@@ -236,9 +247,7 @@ public class Assignment3 {
     }
 
     /**
-     *
-     * Note that when using just 1 predator, the return value will be "100" always, because then the game is only ended
-     * when the predator catches the prey
+     * Runs a trial for independent Q learning and returns the given metric value;
      * 
      * @param predators
      * @param prey
@@ -297,8 +306,8 @@ public class Assignment3 {
         
         //creating plots		
 //		a.processIQLwinning(5000, 200, new double[]{2,3,4}, false);
-//		a.processIQLnrTimeSteps(1000, 200, new double[]{1}, false);
+		a.processIQLnrTimeSteps(1000, 200, new double[]{1}, false);
 	
-//		a.independentQLearning(2500, 25,  1, false, " ");
+//		a.independentQLearning(2500, 25,  1, false, "winning");
     }
 }
